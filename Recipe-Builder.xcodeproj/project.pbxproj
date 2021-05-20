@@ -13,6 +13,8 @@
 		5051E5302656F7E00081E77F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051E51B2656F7DE0081E77F /* ContentView.swift */; };
 		5051E5312656F7E00081E77F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5051E51C2656F7DF0081E77F /* Assets.xcassets */; };
 		5051E5322656F7E00081E77F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5051E51C2656F7DF0081E77F /* Assets.xcassets */; };
+		5051E53E2656FB1A0081E77F /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051E53D2656FB1A0081E77F /* LaunchScreen.swift */; };
+		5051E53F2656FB1A0081E77F /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051E53D2656FB1A0081E77F /* LaunchScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		5051E5292656F7E00081E77F /* Recipe-Builder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recipe-Builder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5051E52B2656F7E00081E77F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5051E52C2656F7E00081E77F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		5051E53D2656FB1A0081E77F /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,7 @@
 			children = (
 				5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */,
 				5051E51B2656F7DE0081E77F /* ContentView.swift */,
+				5051E53D2656FB1A0081E77F /* LaunchScreen.swift */,
 				5051E51C2656F7DF0081E77F /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -189,6 +193,7 @@
 			files = (
 				5051E52F2656F7E00081E77F /* ContentView.swift in Sources */,
 				5051E52D2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
+				5051E53E2656FB1A0081E77F /* LaunchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +203,7 @@
 			files = (
 				5051E5302656F7E00081E77F /* ContentView.swift in Sources */,
 				5051E52E2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
+				5051E53F2656FB1A0081E77F /* LaunchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
