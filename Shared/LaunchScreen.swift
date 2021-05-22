@@ -9,12 +9,17 @@ import SwiftUI
 
 struct LaunchScreen: View {
     @State var bgImage = "Home"
+    let title = "WELCOME"
+    let subtitle = "What's cooking?"
     let titleSize = CGFloat(70)
     let messageSize = CGFloat(24)
     let textColor = Color.green
+    let mainColor = AnyView(Color.green.contrast(0.8))
     
     var body: some View {
         ZStack {
+            
+            // Background
             Image(bgImage)
                 .resizable()
                 .ignoresSafeArea()
@@ -23,25 +28,67 @@ struct LaunchScreen: View {
                 .position(x: 620, y: 400)
                 .opacity(0.4)
             
+            // Above Image Layer
             VStack {
                 Spacer()
-                Text("HELLO")
-                    .font(.system(size: titleSize))
-                    .fontWeight(.heavy)
-                    .foregroundColor(textColor)
-                    .contrast(0.8)
-                Text("How are you?")
-                    .foregroundColor(textColor)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .font(.system(size: messageSize))
                 Spacer()
                 Spacer()
                 Spacer()
                 Spacer()
+                
+                // Text
+                VStack {
+                    Text(title)
+                        .font(.system(size: titleSize))
+                        .fontWeight(.heavy)
+                        .foregroundColor(textColor)
+                        .contrast(0.8)
+                    Text(subtitle)
+                        .foregroundColor(textColor)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .font(.system(size: messageSize))
+                }
+                .padding(.top, 150)
+                
+                Spacer()
+                Spacer()
+                
+                // Buttons
+                VStack {
+                    
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    MainButton(size: 1.25,
+                               text: "New Recipe",
+                               color: .green,
+                               shadowColor: .green,
+                               function: self.newRecipe)
+                    Spacer()
+                    MainButton(size: 1.25,
+                               text: "Recipes",
+                               color: .green,
+                               shadowColor: .green,
+                               function: self.recipes)
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                }
+                
                 Spacer()
             }
             
         }
+    }
+    
+    // Runs when New Recipe clicked
+    func newRecipe() -> Void {
+        
+    }
+    
+    // Runs when Recipes clicked
+    func recipes() -> Void {
+        
     }
 }
 
