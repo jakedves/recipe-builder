@@ -8,30 +8,30 @@
 import SwiftUI
 
 struct LaunchScreen: View {
-    @State var bgName = "Home"
+    @State var bgImage = "Home"
     let titleSize = CGFloat(70)
     let messageSize = CGFloat(24)
+    let textColor = Color.green
     
     var body: some View {
-        
         ZStack {
-            Image(bgName)
+            Image(bgImage)
                 .resizable()
                 .ignoresSafeArea()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 1300, height: 400, alignment: .center)
                 .position(x: 620, y: 400)
+                .opacity(0.4)
             
             VStack {
                 Spacer()
                 Text("HELLO")
                     .font(.system(size: titleSize))
                     .fontWeight(.heavy)
-                    .foregroundColor(Color(.sRGB, red: 0,
-                        green: 255, blue: 0,
-                        opacity: 1))
+                    .foregroundColor(textColor)
+                    .contrast(0.8)
                 Text("How are you?")
-                    .foregroundColor(.secondary)
+                    .foregroundColor(textColor)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .font(.system(size: messageSize))
                 Spacer()
