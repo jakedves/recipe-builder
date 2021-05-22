@@ -1,0 +1,31 @@
+//
+//  RecipesView.swift
+//  Recipe-Builder
+//
+//  Created by Jake Davies on 22/05/2021.
+//
+
+import SwiftUI
+
+struct RecipesView: View {
+    @State var recipes: [Recipe] = []
+    
+    var body: some View {
+        NavigationView {
+            List {
+                RecipePreview("Chicken", "pog")
+//                ForEach(recipes) { recipe in
+//                    RecipePreview(recipe.recipeName, recipe.imageFileName)
+//                }
+            }
+            .navigationTitle(Text("Recipes").font(.headline))
+        }
+        
+    }
+}
+
+struct RecipesView_Previews: PreviewProvider {
+    static var previews: some View {
+        RecipesView()
+    }
+}
