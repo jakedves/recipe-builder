@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipePreview: View {
+struct RecipeRow: View {
     let name: String
     let picture: Image?
     
@@ -39,6 +39,6 @@ struct RecipePreview: View {
 
 struct RecipePreview_Previews: PreviewProvider {
     static var previews: some View {
-        RecipePreview("Chicken curry and chips", "POG")
+        RecipeRow("Chicken curry and chips", "POG")
     }
 }

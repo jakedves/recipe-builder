@@ -13,7 +13,7 @@ struct RecipesView: View {
     var body: some View {
         NavigationView {
             List {
-                RecipePreview("Chicken", "pog")
+                RecipeRow("Chicken", "pog")
 //                ForEach(recipes) { recipe in
 //                    RecipePreview(recipe.recipeName, recipe.imageFileName)
 //                }
