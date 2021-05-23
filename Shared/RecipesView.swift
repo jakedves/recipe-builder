@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct RecipesView: View {
-    @State var recipes: [Recipe] = []
+    @State var recipes: [Recipe] = [Recipe(name: "Epic",
+                                           imageFileName: "Home",
+                                           instructions: ["Cat"],
+                                           ingredients: ["Pog"])]
     
     var body: some View {
         NavigationView {
             List {
-                RecipeRow("Chicken", "pog")
-//                ForEach(recipes) { recipe in
-//                    RecipePreview(recipe.recipeName, recipe.imageFileName)
-//                }
+                RecipeRow("Chicken", "Home")
+                ForEach(recipes) { recipe in
+                    RecipeRow(recipe.recipeName, recipe.imageFileName)
+                }
             }
             .navigationTitle(Text("Recipes").font(.headline))
         }

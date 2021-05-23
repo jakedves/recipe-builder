@@ -23,6 +23,7 @@ struct RecipeRow: View {
                 picture!
                     .resizable()
                     .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                Spacer().frame(width: 20, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 formatText(Text(self.name))
             }
             
@@ -39,6 +40,6 @@ struct RecipeRow: View {
 
 struct RecipePreview_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRow("Chicken curry and chips", "POG")
+        RecipeRow("Chicken curry and chips", "Home")
     }
 }
