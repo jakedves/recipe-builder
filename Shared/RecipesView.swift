@@ -23,7 +23,6 @@ struct RecipesView: View {
             }
             .navigationTitle(Text("Recipes").font(.headline))
         }
-        
     }
 }
 
