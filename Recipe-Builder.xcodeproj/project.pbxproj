@@ -27,6 +27,10 @@
 		50F43FA126614B9E009ADA9C /* RecipeGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */; };
 		50F43FAE26615539009ADA9C /* RecipePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FAD26615538009ADA9C /* RecipePhoto.swift */; };
 		50F43FAF26615539009ADA9C /* RecipePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FAD26615538009ADA9C /* RecipePhoto.swift */; };
+		50F43FB3266169A2009ADA9C /* IngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FB2266169A2009ADA9C /* IngredientsView.swift */; };
+		50F43FB4266169A2009ADA9C /* IngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FB2266169A2009ADA9C /* IngredientsView.swift */; };
+		50F43FB8266169CE009ADA9C /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FB7266169CE009ADA9C /* InstructionsView.swift */; };
+		50F43FB9266169CE009ADA9C /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FB7266169CE009ADA9C /* InstructionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +49,8 @@
 		50E0A52A2659A250009E34ED /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeGuide.swift; sourceTree = "<group>"; };
 		50F43FAD26615538009ADA9C /* RecipePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePhoto.swift; sourceTree = "<group>"; };
+		50F43FB2266169A2009ADA9C /* IngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsView.swift; sourceTree = "<group>"; };
+		50F43FB7266169CE009ADA9C /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,8 @@
 				5051E51B2656F7DE0081E77F /* ContentView.swift */,
 				5051E53D2656FB1A0081E77F /* LaunchScreen.swift */,
 				50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */,
+				50F43FB2266169A2009ADA9C /* IngredientsView.swift */,
+				50F43FB7266169CE009ADA9C /* InstructionsView.swift */,
 				50F43FAD26615538009ADA9C /* RecipePhoto.swift */,
 			);
 			path = Views;
@@ -239,7 +247,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F43FB8266169CE009ADA9C /* InstructionsView.swift in Sources */,
 				5051E52F2656F7E00081E77F /* ContentView.swift in Sources */,
+				50F43FB3266169A2009ADA9C /* IngredientsView.swift in Sources */,
 				50F43FAE26615539009ADA9C /* RecipePhoto.swift in Sources */,
 				50E0A51026596E45009E34ED /* MainButton.swift in Sources */,
 				50F43FA026614B9E009ADA9C /* RecipeGuide.swift in Sources */,
@@ -255,7 +265,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F43FB9266169CE009ADA9C /* InstructionsView.swift in Sources */,
 				5051E5302656F7E00081E77F /* ContentView.swift in Sources */,
+				50F43FB4266169A2009ADA9C /* IngredientsView.swift in Sources */,
 				50F43FAF26615539009ADA9C /* RecipePhoto.swift in Sources */,
 				50E0A51126596E45009E34ED /* MainButton.swift in Sources */,
 				50F43FA126614B9E009ADA9C /* RecipeGuide.swift in Sources */,
