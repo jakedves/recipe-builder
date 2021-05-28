@@ -6,17 +6,18 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Recipe: Identifiable {
+struct Recipe: Identifiable, Hashable, Codable {
     var id = UUID()
-    var recipeName: String
-    var imageFileName: String
+    var name: String
+    var image: String
     var instructions: [String]
     var ingredients: [String]
     
-    init(name: String, imageFileName: String, instructions: [String], ingredients: [String]) {
-        self.recipeName = name
-        self.imageFileName = imageFileName
+    init(name: String, imageName: String, instructions: [String], ingredients: [String]) {
+        self.name = name
+        self.image = imageName
         self.instructions = instructions
         self.ingredients = ingredients
     }

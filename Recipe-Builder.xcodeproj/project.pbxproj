@@ -23,6 +23,10 @@
 		50E0A51F26598EB8009E34ED /* RecipeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0A51D26598EB8009E34ED /* RecipeRow.swift */; };
 		50E0A52B2659A250009E34ED /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0A52A2659A250009E34ED /* Recipe.swift */; };
 		50E0A52C2659A250009E34ED /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0A52A2659A250009E34ED /* Recipe.swift */; };
+		50F43FA026614B9E009ADA9C /* RecipeGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */; };
+		50F43FA126614B9E009ADA9C /* RecipeGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */; };
+		50F43FAE26615539009ADA9C /* RecipePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FAD26615538009ADA9C /* RecipePhoto.swift */; };
+		50F43FAF26615539009ADA9C /* RecipePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43FAD26615538009ADA9C /* RecipePhoto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,8 @@
 		50E0A51826598C5A009E34ED /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		50E0A51D26598EB8009E34ED /* RecipeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRow.swift; sourceTree = "<group>"; };
 		50E0A52A2659A250009E34ED /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeGuide.swift; sourceTree = "<group>"; };
+		50F43FAD26615538009ADA9C /* RecipePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePhoto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,13 +79,10 @@
 			isa = PBXGroup;
 			children = (
 				5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */,
-				5051E51B2656F7DE0081E77F /* ContentView.swift */,
-				5051E53D2656FB1A0081E77F /* LaunchScreen.swift */,
-				50E0A51826598C5A009E34ED /* RecipesView.swift */,
-				50E0A52A2659A250009E34ED /* Recipe.swift */,
-				50E0A51D26598EB8009E34ED /* RecipeRow.swift */,
-				50E0A50F26596E45009E34ED /* MainButton.swift */,
+				50F43F9B265C15AE009ADA9C /* Models */,
+				50F43F9A265C15A8009ADA9C /* Views */,
 				5051E51C2656F7DF0081E77F /* Assets.xcassets */,
+				50F43F9C265C15BE009ADA9C /* Resources */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -108,6 +111,35 @@
 				5051E52C2656F7E00081E77F /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		50F43F9A265C15A8009ADA9C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				50E0A50F26596E45009E34ED /* MainButton.swift */,
+				50E0A51D26598EB8009E34ED /* RecipeRow.swift */,
+				50E0A51826598C5A009E34ED /* RecipesView.swift */,
+				5051E51B2656F7DE0081E77F /* ContentView.swift */,
+				5051E53D2656FB1A0081E77F /* LaunchScreen.swift */,
+				50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */,
+				50F43FAD26615538009ADA9C /* RecipePhoto.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		50F43F9B265C15AE009ADA9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				50E0A52A2659A250009E34ED /* Recipe.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		50F43F9C265C15BE009ADA9C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +240,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5051E52F2656F7E00081E77F /* ContentView.swift in Sources */,
+				50F43FAE26615539009ADA9C /* RecipePhoto.swift in Sources */,
 				50E0A51026596E45009E34ED /* MainButton.swift in Sources */,
+				50F43FA026614B9E009ADA9C /* RecipeGuide.swift in Sources */,
 				50E0A52B2659A250009E34ED /* Recipe.swift in Sources */,
 				50E0A51E26598EB8009E34ED /* RecipeRow.swift in Sources */,
 				50E0A51926598C5A009E34ED /* RecipesView.swift in Sources */,
@@ -222,7 +256,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5051E5302656F7E00081E77F /* ContentView.swift in Sources */,
+				50F43FAF26615539009ADA9C /* RecipePhoto.swift in Sources */,
 				50E0A51126596E45009E34ED /* MainButton.swift in Sources */,
+				50F43FA126614B9E009ADA9C /* RecipeGuide.swift in Sources */,
 				50E0A52C2659A250009E34ED /* Recipe.swift in Sources */,
 				50E0A51F26598EB8009E34ED /* RecipeRow.swift in Sources */,
 				50E0A51A26598C5A009E34ED /* RecipesView.swift in Sources */,

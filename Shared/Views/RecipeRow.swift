@@ -25,6 +25,7 @@ struct RecipeRow: View {
                     .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Spacer().frame(width: 20, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 formatText(Text(self.name))
+                Spacer()
             }
             
         } else {
