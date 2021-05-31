@@ -11,6 +11,10 @@ struct IngredientsView: View {
     var ingredients: [String]
     var headerSize = CGFloat(20)
     
+    init(_ ingredients: [String]) {
+        self.ingredients = ingredients
+    }
+    
     var body: some View {
         HStack {
             Spacer().frame(width: 10, height: 0)
@@ -31,8 +35,7 @@ struct IngredientsView: View {
 
 struct IngredientsView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientsView(ingredients: ["garlic",
-                                      "cheese"])
+        IngredientsView(["garlic", "cheese"])
     }
 }
 

@@ -11,7 +11,12 @@ struct InstructionsView: View {
     
     var instructions: [String]
     @State var count = 0
-    var headerSize = CGFloat(20)
+    var headerSize: CGFloat
+    
+    init(_ instructions: [String], headerSize: CGFloat = CGFloat(20)) {
+        self.instructions = instructions
+        self.headerSize = headerSize
+    }
     
     var body: some View {
         
@@ -31,7 +36,7 @@ struct InstructionsView: View {
                 Spacer().frame(height: 5)
                 
                 ForEach(instructions, id: \.self) { instruction in
-                    Instruction(instruction: instruction)
+                    InstructionView(instruction: instruction)
                     Spacer().frame(width: 1, height: 5)
                 }
                 
@@ -43,22 +48,20 @@ struct InstructionsView: View {
 
 struct InstructionsView_Previews: PreviewProvider {
     static var previews: some View {
-        InstructionsView(instructions: ["eat",
-                                        "cut",
-                                        "drink"])
+        InstructionsView(["eat", "cut", "drink"])
     }
 }
 
-struct Instruction: View {
+struct InstructionView: View {
     var instruction: String
     var count: Int
-    static var nextCount = 0
+    static var nextCount = 1
     var numSize = CGFloat(17)
     
     init(instruction: String) {
-        self.count = Instruction.nextCount
+        self.count = InstructionView.nextCount
         self.instruction = instruction
-        Instruction.nextCount += 1
+        InstructionView.nextCount += 1
     }
     
     var body: some View {

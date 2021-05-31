@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct Recipe: Identifiable, Hashable, Codable {
     var id = UUID()

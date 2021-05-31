@@ -16,7 +16,7 @@ struct RecipeGuide: View {
     init(recipe: Recipe) {
         self.recipe = recipe
         self.screenSize = UIScreen.main.bounds
-        Instruction.nextCount = 0
+        InstructionView.nextCount = 0
     }
     
     var body: some View {
@@ -34,9 +34,9 @@ struct RecipeGuide: View {
                 RecipePhoto(recipe.image)
                     .frame(width: screenSize.width)
                 Spacer().frame(height: 25)
-                IngredientsView(ingredients: recipe.ingredients)
+                IngredientsView(recipe.ingredients)
                 Spacer().frame(height: 35)
-                InstructionsView(instructions: recipe.instructions)
+                InstructionsView(recipe.instructions)
                 Spacer()
             }
             Spacer()
