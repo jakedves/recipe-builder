@@ -43,7 +43,7 @@ struct InstructionsView: View {
 
 struct InstructionsView_Previews: PreviewProvider {
     static var previews: some View {
-        InstructionsView(instructions: ["chop",
+        InstructionsView(instructions: ["eat",
                                         "cut",
                                         "drink"])
     }
@@ -53,7 +53,7 @@ struct Instruction: View {
     var instruction: String
     var count: Int
     static var nextCount = 0
-    var numSize = CGFloat(15)
+    var numSize = CGFloat(17)
     
     init(instruction: String) {
         self.count = Instruction.nextCount
@@ -64,7 +64,7 @@ struct Instruction: View {
     var body: some View {
         HStack {
             Spacer().frame(width: 10)
-            Text(String(count) + ".")
+            Text("  " + String(count) + ".")
                 .font(.system(size: numSize, weight: Font.Weight.bold))
             Text(instruction)
             Spacer()

@@ -23,7 +23,7 @@ struct RecipesView: View {
 }
 
 struct RecipesView_Previews: PreviewProvider {
-    static var recipe_data = [Recipe(name: "Pog Rice Meal",
+    static var recipeData = [Recipe(name: "Pog Rice Meal",
                               imageName: "Rice",
                               instructions: ["Cook rice", "Add drip", "Eat"],
                               ingredients: ["Rice", "Drip"]),
@@ -34,6 +34,6 @@ struct RecipesView_Previews: PreviewProvider {
     
     
     static var previews: some View {
-        RecipesView(recipes: recipe_data)
+        RecipesView(recipes: recipeData)
     }
 }

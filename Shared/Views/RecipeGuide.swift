@@ -10,22 +10,13 @@ import UIKit
 
 struct RecipeGuide: View {
     var recipe: Recipe
-    var image: String
-    var instructions: [String]
-    var ingredients: [String]
     var titleSize = CGFloat(40)
     let screenSize: CGRect
-    let screenWidth: CGFloat
-    let screenHeight: CGFloat
     
     init(recipe: Recipe) {
         self.recipe = recipe
-        self.image = recipe.image
-        self.instructions = recipe.instructions
-        self.ingredients = recipe.ingredients
         self.screenSize = UIScreen.main.bounds
-        self.screenWidth = screenSize.width
-        self.screenHeight = screenSize.height
+        Instruction.nextCount = 0
     }
     
     var body: some View {
@@ -41,11 +32,11 @@ struct RecipeGuide: View {
                     Spacer()
                 }
                 RecipePhoto(recipe.image)
-                    .frame(width: self.screenWidth)
+                    .frame(width: screenSize.width)
                 Spacer().frame(height: 25)
-                IngredientsView(ingredients: ingredients)
-                Spacer().frame(height: 15)
-                InstructionsView(instructions: instructions)
+                IngredientsView(ingredients: recipe.ingredients)
+                Spacer().frame(height: 35)
+                InstructionsView(instructions: recipe.instructions)
                 Spacer()
             }
             Spacer()
@@ -59,8 +50,11 @@ struct RecipeGuide_Previews: PreviewProvider {
         RecipeGuide(recipe: Recipe(
                 name: "Rice",
                 imageName: "Rice",
-                instructions: ["step 1", "step 2"],
-                ingredients: ["Rice", "Sauce"]
+                instructions: ["Boil rice for 10 minutes",
+                               "Add vegetables",
+                               "Add flavourings of choice",
+                               "Enjoy your meal"],
+                ingredients: ["Rice", "Sauce", "Vegetable Assortment"]
             )
         )
     }

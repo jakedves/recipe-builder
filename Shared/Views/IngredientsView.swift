@@ -15,10 +15,11 @@ struct IngredientsView: View {
         HStack {
             Spacer().frame(width: 10, height: 0)
             VStack(alignment: .leading) {
-                Text("Instructions: ")
+                Text("Ingredients: ")
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .font(.system(size: headerSize))
                 ForEach(ingredients, id: \.self) { ingredient in
+                    Spacer().frame(height: 5)
                     Text(Bulleted(ingredient).content.capitalized)
                         .font(.body)
                 }
