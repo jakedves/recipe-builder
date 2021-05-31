@@ -44,8 +44,8 @@ struct RecipeGuide: View {
                     .frame(width: self.screenWidth)
                 Spacer().frame(height: 25)
                 IngredientsView(ingredients: ingredients)
-                Spacer()
-                // InstructionsView(instructions)
+                Spacer().frame(height: 15)
+                InstructionsView(instructions: instructions)
                 Spacer()
             }
             Spacer()

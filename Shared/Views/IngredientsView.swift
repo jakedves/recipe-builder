@@ -9,13 +9,15 @@ import SwiftUI
 
 struct IngredientsView: View {
     var ingredients: [String]
+    var headerSize = CGFloat(20)
     
     var body: some View {
         HStack {
             Spacer().frame(width: 10, height: 0)
             VStack(alignment: .leading) {
-                Text("Ingredients:")
-                    .font(.system(size: 20))
+                Text("Instructions: ")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .font(.system(size: headerSize))
                 ForEach(ingredients, id: \.self) { ingredient in
                     Text(Bulleted(ingredient).content.capitalized)
                         .font(.body)

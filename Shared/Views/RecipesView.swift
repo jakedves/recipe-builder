@@ -14,9 +14,7 @@ struct RecipesView: View {
         NavigationView {
             List (recipes) { recipe in
                 NavigationLink(destination: RecipeGuide(recipe: recipe)) {
-                    ForEach(recipes) { recipe in
-                        RecipeRow(recipe.name, recipe.image)
-                    }
+                    RecipeRow(recipe.name, recipe.image)
                 }
             }
             .navigationTitle(Text("Recipes").font(.headline))
@@ -25,14 +23,17 @@ struct RecipesView: View {
 }
 
 struct RecipesView_Previews: PreviewProvider {
+    static var recipe_data = [Recipe(name: "Pog Rice Meal",
+                              imageName: "Rice",
+                              instructions: ["Cook rice", "Add drip", "Eat"],
+                              ingredients: ["Rice", "Drip"]),
+                              Recipe(name: "Coco Pops",
+                              imageName: "CocoPops",
+                              instructions: ["Add cereal", "Add milk", "Eat"],
+                              ingredients: ["Cereal", "Milk"])]
+    
+    
     static var previews: some View {
-        RecipesView(recipes: [Recipe(name: "Pog Rice Meal",
-                                     imageName: "Rice",
-                                     instructions: ["cook rice",
-                                                    "add drip",
-                                                    "eat rice"],
-                                     ingredients: ["Rice",
-                                                   "Drip",])
-                                                            ])
+        RecipesView(recipes: recipe_data)
     }
 }

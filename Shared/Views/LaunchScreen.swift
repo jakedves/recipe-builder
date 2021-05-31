@@ -16,6 +16,8 @@ struct LaunchScreen: View {
     let textColor = Color.green
     let mainColor = AnyView(Color.green.contrast(0.8))
     
+    // Collect recipe data
+
     var body: some View {
         ZStack {
             
@@ -55,40 +57,33 @@ struct LaunchScreen: View {
                 
                 // Buttons
                 VStack {
+    
+                    Spacer().frame(height: 200)
                     
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    MainButton(size: 1.25,
-                               text: "New Recipe",
-                               color: .green,
-                               shadowColor: .green,
-                               function: self.newRecipe)
-                    Spacer()
-                    MainButton(size: 1.25,
-                               text: "Recipes",
-                               color: .green,
-                               shadowColor: .green,
-                               function: self.recipes)
-                    Spacer()
-                    Spacer()
-                    Spacer()
+                    NavigationView {
+                        VStack {
+                            NavigationLink (destination: Text("Hi")) {
+                                MainButton(size: 1.25,
+                                           text: "New Recipe",
+                                           color: .green,
+                                           shadowColor: .green)
+                            }
+                            Spacer()
+                            NavigationLink (destination: Text("Hi")) {
+                                MainButton(size: 1.25,
+                                           text: "Recipes",
+                                           color: .green,
+                                           shadowColor: .green)
+                            }
+                        }
+                    }
+                    .background(Color.white.opacity(0))
+                    Spacer().frame(height: 150)
                 }
-                
                 Spacer()
             }
             
         }
-    }
-    
-    // Runs when New Recipe clicked
-    func newRecipe() -> Void {
-        
-    }
-    
-    // Runs when Recipes clicked
-    func recipes() -> Void {
-        
     }
 }
 

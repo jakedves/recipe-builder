@@ -8,23 +8,36 @@
 import SwiftUI
 
 struct InstructionsView: View {
+    
     var instructions: [String]
     @State var count = 0
+    var headerSize = CGFloat(20)
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Instructions: ")
-            ForEach(instructions, id: \.self) { instruction in
-                makeInstruction(string: instruction, count: &count)
-                Spacer().frame(width: 1, height: 5)
-            }
-        }
-    }
-    
-    func makeInstruction(string: String, count: inout Int) -> Instruction {
         
-        count += 1
-        return Instruction(instruction: string, count: count)
+        HStack {
+            Spacer()
+            
+            VStack(alignment: .leading) {
+                
+                HStack {
+                    Spacer().frame(width: 5)
+                    Text("Instructions: ")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .font(.system(size: headerSize))
+                    Spacer()
+                }
+                
+                Spacer().frame(height: 5)
+                
+                ForEach(instructions, id: \.self) { instruction in
+                    Instruction(instruction: instruction)
+                    Spacer().frame(width: 1, height: 5)
+                }
+                
+            }
+            Spacer()
+        }
     }
 }
 
@@ -39,14 +52,20 @@ struct InstructionsView_Previews: PreviewProvider {
 struct Instruction: View {
     var instruction: String
     var count: Int
+    static var nextCount = 0
     var numSize = CGFloat(15)
+    
+    init(instruction: String) {
+        self.count = Instruction.nextCount
+        self.instruction = instruction
+        Instruction.nextCount += 1
+    }
     
     var body: some View {
         HStack {
             Spacer().frame(width: 10)
-            Text(String(count) + ".").font(.system(
-                                        size: numSize, weight:
-                                            Font.Weight.bold))
+            Text(String(count) + ".")
+                .font(.system(size: numSize, weight: Font.Weight.bold))
             Text(instruction)
             Spacer()
         }

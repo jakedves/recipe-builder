@@ -14,7 +14,6 @@ import SwiftUI
 struct MainButton: View {
     var size: CGFloat
     var text: String
-    var function: () -> Void
     var textColor = Color.white
     var buttonColor = Color.blue
     var shadowColor = Color.blue
@@ -22,7 +21,7 @@ struct MainButton: View {
     var shadowSize = CGFloat(10.0)
     var paddingSize = CGFloat(10.0)
     
-    init(size: Double = 1.0, text: String, color: Color = .blue, textColor: Color = .white, shadowColor: Color = .blue, shadowSize: Double = 10.0, paddingSize: Double = 10.0, function: @escaping () -> Void = {}) {
+    init(size: Double = 1.0, text: String, color: Color = .blue, textColor: Color = .white, shadowColor: Color = .blue, shadowSize: Double = 10.0, paddingSize: Double = 10.0) {
         
         self.size = CGFloat(size)
         self.text = text
@@ -31,13 +30,12 @@ struct MainButton: View {
         self.shadowColor = shadowColor
         self.shadowSize = CGFloat(shadowSize)
         self.paddingSize = CGFloat(paddingSize)
-        self.function = function
     }
     
     var body: some View {
         
         ZStack {
-            Button(text, action: function)
+            Button(text) {}
             .padding(paddingSize)
             .foregroundColor(textColor)
             .background(buttonColor)
