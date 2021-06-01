@@ -24,8 +24,11 @@ struct IngredientsView: View {
                     .font(.system(size: headerSize))
                 ForEach(ingredients, id: \.self) { ingredient in
                     Spacer().frame(height: 5)
-                    Text(Bulleted(ingredient.toString()).content)
-                        .font(.body)
+                    HStack {
+                        Text("   •").bold()
+                        Text(ingredient.toString()).font(.body)
+                    }
+                    
                 }
             }
             Spacer()

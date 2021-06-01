@@ -52,6 +52,12 @@ struct Quantity: Hashable {
     }
     
     func toString() -> String {
-        self.amount == 0 && self.unit == "" ? "" : "\(amount) \(unit)"
+        self.amount == 0 ? "" : "\(self.amount.isInt ? String(Int(self.amount)) : String(self.amount))\(self.unit)"
+    }
+}
+
+extension FloatingPoint {
+    var isInt: Bool {
+        self.truncatingRemainder(dividingBy: 1) == 0
     }
 }

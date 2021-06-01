@@ -31,7 +31,7 @@ struct RecipesView_Previews: PreviewProvider {
                                              Instruction("Eat", index: 3)],
                               
                               ingredients: [Ingredient("Rice", Quantity(100,"g")),
-                                            Ingredient("Drip", Quantity(20, "drip"))
+                                            Ingredient("Drip", Quantity(20, "dr"))
                               ]),
                              
                               Recipe(name: "Coco Pops",
@@ -44,7 +44,8 @@ struct RecipesView_Previews: PreviewProvider {
                               ingredients: [
                                 Ingredient("Cereal", Quantity(100, "g")),
                                 Ingredient("Milk", Quantity(50, "ml"))
-                              ])]
+                              ])
+    ]
     
     
     static var previews: some View {
