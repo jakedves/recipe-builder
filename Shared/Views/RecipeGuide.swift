@@ -55,7 +55,8 @@ struct RecipeGuide_Previews: PreviewProvider {
                            Instruction("Enjoy your meal", index: 4)],
             ingredients: [Ingredient("Rice", Quantity(10, "g")),
                           Ingredient("Sauce", Quantity(20, "ml")),
-                          Ingredient("Vegetable Assortment", Quantity(20, ""))]
+                          Ingredient("Vegetable Assortment", Quantity()
+                          )]
             )
         )
     }

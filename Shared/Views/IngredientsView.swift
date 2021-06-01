@@ -24,7 +24,7 @@ struct IngredientsView: View {
                     .font(.system(size: headerSize))
                 ForEach(ingredients, id: \.self) { ingredient in
                     Spacer().frame(height: 5)
-                    Text(Bulleted(ingredient.toString()).content.capitalized)
+                    Text(Bulleted(ingredient.toString()).content)
                         .font(.body)
                 }
             }
@@ -36,8 +36,8 @@ struct IngredientsView: View {
 struct IngredientsView_Previews: PreviewProvider {
     static var previews: some View {
         IngredientsView(
-            [Ingredient("garlic", Quantity(20, "g")),
-             Ingredient("cheese", Quantity(40, "g"))])
+            [Ingredient("Garlic", Quantity(20, "g")),
+             Ingredient("Cheese", Quantity(40, "g"))])
     }
 }
 

@@ -22,12 +22,8 @@ struct Ingredient: Hashable {
     }
     
     func toString() -> String {
-        "\(quantity.toString()) [\(name)]"
+        self.quantity == Quantity() ? self.name : "[\(quantity.toString())] \(name)"
     }
-    
-//    func asView() -> InstructionView {
-//
-//    }
 }
 
 
@@ -46,7 +42,7 @@ struct Quantity: Hashable {
     var amount: Double
     var unit: String // such as g, mg, kg, L, ml, ect..., can be blank (5 onions)
     
-    init(_ amount: Double, _ unit: String) {
+    init(_ amount: Double = 0, _ unit: String = "") {
         self.amount = amount
         self.unit = unit
     }
