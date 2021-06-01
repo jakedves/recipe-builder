@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Recipe: Identifiable, Hashable, Codable {
+struct Recipe: Identifiable {
     var id = UUID()
     var name: String
     var image: String
-    var instructions: [String]
-    var ingredients: [String]
+    var instructions: [Instruction]
+    var ingredients: [Ingredient]
     
-    init(name: String, imageName: String, instructions: [String], ingredients: [String]) {
+    init(name: String, imageName: String, instructions: [Instruction], ingredients: [Ingredient]) {
         self.name = name
         self.image = imageName
         self.instructions = instructions

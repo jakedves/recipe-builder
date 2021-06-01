@@ -25,12 +25,26 @@ struct RecipesView: View {
 struct RecipesView_Previews: PreviewProvider {
     static var recipeData = [Recipe(name: "Pog Rice Meal",
                               imageName: "Rice",
-                              instructions: ["Cook rice", "Add drip", "Eat"],
-                              ingredients: ["Rice", "Drip"]),
+                              
+                              instructions: [Instruction("Cook rice", index: 1),
+                                             Instruction("Add drip", index: 2),
+                                             Instruction("Eat", index: 3)],
+                              
+                              ingredients: [Ingredient("Rice", Quantity(100,"g")),
+                                            Ingredient("Drip", Quantity(20, "drip"))
+                              ]),
+                             
                               Recipe(name: "Coco Pops",
                               imageName: "CocoPops",
-                              instructions: ["Add cereal", "Add milk", "Eat"],
-                              ingredients: ["Cereal", "Milk"])]
+                              instructions: [Instruction("Add cereal", index: 1),
+                                             Instruction("Add milk", index: 2),
+                                             Instruction("Eat", index: 3)
+                              ],
+                              
+                              ingredients: [
+                                Ingredient("Cereal", Quantity(100, "g")),
+                                Ingredient("Milk", Quantity(50, "ml"))
+                              ])]
     
     
     static var previews: some View {

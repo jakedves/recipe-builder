@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct IngredientsView: View {
-    var ingredients: [String]
+    var ingredients: [Ingredient]
     var headerSize = CGFloat(20)
     
-    init(_ ingredients: [String]) {
+    init(_ ingredients: [Ingredient]) {
         self.ingredients = ingredients
     }
     
@@ -24,7 +24,7 @@ struct IngredientsView: View {
                     .font(.system(size: headerSize))
                 ForEach(ingredients, id: \.self) { ingredient in
                     Spacer().frame(height: 5)
-                    Text(Bulleted(ingredient).content.capitalized)
+                    Text(Bulleted(ingredient.toString()).content.capitalized)
                         .font(.body)
                 }
             }
@@ -35,7 +35,9 @@ struct IngredientsView: View {
 
 struct IngredientsView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientsView(["garlic", "cheese"])
+        IngredientsView(
+            [Ingredient("garlic", Quantity(20, "g")),
+             Ingredient("cheese", Quantity(40, "g"))])
     }
 }
 

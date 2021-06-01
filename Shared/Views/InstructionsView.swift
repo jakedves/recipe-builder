@@ -9,11 +9,10 @@ import SwiftUI
 
 struct InstructionsView: View {
     
-    var instructions: [String]
-    @State var count = 0
+    var instructions: [Instruction]
     var headerSize: CGFloat
     
-    init(_ instructions: [String], headerSize: CGFloat = CGFloat(20)) {
+    init(_ instructions: [Instruction], headerSize: CGFloat = CGFloat(20)) {
         self.instructions = instructions
         self.headerSize = headerSize
     }
@@ -48,28 +47,26 @@ struct InstructionsView: View {
 
 struct InstructionsView_Previews: PreviewProvider {
     static var previews: some View {
-        InstructionsView(["eat", "cut", "drink"])
+        InstructionsView([Instruction("Boil for 10 minutes", index: 1),
+                         Instruction("Stir well and add seasoning", index: 2),
+                         Instruction("Serve", index: 3)])
     }
 }
 
 struct InstructionView: View {
-    var instruction: String
-    var count: Int
-    static var nextCount = 1
+    var instruction: Instruction
     var numSize = CGFloat(17)
     
-    init(instruction: String) {
-        self.count = InstructionView.nextCount
+    init(instruction: Instruction) {
         self.instruction = instruction
-        InstructionView.nextCount += 1
     }
     
     var body: some View {
         HStack {
             Spacer().frame(width: 10)
-            Text("  " + String(count) + ".")
+            Text("  " + String(instruction.index) + ".")
                 .font(.system(size: numSize, weight: Font.Weight.bold))
-            Text(instruction)
+            Text(instruction.content)
             Spacer()
         }
     }
