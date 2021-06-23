@@ -8,28 +8,20 @@
 import SwiftUI
 
 struct RecipeRow: View {
-    let name: String
-    let picture: Image?
+    let recipe: Recipe
     
-    init(_ name: String, _ pictureFileName: String) {
-        self.name = name
-        self.picture = Image(pictureFileName)
+    init(_ recipe: Recipe) {
+        self.recipe = recipe
     }
     
     var body: some View {
-        
-        if picture != nil {
-            HStack {
-                picture!
-                    .resizable()
-                    .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                Spacer().frame(width: 20, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                formatText(Text(self.name))
-                Spacer()
-            }
-            
-        } else {
-            formatText(Text(self.name))
+        HStack {
+            Image(recipe.image)
+                .resizable()
+                .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            Spacer().frame(width: 20, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            formatText(Text(self.recipe.name))
+            Spacer()
         }
     }
     
@@ -41,6 +33,6 @@ struct RecipeRow: View {
 
 struct RecipePreview_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRow("Chicken curry and chips", "Home")
+        RecipeRow(AllRecipes.recipes[0])
     }
 }

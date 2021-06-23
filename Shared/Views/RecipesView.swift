@@ -14,7 +14,7 @@ struct RecipesView: View {
         NavigationView {
             List (recipes) { recipe in
                 NavigationLink(destination: RecipeGuide(recipe: recipe)) {
-                    RecipeRow(recipe.name, recipe.image)
+                    RecipeRow(recipe)
                 }
             }
             .navigationTitle(Text("Recipes").font(.headline))
@@ -23,30 +23,7 @@ struct RecipesView: View {
 }
 
 struct RecipesView_Previews: PreviewProvider {
-    static var recipeData = [Recipe(name: "Pog Rice Meal",
-                              imageName: "Rice",
-                              
-                              instructions: [Instruction("Cook rice", index: 1),
-                                             Instruction("Add drip", index: 2),
-                                             Instruction("Eat", index: 3)],
-                              
-                              ingredients: [Ingredient("Rice", Quantity(100,"g")),
-                                            Ingredient("Drip", Quantity(20, "dr"))
-                              ]),
-                             
-                              Recipe(name: "Coco Pops",
-                              imageName: "CocoPops",
-                              instructions: [Instruction("Add cereal", index: 1),
-                                             Instruction("Add milk", index: 2),
-                                             Instruction("Eat", index: 3)
-                              ],
-                              
-                              ingredients: [
-                                Ingredient("Cereal", Quantity(100, "g")),
-                                Ingredient("Milk", Quantity(50, "ml"))
-                              ])
-    ]
-    
+    static var recipeData = AllRecipes.recipes
     
     static var previews: some View {
         RecipesView(recipes: recipeData)
