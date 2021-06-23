@@ -49,14 +49,13 @@ struct RecipeGuide_Previews: PreviewProvider {
     static var previews: some View {
         
         RecipeGuide(recipe: Recipe(name: "Rice", imageName: "Rice",
-            instructions: [Instruction("Boil rice for 10 minutes", index:1),
-                           Instruction("Add vegetables", index: 2),
-                           Instruction("Add flavourings of choice", index: 3),
-                           Instruction("Enjoy your meal", index: 4)],
-            ingredients: [Ingredient("Rice", Quantity(10, "g")),
-                          Ingredient("Sauce", Quantity(20, "ml")),
-                          Ingredient("Vegetable Assortment", Quantity()
-                          )]
+            instructions: ["Boil rice for 10 minutes",
+                           "Add vegetables",
+                           "Add flavourings of choice",
+                           "Enjoy your meal"],
+            ingredients: ["Rice",
+                          "Sauce",
+                          "Vegetable Assortment"]
             )
         )
     }

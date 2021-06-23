@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct IngredientsView: View {
-    var ingredients: [Ingredient]
+    var ingredients: [String]
     var headerSize = CGFloat(20)
     
-    init(_ ingredients: [Ingredient]) {
+    init(_ ingredients: [String]) {
         self.ingredients = ingredients
     }
     
@@ -26,7 +26,7 @@ struct IngredientsView: View {
                     Spacer().frame(height: 5)
                     HStack {
                         Text("   •").bold()
-                        Text(ingredient.toString()).font(.body)
+                        Text(ingredient).font(.body)
                     }
                     
                 }
@@ -39,8 +39,8 @@ struct IngredientsView: View {
 struct IngredientsView_Previews: PreviewProvider {
     static var previews: some View {
         IngredientsView(
-            [Ingredient("Garlic", Quantity(20, "g")),
-             Ingredient("Cheese", Quantity(40, "g"))])
+            ["Garlic",
+             "Cheese"])
     }
 }
 

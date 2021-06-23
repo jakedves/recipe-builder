@@ -11,10 +11,10 @@ struct Recipe: Identifiable {
     var id = UUID()
     var name: String
     var image: String
-    var instructions: [Instruction]
-    var ingredients: [Ingredient]
+    var instructions: [String]
+    var ingredients: [String]
     
-    init(name: String, imageName: String, instructions: [Instruction], ingredients: [Ingredient]) {
+    init(name: String, imageName: String, instructions: [String], ingredients: [String]) {
         self.name = name
         self.image = imageName
         self.instructions = instructions
