@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
+		500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
 		5051E52D2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */; };
 		5051E52E2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */; };
 		5051E52F2656F7E00081E77F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051E51B2656F7DE0081E77F /* ContentView.swift */; };
@@ -38,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500933372683E40400C7D81B /* RecipeBuilderModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecipeBuilderModel.xcdatamodel; sourceTree = "<group>"; };
 		5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_BuilderApp.swift; sourceTree = "<group>"; };
 		5051E51B2656F7DE0081E77F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5051E51C2656F7DF0081E77F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				50E0A52A2659A250009E34ED /* Recipe.swift */,
+				500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,6 +276,7 @@
 				50E0A52B2659A250009E34ED /* Recipe.swift in Sources */,
 				50E0A51E26598EB8009E34ED /* RecipeRow.swift in Sources */,
 				50E0A51926598C5A009E34ED /* RecipesView.swift in Sources */,
+				500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
 				5051E52D2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				5051E53E2656FB1A0081E77F /* LaunchScreen.swift in Sources */,
 				5066DC7E2666E82B00CE6176 /* RecipeDataStore.swift in Sources */,
@@ -292,6 +297,7 @@
 				50E0A52C2659A250009E34ED /* Recipe.swift in Sources */,
 				50E0A51F26598EB8009E34ED /* RecipeRow.swift in Sources */,
 				50E0A51A26598C5A009E34ED /* RecipesView.swift in Sources */,
+				500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
 				5051E52E2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				5051E53F2656FB1A0081E77F /* LaunchScreen.swift in Sources */,
 				5066DC7F2666E82B00CE6176 /* RecipeDataStore.swift in Sources */,
@@ -464,6 +470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_PREVIEWS = YES;
@@ -486,6 +493,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_PREVIEWS = YES;
@@ -533,6 +541,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				500933372683E40400C7D81B /* RecipeBuilderModel.xcdatamodel */,
+			);
+			currentVersion = 500933372683E40400C7D81B /* RecipeBuilderModel.xcdatamodel */;
+			path = RecipeBuilderModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5051E5152656F7DE0081E77F /* Project object */;
 }
