@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LaunchScreen: View {
     @State var bgImage = "Home"
+    @State var buttonPressed = false
     let title = "WELCOME"
     let subtitle = "What's cooking?"
     let titleSize = CGFloat(70)
@@ -19,17 +20,6 @@ struct LaunchScreen: View {
     // Collect recipe data
 
     var body: some View {
-        ZStack {
-            
-            // Background
-            Image(bgImage)
-                .resizable()
-                .ignoresSafeArea()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 1300, height: 400, alignment: .center)
-                .position(x: 620, y: 400)
-                .opacity(0.4)
-            
             // Above Image Layer
             VStack {
                 Spacer()
@@ -58,35 +48,23 @@ struct LaunchScreen: View {
                 // Buttons
                 VStack {
     
-                    Spacer().frame(height: 200)
+                    Spacer().frame(height: 100)
                     
-                    NavigationView {
-                        VStack {
-                            NavigationLink (destination: Text("Hi")) {
-                                MainButton(size: 1.25,
-                                           text: "New Recipe",
-                                           color: .green,
-                                           shadowColor: .green)
-                            }
-                            Spacer()
-                            NavigationLink (destination: Text("Hi")) {
-                                MainButton(size: 1.25,
-                                           text: "Recipes",
-                                           color: .green,
-                                           shadowColor: .green)
-                            }
-                        }
+                    MainButton(size: 1.25,
+                                text: "Recipes",
+                                color: .green,
+                                shadowColor: .green) {
+                        self.buttonPressed = true;
                     }
-                    .background(Color.white.opacity(0))
-                    Spacer().frame(height: 150)
-                }
-                Spacer()
+                    Spacer()
             }
             
         }
+        .navigate(to: RecipesView(recipes: AllRecipes.recipes), when: $buttonPressed)
     }
 }
 
+    
 struct LaunchScreen_Previews: PreviewProvider {
     static var previews: some View {
         LaunchScreen()
