@@ -22,11 +22,8 @@ struct LaunchScreen: View {
     var body: some View {
             // Above Image Layer
             VStack {
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
+                
+                Spacer().frame(height: 90)
                 
                 // Text
                 VStack {
@@ -42,8 +39,7 @@ struct LaunchScreen: View {
                 }
                 .padding(.top, 150)
                 
-                Spacer()
-                Spacer()
+                Spacer().frame(height: 80)
                 
                 // Buttons
                 VStack {
