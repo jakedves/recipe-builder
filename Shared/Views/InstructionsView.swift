@@ -63,8 +63,8 @@ struct InstructionView: View {
     
     var body: some View {
         HStack {
-            Spacer().frame(width: 10)
-            Text("  • " + instruction)
+            Spacer().frame(width: 20)
+            Text(instruction)
             Spacer()
         }
     }

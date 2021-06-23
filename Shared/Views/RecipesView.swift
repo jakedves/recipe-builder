@@ -12,13 +12,27 @@ struct RecipesView: View {
     
     var body: some View {
         NavigationView {
-            List (recipes) { recipe in
-                NavigationLink(destination: RecipeGuide(recipe: recipe)) {
-                    RecipeRow(recipe)
+            List {
+                ForEach (recipes) { recipe in
+                    NavigationLink(destination: RecipeGuide(recipe: recipe)) {
+                        RecipeRow(recipe)
+                    }
                 }
+                .onMove(perform: self.move)
+                .onDelete(perform: self.delete)
             }
-            .navigationTitle(Text("Recipes").font(.headline))
+            .navigationBarTitle(Text("Recipes").font(.headline))
+            .navigationBarItems(trailing: EditButton())
+            .listStyle(InsetListStyle())
         }
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        recipes.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    func delete(at offsets: IndexSet) {
+        recipes.remove(atOffsets: offsets)
     }
 }
 

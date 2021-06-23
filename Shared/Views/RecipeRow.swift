@@ -19,6 +19,7 @@ struct RecipeRow: View {
             Image(recipe.image)
                 .resizable()
                 .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .cornerRadius(10)
             Spacer().frame(width: 20, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             formatText(Text(self.recipe.name))
             Spacer()
