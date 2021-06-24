@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipesView: View {
     @State var recipes: [Recipe]
+    @State var showSheet = false
     
     var body: some View {
         NavigationView {
@@ -21,8 +22,14 @@ struct RecipesView: View {
                 .onMove(perform: self.move)
                 .onDelete(perform: self.delete)
             }
-            .navigationBarTitle(Text("Recipes").font(.headline))
-            .navigationBarItems(trailing: EditButton())
+            .navigationBarTitle(Text("Recipes"))
+            .navigationBarItems(leading: EditButton(),
+                                trailing: Button("+") {
+                                    showSheet.toggle()
+                                }
+                                    .sheet(isPresented: $showSheet) {
+                                        NewRecipeForm() // Insert new recipe here
+                                    })
             .listStyle(InsetListStyle())
         }
     }

@@ -8,25 +8,6 @@
 import Foundation
 
 struct AllRecipes {
-    static var recipes = [Recipe(name: "Pog Rice Meal",
-                                     imageName: "Rice",
-                                     
-                                     instructions: ["Cook rice",
-                                                    "Add drip",
-                                                    "Eat"],
-                                     
-                                     ingredients: ["Rice",
-                                                   "Drip"]),
-                                    
-                           Recipe(name: "Coco Pops",
-                                     imageName: "CocoPops",
-                                     instructions: ["Add cereal",
-                                                    "Add milk",
-                                                    "Eat"],
-                                     
-                                     ingredients: [
-                                       "Cereal",
-                                       "Milk"])
-           ]
+    static var recipes = [Recipe(), Recipe()]
 
 }

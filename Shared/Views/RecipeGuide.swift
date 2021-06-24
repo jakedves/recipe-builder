@@ -25,17 +25,19 @@ struct RecipeGuide: View {
                 Spacer().frame(width: 1, height: 40)
                 HStack {
                     Spacer().frame(width: 20, height: 1)
-                    Text(recipe.name)
+                    Text(recipe.name ?? "Unnamed recipe")
                         .fontWeight(.bold)
                         .font(.system(size: titleSize))
                     Spacer()
                 }
-                RecipePhoto(recipe.image)
+                //RecipePhoto(Image(recipe.image) ?? Image("Home"))
+                    //.frame(width: screenSize.width)
+                RecipePhoto("Home")
                     .frame(width: screenSize.width)
                 Spacer().frame(height: 25)
-                IngredientsView(recipe.ingredients)
+                IngredientsView(recipe.ingredients ?? [])
                 Spacer().frame(height: 35)
-                InstructionsView(recipe.instructions)
+                InstructionsView(recipe.instructions ?? [])
                 Spacer()
             }
             Spacer()
@@ -48,15 +50,7 @@ struct RecipeGuide_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        RecipeGuide(recipe: Recipe(name: "Rice", imageName: "Rice",
-            instructions: ["Boil rice for 10 minutes",
-                           "Add vegetables",
-                           "Add flavourings of choice",
-                           "Enjoy your meal"],
-            ingredients: ["Rice",
-                          "Sauce",
-                          "Vegetable Assortment"]
-            )
-        )
+        RecipeGuide(recipe: Recipe())
+        
     }
 }

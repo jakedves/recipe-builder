@@ -16,12 +16,13 @@ struct RecipeRow: View {
     
     var body: some View {
         HStack {
-            Image(recipe.image)
+            //Image(recipe.image)
+            Image("Home")
                 .resizable()
                 .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .cornerRadius(10)
             Spacer().frame(width: 20, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            formatText(Text(self.recipe.name))
+            formatText(Text(self.recipe.name ?? "Unnamed Recipe"))
             Spacer()
         }
     }

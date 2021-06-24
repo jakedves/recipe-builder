@@ -14,8 +14,7 @@ struct LaunchScreen: View {
     let subtitle = "What's cooking?"
     let titleSize = CGFloat(70)
     let messageSize = CGFloat(24)
-    let textColor = Color.green
-    let mainColor = AnyView(Color.green.contrast(0.8))
+    let themeColor = Color.green
     
     // Collect recipe data
 
@@ -30,10 +29,10 @@ struct LaunchScreen: View {
                     Text(title)
                         .font(.system(size: titleSize))
                         .fontWeight(.heavy)
-                        .foregroundColor(textColor)
+                        .foregroundColor(themeColor)
                         .contrast(0.8)
                     Text(subtitle)
-                        .foregroundColor(textColor)
+                        .foregroundColor(themeColor)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .font(.system(size: messageSize))
                 }
@@ -46,12 +45,17 @@ struct LaunchScreen: View {
     
                     Spacer().frame(height: 100)
                     
-                    MainButton(size: 1.25,
-                                text: "Recipes",
-                                color: .green,
-                                shadowColor: .green) {
+                    Button(action: {
                         self.buttonPressed = true;
-                    }
+                    }, label: { Text("My Recipes")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 130, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .background(themeColor)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(15)
+                    } )
                     Spacer()
             }
             
