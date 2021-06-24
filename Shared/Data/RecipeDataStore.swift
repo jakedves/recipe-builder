@@ -9,5 +9,4 @@ import Foundation
 
 struct AllRecipes {
     static var recipes = [Recipe(), Recipe()]
-
 }
