@@ -26,6 +26,3 @@ struct FormHeader: View {
         }
     }
 }
-
-var array: [String] = []
-var string = "this is content"

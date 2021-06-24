@@ -75,6 +75,8 @@ struct NewRecipeForm: View {
         recipe.ingredients = ingredients
         recipe.instructions = instructions
         // save to managedobjectcontext
+        // close presentationMode
+        
     }
     
     
@@ -93,5 +95,6 @@ struct NewRecipeForm: View {
 struct NewRecipeForm_Previews: PreviewProvider {
     static var previews: some View {
         NewRecipeForm()
+            .preferredColorScheme(.dark)
     }
 }
