@@ -25,6 +25,7 @@ struct RecipesView: View {
                     }
                 }
                 .onDelete(perform: self.delete)
+            }
             .navigationBarTitle(Text("Recipes"))
             .navigationBarItems(leading: EditButton(),
                                 
@@ -35,7 +36,6 @@ struct RecipesView: View {
                                         NewRecipeForm()
                                     })
             .listStyle(InsetListStyle())
-            }
         }
     }
     
