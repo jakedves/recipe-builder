@@ -15,6 +15,7 @@ struct NewRecipeForm: View {
     @State var nextInstruction: String = ""
     @State var ingredients: [String] = []
     @State var instructions: [String] = []
+    @State var showingAlert = false
     
     var body: some View {
         NavigationView {
@@ -63,22 +64,43 @@ struct NewRecipeForm: View {
                 leading: Button("Cancel") { self.presentationMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Save") {
-                    self.saveEntry()
-                                })
+                    do {
+                        try self.saveEntry()
+                    } catch {
+                        showingAlert = true
+                    }
+                }).alert(isPresented: $showingAlert,
+                         content: {
+                    Alert(title: Text("Cannot save recipe"),
+                          dismissButton: .default(Text("OK")))
+                })
         }
     }
     
-    func saveEntry() {
+    func saveEntry() throws {
+        
+        // Create recipe object
         let recipe = Recipe(context: moc)
         recipe.id = UUID()
         recipe.name = name
         recipe.image = nil
         recipe.ingredients = ingredients
         recipe.instructions = instructions
-        // save to managedobjectcontext
+        
+        moc.insert(recipe)
+        
+        // Save to managedobjectcontext
+        if moc.hasChanges {
+            do {
+                try moc.save()
+            } catch {
+                print(error)
+                throw error
+            }
+        }
+        
+        // Close form
         presentationMode.wrappedValue.dismiss()
-        
-        
     }
     
     

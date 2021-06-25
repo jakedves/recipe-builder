@@ -15,8 +15,6 @@ struct LaunchScreen: View {
     let titleSize = CGFloat(70)
     let messageSize = CGFloat(24)
     let themeColor = Color.green
-    
-    // Collect recipe data
 
     var body: some View {
             // Above Image Layer
@@ -60,7 +58,7 @@ struct LaunchScreen: View {
             }
             
         }
-        .navigate(to: RecipesView(recipes: AllRecipes.recipes()), when: $buttonPressed)
+        .navigate(to: RecipesView(), when: $buttonPressed)
     }
 }
 
