@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewRecipeForm: View {
+    @Environment(\.managedObjectContext) private var moc
     @Environment(\.presentationMode) var presentationMode
     @State var name: String = ""
     @State var nextIngredient: String = ""
@@ -68,14 +69,15 @@ struct NewRecipeForm: View {
     }
     
     func saveEntry() {
-        let recipe = Recipe()
+        let recipe = Recipe(context: moc)
         recipe.id = UUID()
         recipe.name = name
         recipe.image = nil
         recipe.ingredients = ingredients
         recipe.instructions = instructions
         // save to managedobjectcontext
-        // close presentationMode
+        presentationMode.wrappedValue.dismiss()
+        
         
     }
     
