@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct Recipe_BuilderApp: App {
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

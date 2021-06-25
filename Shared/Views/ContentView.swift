@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) private var moc
+    
     var body: some View {
         LaunchScreen()
     }
