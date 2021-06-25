@@ -60,7 +60,7 @@ struct LaunchScreen: View {
             }
             
         }
-        .navigate(to: RecipesView(recipes: AllRecipes.recipes), when: $buttonPressed)
+        .navigate(to: RecipesView(recipes: AllRecipes.recipes()), when: $buttonPressed)
     }
 }
 

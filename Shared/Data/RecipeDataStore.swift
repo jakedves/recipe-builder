@@ -6,7 +6,30 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct AllRecipes {
-    static var recipes = [Recipe(), Recipe()]
+    @Environment(\.managedObjectContext) static var moc
+    
+    static func recipes() -> [Recipe] {
+        let recipe1 = Recipe(context: AllRecipes.moc)
+        let recipe2 = Recipe(context: AllRecipes.moc)
+        
+        recipe1.id = UUID()
+        recipe2.id = UUID()
+        
+        recipe1.name = "Cheesy Pasta"
+        recipe2.name = "Fish and Chips"
+        
+        recipe1.image = nil
+        recipe2.image = nil
+        
+        recipe1.ingredients = ["Cheese", "Single Cream", "Pasta"]
+        recipe2.ingredients = ["Fish", "Salt", "Vinegar", "Chips"]
+        
+        recipe1.instructions = ["Add cream to hob, slowly adding cheese", "Boil pasta alongside", "Add together and enjoy"]
+        recipe2.instructions = ["Cook fish", "Cook chips in preffered style", "Add salt & vinegar", "Combine and enjoy"]
+        
+        return [recipe1, recipe2]
+    }
 }

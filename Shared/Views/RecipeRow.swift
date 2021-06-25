@@ -35,6 +35,6 @@ struct RecipeRow: View {
 
 struct RecipePreview_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRow(AllRecipes.recipes[0])
+        RecipeRow(AllRecipes.recipes()[0])
     }
 }
