@@ -30,7 +30,7 @@ struct IngredientsView: View {
             }
         }
         .padding()
-        .background(Color.gray)
+        .background(Color.green)
         .cornerRadius(25)
     }
 }

@@ -47,6 +47,7 @@ struct RecipeGuide: View {
                 Spacer()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
