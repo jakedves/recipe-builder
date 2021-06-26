@@ -16,8 +16,8 @@ struct RecipeRow: View {
     
     var body: some View {
         HStack {
-            //Image(recipe.image)
-            Image("Home")
+            //Image(recipe.image ?? Image("Logo"))
+            Image("Logo")
                 .resizable()
                 .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .cornerRadius(10)
