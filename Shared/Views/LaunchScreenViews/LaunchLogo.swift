@@ -31,37 +31,37 @@ struct LaunchLogo: View {
     }
     
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
+        GeometryReader { geometry in
+            VStack {
                 Spacer()
-                self.logo
-                    .resizable()
-                    .frame(width: 65, height: 65, alignment: Alignment.center)
-                VStack {
-                    Text(title.uppercased())
-                        .font(.system(size: titleSize))
-                        .foregroundColor(self.color)
-                        .fontWeight(.heavy)
-                        .multilineTextAlignment(.center)
-                        
-                    Text(message)
-                        .font(.system(size: messageSize))
-                        .foregroundColor(self.color)
-                        .fontWeight(.bold)
+                HStack {
+                    Spacer()
+                    self.logo
+                        .resizable()
+                        .frame(width: 65, height: 65, alignment: Alignment.center)
+                    VStack {
+                        Text(title.uppercased())
+                            .font(.system(size: titleSize))
+                            .foregroundColor(self.color)
+                            .fontWeight(.heavy)
+                            .multilineTextAlignment(.center)
+                            
+                        Text(message)
+                            .font(.system(size: messageSize))
+                            .foregroundColor(self.color)
+                            .fontWeight(.bold)
+                    }
+                    Spacer()
                 }
                 Spacer()
             }
-            Spacer()
         }
-        
     }
 }
 
 struct LaunchLogo_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LaunchLogo(logo: Image("Logo"))
             LaunchLogo(logo: Image("Logo"))
                 .previewDevice("iPad Air (4th generation)")
         }

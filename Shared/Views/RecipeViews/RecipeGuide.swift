@@ -21,34 +21,36 @@ struct RecipeGuide: View {
     
     var body: some View {
         
-        VStack {
+        ScrollView {
             VStack {
-                
-                // The photo and recipe name
                 VStack {
-                    //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
-                    RecipePhoto("Logo")
-                    Text(recipe.name ?? unnamed)
-                        .fontWeight(.bold)
-                        .font(.system(size: titleSize))
-                        .lineLimit(nil)
-                        .multilineTextAlignment(.center)
-                }
-                
-                // The ingredients and instructions
-                HStack {
-                    VStack(alignment: .leading) {
-                        IngredientsView(recipe.ingredients ?? [])
-                        Spacer().frame(height: 25)
-                        InstructionsView(instructions: recipe.instructions ?? [])
-                        Spacer().frame(height: 25)
-                    }
-                    .padding()
                     
-                    Spacer()
+                    // The photo and recipe name
+                    VStack {
+                        //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
+                        RecipePhoto("Logo")
+                        Text(recipe.name ?? unnamed)
+                            .fontWeight(.bold)
+                            .font(.system(size: titleSize))
+                            .lineLimit(nil)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    // The ingredients and instructions
+                    HStack {
+                        VStack(alignment: .leading) {
+                            IngredientsView(recipe.ingredients ?? [])
+                            Spacer().frame(height: 25)
+                            InstructionsView(instructions: recipe.instructions ?? [])
+                            Spacer().frame(height: 25)
+                        }
+                        .padding()
+                        
+                        Spacer()
+                    }
                 }
+                Spacer()
             }
-            Spacer()
         }
     }
 }

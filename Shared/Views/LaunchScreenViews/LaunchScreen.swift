@@ -9,46 +9,67 @@ import SwiftUI
 
 struct LaunchScreen: View {
     @State var buttonPressed = false
-    let title = "WELCOME"
-    let subtitle = "What's cooking?"
-    let titleSize = CGFloat(50)
-    let messageSize = CGFloat(18)
-    let themeColor = Color.green
-
+    
+    var logo = LaunchLogo("Welcome",
+                         50,
+                         "What's cooking?",
+                         18,
+                         logo: Image("Logo"),
+                         Color.green)
+    
     var body: some View {
-        NavigationView {
-            HStack {
-                Spacer()
-                VStack {
+        GeometryReader { geometry in
+            NavigationView {
+                HStack {
                     Spacer()
-                    
-                    // Text
-                    LaunchLogo(title,
-                               titleSize,
-                               subtitle,
-                               messageSize,
-                               logo: Image("Logo"),
-                               themeColor)
-                    
-                    Spacer()
-                    
-                    // Button
-                    NavigationLink(destination: RecipesView()
-                                    .navigationBarHidden(true)) {
-                        Text("My Recipes")
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.green)
-                            .cornerRadius(40)
+                    VStack {
+                        Spacer()
+                        
+                        // Text
+                        self.logo
+                            .offset(x: 0,
+                                    y: buttonPressed ?
+                                        -(geometry.size.height + 100) / 2
+                                        : 0)
+                            .animation(.spring())
+                        
+                        Spacer()
+                        
+                        // Button
+                        NavigationLink(destination: RecipesView()
+                                        .navigationBarHidden(true)) {
+                            ZStack {
+                                Text("My Recipes")
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(Color.green)
+                                    .cornerRadius(40)
+                                Button("My Recipes") {
+                                    self.animate()
+                                }
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(Color.green)
+                                    .cornerRadius(40)
+                                    .hidden()
+                            }
+                        }
+                        
+                        Spacer().frame(height: 130, alignment: .center)
                     }
-                    
-                    Spacer().frame(height: 130, alignment: .center)
+                    Spacer()
                 }
-                Spacer()
+                .animation(.spring())
             }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    
+    func animate() {
+        self.buttonPressed.toggle()
+    }
+    
 }
 
     
@@ -56,8 +77,6 @@ struct LaunchScreen_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LaunchScreen()
-            LaunchScreen()
-                .previewDevice("iPad Air (4th generation)")
         }
     }
 }

@@ -18,7 +18,7 @@ struct RecipePhoto: View {
     var body: some View {
         self.image
             .aspectRatio(contentMode: .fill)
-            .frame(width: 230, height: 230)
+            .frame(width: 200, height: 200)
             .clipped()
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.green, lineWidth: 5))
