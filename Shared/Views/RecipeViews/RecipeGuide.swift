@@ -12,6 +12,7 @@ struct RecipeGuide: View {
     var recipe: Recipe
     var titleSize = CGFloat(40)
     let screenSize: CGRect
+    let unnamed = "Unnamed Recipe"
     
     init(recipe: Recipe) {
         self.recipe = recipe
@@ -27,7 +28,7 @@ struct RecipeGuide: View {
                 VStack {
                     //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
                     RecipePhoto("Logo")
-                    Text(recipe.name ?? "Unnamed recipe")
+                    Text(recipe.name?.capitalized ?? unnamed)
                         .fontWeight(.bold)
                         .font(.system(size: titleSize))
                         .multilineTextAlignment(.center)

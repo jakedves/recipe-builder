@@ -31,9 +31,11 @@ struct RecipesView: View {
                 }
                 .navigationBarTitle(Text("Recipes"))
                 .navigationBarItems(leading: EditButton(),
-                                    trailing: Button("+") {
+                                    trailing: Button(action: {
                                         showSheet.toggle()
-                                    }
+                                    }, label: {
+                                        Image(systemName: "hammer")
+                                    })
                                     .sheet(isPresented: $showSheet) {
                                         NewRecipeForm()
                                     })
@@ -41,16 +43,19 @@ struct RecipesView: View {
                 
             } else {
                 Text("No recipes. Create a recipe using the"
-                        + " + button above.")
+                        + " hammer button above.")
                     .multilineTextAlignment(.center).frame(width: 300)
                     .navigationBarTitle(Text("Recipes"))
                     .navigationBarItems(leading: EditButton(),
-                                        trailing: Button("+") {
+                                        trailing: Button(action: {
                                             showSheet.toggle()
-                                        }
+                                        }, label: {
+                                            Image(systemName: "hammer")
+                                        })
                                         .sheet(isPresented: $showSheet) {
                                             NewRecipeForm()
                                         })
+
             }
             
         }

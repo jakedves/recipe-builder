@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct InstructionsView: View {
-    var instructions: [String]
+    let instructions: [String]?
+    let capitalise: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,7 +18,7 @@ struct InstructionsView: View {
                 
             Spacer().frame(height: 5)
             
-            ForEach(instructions, id: \.self) { instruction in
+            ForEach(instructions ?? [], id: \.self) { instruction in
                 HStack {
                     Spacer().frame(width: 8)
                     Text(instruction)
@@ -32,8 +33,6 @@ struct InstructionsView: View {
 
 struct InstructionsView_Previews: PreviewProvider {
     static var previews: some View {
-        InstructionsView(instructions: ["Boil for 10 minutes",
-                         "Stir well and add seasoning",
-                         "Serve"])
+        InstructionsView(instructions: AllRecipes.recipes()[0].instructions)
     }
 }

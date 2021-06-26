@@ -23,7 +23,7 @@ struct IngredientsView: View {
             ForEach(ingredients, id: \.self) { ingredient in
                 HStack {
                     Spacer().frame(width: 12)
-                    Text(ingredient)
+                    Text("• " + ingredient)
                         .font(.body)
                 }
             }

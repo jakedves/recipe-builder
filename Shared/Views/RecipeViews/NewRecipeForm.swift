@@ -29,14 +29,14 @@ struct NewRecipeForm: View {
                                                list: $ingredients,
                                                content: $nextIngredient)) {
                         List {
-                            TextField("Ingredient " + String(ingredients.count + 1),
-                                      text: $nextIngredient)
                             ForEach(ingredients, id: \.self) { ingredient in
                                 Text(ingredient)
                             }
                             .onDelete(perform: { indexSet in
                                 deleteElement(at: indexSet, list: $ingredients)
                             })
+                            TextField("New Ingredient",
+                                      text: $nextIngredient)
                         }
                     }
                     
@@ -44,13 +44,13 @@ struct NewRecipeForm: View {
                                                list: $instructions,
                                                content: $nextInstruction)) {
                         List {
-                            TextField("Instruciton " + String(instructions.count + 1), text: $nextInstruction)
                             ForEach(instructions, id: \.self) { instruction in
                                 Text(instruction)
                             }
                             .onDelete(perform: { indexSet in
                                 deleteElement(at: indexSet, list: $instructions)
                             })
+                            TextField("New Instruction", text: $nextInstruction)
                         }
                     }
                     
@@ -59,7 +59,7 @@ struct NewRecipeForm: View {
                     }
                 }
             }
-            .navigationTitle("New Recipe")
+            .navigationTitle("Build Recipe")
             .navigationBarItems(
                 leading: Button("Cancel") { self.presentationMode.wrappedValue.dismiss()
                 },

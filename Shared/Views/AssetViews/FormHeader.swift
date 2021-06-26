@@ -18,9 +18,7 @@ struct FormHeader: View {
             Spacer()
             // When button pressed, add content to list and clear content
             Button("+") {
-                let index = list.wrappedValue.count + 1
-                list.wrappedValue.append(
-                    String(index) + ". " + content.wrappedValue.capitalized)
+                list.wrappedValue.append(content.wrappedValue)
                 content.wrappedValue = ""
             }
         }
