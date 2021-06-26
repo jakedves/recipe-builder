@@ -14,3 +14,9 @@ ReciperBuilder is an iOS/iPadOS/MacOS application that allows users to create re
 - Sync across iCloud
 - Sharing recipes
 - Public recipes
+
+### TODO:
+
+- Add camera support
+- Add photo library support
+- Allow users to edit recipes
