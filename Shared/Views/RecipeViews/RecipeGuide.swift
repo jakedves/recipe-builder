@@ -21,36 +21,42 @@ struct RecipeGuide: View {
     var body: some View {
         
         VStack {
-            VStack(alignment: .leading) {
-                Spacer().frame(width: 1, height: 40)
-                HStack {
-                    Spacer().frame(width: 20, height: 1)
+            VStack {
+                
+                // The photo and recipe name
+                VStack {
+                    //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
+                    RecipePhoto("Logo")
                     Text(recipe.name ?? "Unnamed recipe")
                         .fontWeight(.bold)
                         .font(.system(size: titleSize))
+                        .multilineTextAlignment(.center)
+                }
+                
+                // The ingredients and instructions
+                HStack {
+                    VStack(alignment: .leading) {
+                        IngredientsView(recipe.ingredients ?? [])
+                        Spacer().frame(height: 25)
+                        InstructionsView(instructions: recipe.instructions ?? [])
+                        Spacer().frame(height: 25)
+                    }
+                    .padding()
+                    
                     Spacer()
                 }
-                //RecipePhoto(Image(recipe.image) ?? Image("Home"))
-                    //.frame(width: screenSize.width)
-                RecipePhoto("Home")
-                    .frame(width: screenSize.width)
-                Spacer().frame(height: 25)
-                IngredientsView(recipe.ingredients ?? [])
-                Spacer().frame(height: 35)
-                InstructionsView(recipe.instructions ?? [])
-                Spacer()
             }
             Spacer()
         }
-        
     }
 }
 
 struct RecipeGuide_Previews: PreviewProvider {
-    
     static var previews: some View {
-        
-        RecipeGuide(recipe: Recipe())
-        
+        Group {
+            RecipeGuide(recipe: AllRecipes.recipes()[0])
+            RecipeGuide(recipe: AllRecipes.recipes()[0])
+                .previewDevice("iPad Air (4th generation)")
+        }
     }
 }

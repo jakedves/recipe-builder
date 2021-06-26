@@ -16,23 +16,21 @@ struct IngredientsView: View {
     }
     
     var body: some View {
-        HStack {
-            Spacer().frame(width: 10, height: 0)
-            VStack(alignment: .leading) {
-                Text("Ingredients: ")
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .font(.system(size: headerSize))
-                ForEach(ingredients, id: \.self) { ingredient in
-                    Spacer().frame(height: 5)
-                    HStack {
-                        Text("   •").bold()
-                        Text(ingredient).font(.body)
-                    }
-                    
+        VStack(alignment: .leading) {
+            Text("Ingredients:")
+                .font(.headline)
+            Spacer().frame(height: 5)
+            ForEach(ingredients, id: \.self) { ingredient in
+                HStack {
+                    Spacer().frame(width: 12)
+                    Text(ingredient)
+                        .font(.body)
                 }
             }
-            Spacer()
         }
+        .padding()
+        .background(Color.gray)
+        .cornerRadius(25)
     }
 }
 
@@ -40,14 +38,7 @@ struct IngredientsView_Previews: PreviewProvider {
     static var previews: some View {
         IngredientsView(
             ["Garlic",
-             "Cheese"])
-    }
-}
-
-struct Bulleted {
-    var content: String
-    
-    init(_ content: String) {
-        self.content = "    • " + content
+             "Cheese",
+            "Tomato and cucumber salad"])
     }
 }

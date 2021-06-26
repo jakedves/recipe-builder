@@ -23,12 +23,12 @@ struct LaunchScreen: View {
                     Spacer()
                     
                     // Text
-                    LaunchLogo("Welcome",
-                               CGFloat(50),
-                               "What's cooking?",
-                               CGFloat(18),
+                    LaunchLogo(title,
+                               titleSize,
+                               subtitle,
+                               messageSize,
                                logo: Image("Logo"),
-                               .green)
+                               themeColor)
                     
                     Spacer()
                     

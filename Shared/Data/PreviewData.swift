@@ -24,10 +24,20 @@ struct AllRecipes {
         recipe1.image = nil
         recipe2.image = nil
         
-        recipe1.ingredients = ["Cheese", "Single Cream", "Pasta"]
+        recipe1.ingredients = ["Cheese", "Single Cream", "Pasta", "Salt", "Pepper"]
         recipe2.ingredients = ["Fish", "Salt", "Vinegar", "Chips"]
         
-        recipe1.instructions = ["Add cream to hob, slowly adding cheese", "Boil pasta alongside", "Add together and enjoy"]
+        recipe1.instructions = ["Add cream to hob",
+                                "Increase heat slowly",
+                                "Slowly adding cheese",
+                                "Boil pasta alongside",
+                                "Add salt",
+                                "Mix well",
+                                "Add pepper",
+                                "Mix well",
+                                "Add cream to pasta once done",
+                                "Add together and enjoy"]
+        
         recipe2.instructions = ["Cook fish", "Cook chips in preffered style", "Add salt & vinegar", "Combine and enjoy"]
         
         return [recipe1, recipe2]

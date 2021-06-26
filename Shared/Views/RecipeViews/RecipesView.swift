@@ -18,28 +18,47 @@ struct RecipesView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach (recipes) { recipe in
-                    NavigationLink(destination: RecipeGuide(recipe: recipe)) {
-                        RecipeRow(recipe)
+            
+            // change to -1 to debug/edit
+            if self.recipes.count > 0 {
+                List {
+                    ForEach (recipes) { recipe in
+                        NavigationLink(destination: RecipeGuide(recipe: recipe)) {
+                            RecipeRow(recipe)
+                        }
                     }
+                    .onDelete(perform: self.delete)
                 }
-                .onDelete(perform: self.delete)
-            }
-            .navigationBarTitle(Text("Recipes"))
-            .navigationBarItems(leading: EditButton(),
-                                
-                                trailing: Button("+") {
-                                    showSheet.toggle()
-                                }
+                .navigationBarTitle(Text("Recipes"))
+                .navigationBarItems(leading: EditButton(),
+                                    trailing: Button("+") {
+                                        showSheet.toggle()
+                                    }
                                     .sheet(isPresented: $showSheet) {
                                         NewRecipeForm()
                                     })
-            .listStyle(InsetListStyle())
+                .listStyle(InsetListStyle())
+                
+            } else {
+                Text("No recipes. Create a recipe using the"
+                        + " + button above.")
+                    .multilineTextAlignment(.center).frame(width: 300)
+                    .navigationBarTitle(Text("Recipes"))
+                    .navigationBarItems(leading: EditButton(),
+                                        trailing: Button("+") {
+                                            showSheet.toggle()
+                                        }
+                                        .sheet(isPresented: $showSheet) {
+                                            NewRecipeForm()
+                                        })
+            }
+            
         }
     }
     
+    // When a user deletes an item it move remove itself from the recipe that is used to load the view, as well as the database
     func delete(at offsets: IndexSet) {
+        
         // Delete recipe from managed object context
         for index in offsets {
             let recipe = recipes[index]
@@ -57,7 +76,6 @@ struct RecipesView: View {
 }
 
 struct RecipesView_Previews: PreviewProvider {
-    
     static var previews: some View {
         RecipesView()
     }
