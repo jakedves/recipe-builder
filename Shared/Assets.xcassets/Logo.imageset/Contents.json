@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "RecipeBuilderPNG100.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Logo-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
