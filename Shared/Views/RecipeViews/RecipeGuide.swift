@@ -11,13 +11,8 @@ import UIKit
 struct RecipeGuide: View {
     var recipe: Recipe
     var titleSize = CGFloat(40)
-    let screenSize: CGRect
+    let screenSize: CGRect = UIScreen.main.bounds
     let unnamed = "Unnamed Recipe"
-    
-    init(recipe: Recipe) {
-        self.recipe = recipe
-        self.screenSize = UIScreen.main.bounds
-    }
     
     var body: some View {
         
@@ -59,8 +54,6 @@ struct RecipeGuide_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             RecipeGuide(recipe: AllRecipes.recipes()[0])
-            RecipeGuide(recipe: AllRecipes.recipes()[0])
-                .previewDevice("iPad Air (4th generation)")
         }
     }
 }

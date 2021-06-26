@@ -109,10 +109,6 @@ struct NewRecipeForm: View {
     // TODO: Make dropFirst optional and only apply to instructions
     func deleteElement(at offsets: IndexSet, list: Binding<[String]>) {
         list.wrappedValue.remove(atOffsets: offsets)
-        
-        for index in 0...list.wrappedValue.count - 1 {
-            list.wrappedValue[index] = String(index + 1) + ". " + String(list.wrappedValue[index].dropFirst(3))
-        }
     }
 }
 
