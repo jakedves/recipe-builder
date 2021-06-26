@@ -28,9 +28,10 @@ struct RecipeGuide: View {
                 VStack {
                     //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
                     RecipePhoto("Logo")
-                    Text(recipe.name?.capitalized ?? unnamed)
+                    Text(recipe.name ?? unnamed)
                         .fontWeight(.bold)
                         .font(.system(size: titleSize))
+                        .lineLimit(nil)
                         .multilineTextAlignment(.center)
                 }
                 

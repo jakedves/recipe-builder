@@ -23,6 +23,7 @@ struct InstructionsView: View {
                     Spacer().frame(width: 8)
                     Text(instruction)
                         .font(.body)
+                        .lineLimit(nil)
                 }
                 
             }

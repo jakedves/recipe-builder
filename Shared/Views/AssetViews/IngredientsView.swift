@@ -25,6 +25,7 @@ struct IngredientsView: View {
                     Spacer().frame(width: 12)
                     Text("• " + ingredient)
                         .font(.body)
+                        .lineLimit(nil)
                 }
             }
         }
