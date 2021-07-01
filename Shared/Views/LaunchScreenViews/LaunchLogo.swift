@@ -31,30 +31,28 @@ struct LaunchLogo: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
+        VStack {
+            Spacer()
+            HStack {
                 Spacer()
-                HStack {
-                    Spacer()
-                    self.logo
-                        .resizable()
-                        .frame(width: 65, height: 65, alignment: Alignment.center)
-                    VStack {
-                        Text(title.uppercased())
-                            .font(.system(size: titleSize))
-                            .foregroundColor(self.color)
-                            .fontWeight(.heavy)
-                            .multilineTextAlignment(.center)
-                            
-                        Text(message)
-                            .font(.system(size: messageSize))
-                            .foregroundColor(self.color)
-                            .fontWeight(.bold)
-                    }
-                    Spacer()
+                self.logo
+                    .resizable()
+                    .frame(width: 65, height: 65, alignment: Alignment.center)
+                VStack {
+                    Text(title.uppercased())
+                        .font(.system(size: titleSize))
+                        .foregroundColor(self.color)
+                        .fontWeight(.heavy)
+                        .multilineTextAlignment(.center)
+                    
+                    Text(message)
+                        .font(.system(size: messageSize))
+                        .foregroundColor(self.color)
+                        .fontWeight(.bold)
                 }
                 Spacer()
             }
+            Spacer()
         }
     }
 }
@@ -63,7 +61,6 @@ struct LaunchLogo_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LaunchLogo(logo: Image("Logo"))
-                .previewDevice("iPad Air (4th generation)")
         }
     }
 }
