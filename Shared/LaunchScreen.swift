@@ -18,8 +18,7 @@ struct LaunchScreen: View {
     
     var body: some View {
         if ($buttonPressed.wrappedValue) {
-            RecipesView().frame(minWidth: macSettings.minWindowWidth,
-                                minHeight: macSettings.minWindowHeight)
+            RecipesView()
         } else {
             VStack {
                 self.logo
@@ -36,7 +35,6 @@ struct LaunchScreen: View {
                     
                 Spacer().frame(height: 70)
             }
-            .frame(minWidth: macSettings.minWindowWidth, minHeight: macSettings.minWindowHeight)
             .buttonStyle(PlainButtonStyle())
         }
     }

@@ -18,70 +18,89 @@ struct NewRecipeForm: View {
     @State var showingAlert = false
     
     var body: some View {
-        VStack {
-            Form {
-                
-                // Buttons
-                HStack {
-                    //Cancel
-                    //Spacer
-                    //Save
-                }
-                
-                Section(header: Text("Recipe Name:")) {
-                    TextField("Recipe Name", text: $name)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
-                
-                Section(header: FormHeader(text: "Ingredients:",
-                                           list: $ingredients,
-                                           content: $nextIngredient)) {
+        NavigationView {
+            VStack {
+                Form {
                     
-                    TextField("Add ingredient here", text: $nextIngredient)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    List {
-                        ForEach(ingredients, id: \.self) { ingredient in
-                            Text(ingredient)
+                    // Buttons
+                    HStack {
+                        Button("Cancel") {
+                            presentationMode.wrappedValue.dismiss()
                         }
-                        .onDelete(perform: { indexSet in
-                            deleteElement(at: indexSet, list: $ingredients)
+                        Spacer()
+                        Button("Save") {
+                            do {
+                                try self.saveEntry()
+                            } catch {
+                                showingAlert = true
+                            }
+                        }.alert(isPresented: $showingAlert,
+                                 content: {
+                            Alert(title: Text("Cannot save recipe"),
+                                  dismissButton: .default(Text("OK")))
                         })
+                    }
+                    
+                    Text("New Recipe")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
+                    Section(header: Text("Recipe Name:")) {
+                        TextField("Recipe Name", text: $name)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
+                    Section(header: FormHeader(text: "Ingredients:",
+                                               list: $ingredients,
+                                               content: $nextIngredient)) {
+                        
+                        TextField("Add ingredient here", text: $nextIngredient)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        List {
+                            ForEach(ingredients, id: \.self) { ingredient in
+                                Text(ingredient)
+                            }
+                            .onDelete(perform: { indexSet in
+                                deleteElement(at: indexSet, list: $ingredients)
+                            })
+                            
+                        }
+                        .cornerRadius(20)
+                        .frame(height: 15 * CGFloat(ingredients.count))
+                    }
+                    
+                    Section(header: FormHeader(text: "Instructions:",
+                                               list: $instructions,
+                                               content: $nextInstruction)) {
+                        TextField("Type instruction here", text: $nextInstruction)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        List {
+                            ForEach(instructions, id: \.self) { instruction in
+                                Text(instruction)
+                            }
+                            .onDelete(perform: { indexSet in
+                                deleteElement(at: indexSet, list: $instructions)
+                            })
+                        }
+                        .cornerRadius(20)
+                        .frame(height: 15 * CGFloat(instructions.count))
+                    }
+                    
+                    Section(header: Text("Add a photo")) {
                         
                     }
-                    .cornerRadius(20)
-                    .frame(height: 15 * CGFloat(ingredients.count))
-                }
-                
-                Section(header: FormHeader(text: "Instructions:",
-                                           list: $instructions,
-                                           content: $nextInstruction)) {
-                    TextField("Type instruction here", text: $nextInstruction)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                    List {
-                        ForEach(instructions, id: \.self) { instruction in
-                            Text(instruction)
-                        }
-                        .onDelete(perform: { indexSet in
-                            deleteElement(at: indexSet, list: $instructions)
-                        })
-                    }
-                    .cornerRadius(20)
-                    .frame(height: 15 * CGFloat(instructions.count))
-                }
-                
-                Section(header: Text("Add a photo")) {
                     
                 }
-                
-                
+                .padding()
             }
-            .padding()
+            .frame(minWidth: 100,
+                   minHeight: macSettings.minWindowHeight)
+            .background(Color.green.opacity(0.9))
         }
-        .frame(minWidth: 100,
-               minHeight: macSettings.minWindowHeight)
-        .background(Color.green.opacity(0.9))
-    }
+        }
+        
     
     func saveEntry() throws {
         

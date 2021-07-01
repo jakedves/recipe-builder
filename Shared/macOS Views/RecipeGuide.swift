@@ -17,6 +17,11 @@ struct RecipeGuide: View {
         ScrollView {
             VStack {
                 VStack {
+                    HStack {
+                        Spacer()
+                        Button("Edit") {}
+                        Button("Delete") {}
+                    }.padding()
                     
                     // The photo and recipe name
                     VStack {
