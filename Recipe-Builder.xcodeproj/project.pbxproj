@@ -53,6 +53,10 @@
 		50FC8CDF2692157A00FA5566 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0A51826598C5A009E34ED /* RecipesView.swift */; };
 		50FC8CE02692157A00FA5566 /* NewRecipeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50093343268400DC00C7D81B /* NewRecipeForm.swift */; };
 		50FC8CE12692157A00FA5566 /* RecipeGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F43F9F26614B9E009ADA9C /* RecipeGuide.swift */; };
+		50FC8CE3269218EE00FA5566 /* StandardRecipeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC8CE2269218EE00FA5566 /* StandardRecipeBuilder.swift */; };
+		50FC8CE4269218EE00FA5566 /* StandardRecipeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC8CE2269218EE00FA5566 /* StandardRecipeBuilder.swift */; };
+		50FC8CE626922B7D00FA5566 /* RecipeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC8CE526922B7D00FA5566 /* RecipeBuilder.swift */; };
+		50FC8CE726922B7D00FA5566 /* RecipeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC8CE526922B7D00FA5566 /* RecipeBuilder.swift */; };
 		50FCB1512686C56800EB4378 /* LaunchLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FCB1502686C56800EB4378 /* LaunchLogo.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +90,8 @@
 		50FC8CD6269205D000FA5566 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		50FC8CD9269206B500FA5566 /* LaunchMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchMessage.swift; sourceTree = "<group>"; };
 		50FC8CDC269213D900FA5566 /* RecipeGuideHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeGuideHeading.swift; sourceTree = "<group>"; };
+		50FC8CE2269218EE00FA5566 /* StandardRecipeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardRecipeBuilder.swift; sourceTree = "<group>"; };
+		50FC8CE526922B7D00FA5566 /* RecipeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBuilder.swift; sourceTree = "<group>"; };
 		50FCB1502686C56800EB4378 /* LaunchLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLogo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,13 +113,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		501E60B0268BC2810090D052 /* iOS Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "iOS Views";
-			sourceTree = "<group>";
-		};
 		501E60B2268BC30C0090D052 /* macOS Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +139,6 @@
 				5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */,
 				501E60B3268BC34D0090D052 /* LaunchScreen.swift */,
 				501E60B2268BC30C0090D052 /* macOS Views */,
-				501E60B0268BC2810090D052 /* iOS Views */,
 				5066DC7C2666E81000CE6176 /* Data */,
 				50F43F9B265C15AE009ADA9C /* Models */,
 				50F43F9A265C15A8009ADA9C /* Views */,
@@ -189,8 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				50FCB14F2686C52500EB4378 /* Asset Views */,
-				50FCB14D2686C4C300EB4378 /* LaunchScreen Views */,
-				50FCB14E2686C4EC00EB4378 /* RecipeViews */,
+				50FCB14D2686C4C300EB4378 /* Launch Views */,
+				50FCB14E2686C4EC00EB4378 /* Recipe Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +199,8 @@
 				5009334A268409AE00C7D81B /* Recipe+CoreDataClass.swift */,
 				5009334B268409AE00C7D81B /* Recipe+CoreDataProperties.swift */,
 				500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */,
+				50FC8CE2269218EE00FA5566 /* StandardRecipeBuilder.swift */,
+				50FC8CE526922B7D00FA5566 /* RecipeBuilder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -212,7 +212,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		50FCB14D2686C4C300EB4378 /* LaunchScreen Views */ = {
+		50FCB14D2686C4C300EB4378 /* Launch Views */ = {
 			isa = PBXGroup;
 			children = (
 				50FC8CD0269018F800FA5566 /* LaunchButton.swift */,
@@ -220,10 +220,10 @@
 				50FC8CD32692040A00FA5566 /* LaunchTitle.swift */,
 				50FC8CD9269206B500FA5566 /* LaunchMessage.swift */,
 			);
-			path = "LaunchScreen Views";
+			path = "Launch Views";
 			sourceTree = "<group>";
 		};
-		50FCB14E2686C4EC00EB4378 /* RecipeViews */ = {
+		50FCB14E2686C4EC00EB4378 /* Recipe Views */ = {
 			isa = PBXGroup;
 			children = (
 				50E0A51826598C5A009E34ED /* RecipesView.swift */,
@@ -233,7 +233,7 @@
 				50E0A51D26598EB8009E34ED /* RecipeRow.swift */,
 				50F43FAD26615538009ADA9C /* RecipePhoto.swift */,
 			);
-			path = RecipeViews;
+			path = "Recipe Views";
 			sourceTree = "<group>";
 		};
 		50FCB14F2686C52500EB4378 /* Asset Views */ = {
@@ -352,6 +352,7 @@
 				50FC8CD42692040A00FA5566 /* LaunchTitle.swift in Sources */,
 				508E6F2A268E8C54000DFB44 /* LaunchScreen.swift in Sources */,
 				50FC8CDA269206B500FA5566 /* LaunchMessage.swift in Sources */,
+				50FC8CE626922B7D00FA5566 /* RecipeBuilder.swift in Sources */,
 				50F43FB3266169A2009ADA9C /* IngredientsView.swift in Sources */,
 				50F43FAE26615539009ADA9C /* RecipePhoto.swift in Sources */,
 				5009334C268409AE00C7D81B /* Recipe+CoreDataClass.swift in Sources */,
@@ -359,6 +360,7 @@
 				50E0A51E26598EB8009E34ED /* RecipeRow.swift in Sources */,
 				50DB69592685B3FD0011E078 /* Persistence.swift in Sources */,
 				50E0A51926598C5A009E34ED /* RecipesView.swift in Sources */,
+				50FC8CE3269218EE00FA5566 /* StandardRecipeBuilder.swift in Sources */,
 				500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
 				50093344268400DC00C7D81B /* NewRecipeForm.swift in Sources */,
 				5051E52D2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
@@ -389,11 +391,13 @@
 				501E60B6268BC3630090D052 /* RecipesView.swift in Sources */,
 				50E0A51F26598EB8009E34ED /* RecipeRow.swift in Sources */,
 				501E60B1268BC2CB0090D052 /* LaunchLogo.swift in Sources */,
+				50FC8CE726922B7D00FA5566 /* RecipeBuilder.swift in Sources */,
 				50DB695A2685B3FD0011E078 /* Persistence.swift in Sources */,
 				500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
 				5051E52E2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				50FC8CE02692157A00FA5566 /* NewRecipeForm.swift in Sources */,
 				5009334F268409AE00C7D81B /* Recipe+CoreDataProperties.swift in Sources */,
+				50FC8CE4269218EE00FA5566 /* StandardRecipeBuilder.swift in Sources */,
 				50FC8CDF2692157A00FA5566 /* RecipesView.swift in Sources */,
 				5066DC7F2666E82B00CE6176 /* PreviewData.swift in Sources */,
 			);

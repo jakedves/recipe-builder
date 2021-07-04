@@ -13,7 +13,6 @@ import SwiftUI
 struct RecipesView: View {
     @Environment(\.managedObjectContext) private var moc
     @FetchRequest(entity: Recipe.entity(), sortDescriptors: []) var recipes: FetchedResults<Recipe>
-    
     @State var showSheet = false
     
     var body: some View {
@@ -59,7 +58,7 @@ struct RecipesView: View {
     }
     
     private struct RV {
-        static let title: String = "Recipes"
+        static let title = "Recipes"
         static let naviLeading: some View = EditButton()
         static let buildIcon: some View = Image(systemName: "hammer")
         static let newRecipeView: some View = NewRecipeForm()

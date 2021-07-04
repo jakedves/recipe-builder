@@ -15,12 +15,9 @@ struct LaunchLogo: View {
     let logo: Image
     let color: Color
     
-    init(_ title: String = "Hello World!",
-         _ titleSize: CGFloat = 50,
-         _ message: String = "What's happening today?",
-         _ messageSize: CGFloat = 18,
-         logo: Image,
-         _ color: Color = .green) {
+    init(title: String = "Hello World!", titleSize: CGFloat = 50,
+        message: String = "What's happening today?", messageSize: CGFloat = 18,
+        logo: Image, color: Color = .green) {
         
         self.title = title
         self.titleSize = titleSize

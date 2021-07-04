@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LaunchScreen: View {
     @Environment(\.managedObjectContext) private var moc
+    @ObservedObject var viewModel: StandardRecipeBuilder = StandardRecipeBuilder()
     @State var buttonPressed = false
     
     var body: some View {
@@ -18,12 +19,12 @@ struct LaunchScreen: View {
             GeometryReader { geometry in
                 VStack {
                     Spacer(minLength: (geometry.size.height / 2) - Launch.offset)
-                    LaunchLogo(Launch.title,
-                               Launch.titleSize,
-                               Launch.message,
-                               Launch.messageSize,
+                    LaunchLogo(title: Launch.title,
+                               titleSize: Launch.titleSize,
+                               message: Launch.message,
+                               messageSize: Launch.messageSize,
                                logo: Launch.logo,
-                               Launch.color)
+                               color: Launch.color)
                     Spacer()
                     LaunchButton(Launch.buttonText,
                                  bgColor: Launch.color) {
