@@ -10,9 +10,8 @@ import SwiftUI
 struct RecipePhoto: View {
     let image: Image
     
-    init(_ photo: String) {
-        self.image = Image(photo)
-            .resizable()
+    init(_ photo: Image) {
+        self.image = photo.resizable()
     }
     
     var body: some View {
@@ -36,6 +35,6 @@ struct RecipePhoto: View {
 
 struct RecipePhoto_Previews: PreviewProvider {
     static var previews: some View {
-        RecipePhoto("Rice")
+        RecipePhoto(Image("Rice"))
     }
 }

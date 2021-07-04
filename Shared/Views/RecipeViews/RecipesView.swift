@@ -29,37 +29,44 @@ struct RecipesView: View {
                     }
                     .onDelete(perform: self.delete)
                 }
-                .navigationBarTitle(Text("Recipes"))
-                .navigationBarItems(leading: EditButton(),
+                .navigationBarTitle(RV.title)
+                .navigationBarItems(leading: RV.naviLeading,
                                     trailing: Button(action: {
                                         showSheet.toggle()
                                     }, label: {
-                                        Image(systemName: "hammer")
+                                        RV.buildIcon
                                     })
                                     .sheet(isPresented: $showSheet) {
-                                        NewRecipeForm()
+                                        RV.newRecipeView
                                     })
                 .listStyle(InsetListStyle())
                 
             } else {
-                Text("No recipes. Create a recipe using the"
-                        + " hammer button above.")
-                    .multilineTextAlignment(.center).frame(width: 300)
-                    .navigationBarTitle(Text("Recipes"))
-                    .navigationBarItems(leading: EditButton(),
+                RV.emptyView
+                    .navigationBarTitle(RV.title)
+                    .navigationBarItems(leading: RV.naviLeading,
                                         trailing: Button(action: {
                                             showSheet.toggle()
                                         },
                                         label: {
-                                            Image(systemName: "hammer")
+                                            RV.buildIcon
                                         })
                                         .sheet(isPresented: $showSheet) {
-                                            NewRecipeForm()
+                                            RV.newRecipeView
                                         })
-
             }
-            
         }
+    }
+    
+    private struct RV {
+        static let title: String = "Recipes"
+        static let naviLeading: some View = EditButton()
+        static let buildIcon: some View = Image(systemName: "hammer")
+        static let newRecipeView: some View = NewRecipeForm()
+        
+        static let emptyView: some View = Text("No recipes. Create a recipes using the hammer button above.")
+            .multilineTextAlignment(.center).frame(width: 300)
+        
     }
     
     // When a user deletes an item it move remove itself from the recipe that is used to load the view, as well as the database
