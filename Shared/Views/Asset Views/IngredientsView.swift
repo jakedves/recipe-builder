@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct IngredientsView: View {
-    var ingredients: [String]
-    var headerSize = CGFloat(20)
+    let ingredients: [String]
     
     init(_ ingredients: [String]) {
         self.ingredients = ingredients
@@ -19,11 +18,11 @@ struct IngredientsView: View {
         VStack(alignment: .leading) {
             Text("Ingredients:")
                 .font(.headline)
-            Spacer().frame(height: 5)
+            Spacer().frame(height: IV.headerGap)
             ForEach(ingredients, id: \.self) { ingredient in
                 HStack {
-                    Spacer().frame(width: 12)
-                    Text("• " + ingredient)
+                    Spacer().frame(width: IV.indent)
+                    Text(IV.bullet + ingredient)
                         .font(.body)
                         .lineLimit(nil)
                 }
@@ -32,6 +31,12 @@ struct IngredientsView: View {
         .padding()
         .background(Color.green)
         .cornerRadius(25)
+    }
+    
+    private struct IV {
+        static let headerGap: CGFloat = 5
+        static let indent: CGFloat = 12
+        static let bullet: String = "• "
     }
 }
 

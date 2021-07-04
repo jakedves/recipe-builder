@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct FormHeader: View {
-    var text: String
-    var list: Binding<[String]>
-    var content: Binding<String>
+    let text: String
+    let list: Binding<[String]>
+    let content: Binding<String>
     
     var body: some View {
         HStack {

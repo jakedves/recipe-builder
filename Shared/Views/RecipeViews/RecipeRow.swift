@@ -16,13 +16,12 @@ struct RecipeRow: View {
     
     var body: some View {
         HStack {
-            //Image(recipe.image ?? Image("Logo"))
-            Image("Logo")
+            //Image(recipe.image) ?? Row.defaultImage
+            Row.defaultImage
                 .resizable()
-                .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .cornerRadius(10)
-            Spacer().frame(width: 20, height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            formatText(Text(self.recipe.name ?? "Unnamed Recipe"))
+                .frame(width: Row.imageLength, height: Row.imageLength)
+                .cornerRadius(Row.curvature)
+            formatText(Text(self.recipe.name ?? Row.defaultName))
             Spacer()
         }
     }
@@ -31,10 +30,17 @@ struct RecipeRow: View {
         return text
             .font(Font.system(size: 22, design: .rounded))
     }
+    
+    private struct Row {
+        static let defaultImage: Image = Image("Logo")
+        static let defaultName: String = "Unnamed Recipe"
+        static let imageLength: CGFloat = 50
+        static let curvature: CGFloat = 10
+    }
 }
 
 struct RecipePreview_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRow(AllRecipes.recipes()[0])
+        RecipeRow(PreviewData.recipes()[0])
     }
 }

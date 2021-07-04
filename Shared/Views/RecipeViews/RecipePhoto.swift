@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipePhoto: View {
-    var image: Image
+    let image: Image
     
     init(_ photo: String) {
         self.image = Image(photo)
@@ -18,11 +18,19 @@ struct RecipePhoto: View {
     var body: some View {
         self.image
             .aspectRatio(contentMode: .fill)
-            .frame(width: 200, height: 200)
+            .frame(width: Photo.diameter, height: Photo.diameter)
             .clipped()
             .clipShape(Circle())
-            .overlay(Circle().stroke(Color.green, lineWidth: 5))
-            .shadow(color: .green, radius: 4)
+            .overlay(Circle()
+                        .stroke(Photo.borderColor, lineWidth: Photo.borderWidth))
+            .shadow(color: .green, radius: Photo.shadowRadius)
+    }
+    
+    private struct Photo {
+        static let diameter: CGFloat = 200
+        static let borderColor: Color = .green
+        static let borderWidth: CGFloat = 5
+        static let shadowRadius: CGFloat = 4
     }
 }
 

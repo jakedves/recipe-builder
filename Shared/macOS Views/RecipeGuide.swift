@@ -56,7 +56,7 @@ struct RecipeGuide: View {
 struct RecipeGuide_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RecipeGuide(recipe: AllRecipes.recipes()[0])
+            RecipeGuide(recipe: PreviewData.recipes()[0])
         }
     }
 }

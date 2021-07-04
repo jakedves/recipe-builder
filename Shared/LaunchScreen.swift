@@ -8,35 +8,47 @@
 import SwiftUI
 
 struct LaunchScreen: View {
+    @Environment(\.managedObjectContext) private var moc
     @State var buttonPressed = false
-    var logo = LaunchLogo("Welcome",
-                         50,
-                         "What's cooking?",
-                         18,
-                         logo: Image("Logo"),
-                         Color.green)
     
     var body: some View {
         if ($buttonPressed.wrappedValue) {
             RecipesView()
         } else {
-            VStack {
-                self.logo
-                Button(action: {
-                    self.buttonPressed = true
-                },
-                label: {
-                    Text("My Recipes")
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.green)
-                        .cornerRadius(40)
-                })
-                    
-                Spacer().frame(height: 70)
+            GeometryReader { geometry in
+                VStack {
+                    Spacer(minLength: (geometry.size.height / 2) - Launch.offset)
+                    LaunchLogo(Launch.title,
+                               Launch.titleSize,
+                               Launch.message,
+                               Launch.messageSize,
+                               logo: Launch.logo,
+                               Launch.color)
+                    Spacer()
+                    LaunchButton(Launch.buttonText,
+                                 bgColor: Launch.color) {
+                        $buttonPressed.wrappedValue.toggle()
+                    }
+                        
+                    Spacer(minLength: Launch.minButtonHeight)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
-            .buttonStyle(PlainButtonStyle())
         }
+    }
+    
+    private struct Launch {
+        static let logo = Image("Logo")
+        static let title = "Welcome"
+        static let titleSize: CGFloat = 50
+        static let message = "What's cooking?"
+        static let messageSize: CGFloat = 18
+        static let color = Color.green
+        
+        static let buttonText = "My Recipes"
+        static let minButtonHeight: CGFloat = 80
+        
+        static let offset: CGFloat = 85
     }
     
 }

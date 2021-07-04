@@ -82,7 +82,7 @@ struct NewRecipeForm: View {
         // Create recipe object
         let recipe = Recipe(context: moc)
         recipe.id = UUID()
-        recipe.name = name.capitalized // by default, users can change if preffered
+        recipe.name = name == "" ? nil : name.capitalized
         recipe.image = nil
         recipe.ingredients = ingredients
         recipe.instructions = instructions

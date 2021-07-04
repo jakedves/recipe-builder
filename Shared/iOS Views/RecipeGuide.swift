@@ -34,7 +34,7 @@ struct RecipeGuide: View {
                         VStack(alignment: .leading) {
                             IngredientsView(recipe.ingredients ?? [])
                             Spacer().frame(height: 25)
-                            InstructionsView(instructions: recipe.instructions ?? [])
+                            InstructionsView(recipe.instructions ?? [])
                             Spacer().frame(height: 25)
                         }
                         .padding()
@@ -52,7 +52,7 @@ struct RecipeGuide: View {
 struct RecipeGuide_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RecipeGuide(recipe: AllRecipes.recipes()[0])
+            RecipeGuide(recipe: PreviewData.recipes()[0])
         }
     }
 }

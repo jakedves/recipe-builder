@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 
-struct AllRecipes {
+struct PreviewData {
     @Environment(\.managedObjectContext) static var moc
     
     static func recipes() -> [Recipe] {
-        let recipe1 = Recipe(context: AllRecipes.moc)
-        let recipe2 = Recipe(context: AllRecipes.moc)
+        let recipe1 = Recipe(context: PreviewData.moc)
+        let recipe2 = Recipe(context: PreviewData.moc)
         
         recipe1.id = UUID()
         recipe2.id = UUID()
