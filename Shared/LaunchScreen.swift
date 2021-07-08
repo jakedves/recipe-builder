@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct LaunchScreen: View {
-    @Environment(\.managedObjectContext) private var moc
-    @ObservedObject var viewModel: StandardRecipeBuilder = StandardRecipeBuilder()
-    @State var buttonPressed = false
     
     var body: some View {
         if ($buttonPressed.wrappedValue) {
@@ -19,24 +16,59 @@ struct LaunchScreen: View {
             GeometryReader { geometry in
                 VStack {
                     Spacer(minLength: (geometry.size.height / 2) - Launch.offset)
-                    LaunchLogo(title: Launch.title,
-                               titleSize: Launch.titleSize,
-                               message: Launch.message,
-                               messageSize: Launch.messageSize,
-                               logo: Launch.logo,
-                               color: Launch.color)
+                    self.logo
                     Spacer()
-                    LaunchButton(Launch.buttonText,
-                                 bgColor: Launch.color) {
-                        $buttonPressed.wrappedValue.toggle()
-                    }
-                        
+                    self.button
                     Spacer(minLength: Launch.minButtonHeight)
                 }
                 .buttonStyle(PlainButtonStyle())
             }
         }
     }
+    
+    private var title: some View {
+        Text(Launch.title.uppercased())
+            .font(.system(size: Launch.titleSize))
+            .foregroundColor(Launch.color)
+            .fontWeight(.heavy)
+            .multilineTextAlignment(.center)
+    }
+    
+    private var message: some View {
+        Text(Launch.message)
+            .font(.system(size: Launch.messageSize))
+            .foregroundColor(Launch.color)
+            .fontWeight(.bold)
+    }
+    
+    private var logo: some View {
+        HStack {
+            Spacer()
+            Launch.logo
+                .resizable()
+                .frame(width: Launch.length, height: Launch.length)
+            VStack {
+                self.title
+                self.message
+            }
+            Spacer()
+        }
+    }
+    
+    @State private var buttonPressed = false
+    private var button: some View {
+        Button() {
+            $buttonPressed.wrappedValue.toggle()
+        } label: {
+            Text(Launch.buttonText)
+                .padding()
+                .foregroundColor(Launch.buttonTextColor)
+                .background(Launch.color)
+                .cornerRadius(Launch.buttonCurvature)
+        }
+    }
+    
+    
     
     private struct Launch {
         static let logo = Image("Logo")
@@ -47,7 +79,11 @@ struct LaunchScreen: View {
         static let color = Color.green
         
         static let buttonText = "My Recipes"
+        static let buttonTextColor: Color = .white
         static let minButtonHeight: CGFloat = 80
+        static let buttonCurvature: CGFloat = 40
+        
+        static let length: CGFloat = 65
         
         static let offset: CGFloat = 85
     }
