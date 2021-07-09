@@ -39,7 +39,6 @@ struct RecipeDetailView: View {
                 .padding(.vertical)
             }
         }
-        .navigationBarHidden(true)
     }
     
     @ViewBuilder
