@@ -12,9 +12,7 @@ struct RecipeDetailView: View {
     @Environment(\.managedObjectContext) private var moc
     @FetchRequest(entity: Recipe.entity(), sortDescriptors: []) var recipes: FetchedResults<Recipe>
     
-    private var recipe: Recipe {
-        recipes[0]
-    }
+    var recipe: Recipe
     
     var body: some View {
         ScrollView {
@@ -23,7 +21,7 @@ struct RecipeDetailView: View {
                 VStack {
                     //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
                     photo
-                    RecipeGuideHeading(recipe.name)
+                    title
                 }
                 
                 // The ingredients and instructions
@@ -44,47 +42,71 @@ struct RecipeDetailView: View {
         .navigationBarHidden(true)
     }
     
+    @ViewBuilder
     private var photo: some View {
-        Image(uiImage: recipe.image)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: Photo.diameter, height: Photo.diameter)
-            .clipped()
-            .clipShape(Circle())
-            .overlay(Circle()
-                        .stroke(Photo.borderColor, lineWidth: Photo.borderWidth))
-            .shadow(color: .green, radius: Photo.shadowRadius)
+        // Fix ! here
+        if (recipe.image != nil) {
+            Image(uiImage: UIImage(data: recipe.image!)!)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: ViewConstants.diameter, height: ViewConstants.diameter)
+                .clipped()
+                .clipShape(Circle())
+                .overlay(Circle()
+                .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
+                .shadow(color: .green, radius: ViewConstants.shadowRadius)
+        } else {
+            Image("Logo")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: ViewConstants.diameter, height: ViewConstants.diameter)
+                .clipped()
+                .clipShape(Circle())
+                .overlay(Circle()
+                .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
+                .shadow(color: .green, radius: ViewConstants.shadowRadius)
+        }
+    }
+    
+    private var title: some View {
+        Text(recipe.name == "" ? recipe.name! : ViewConstants.unnamed)
+            .font(.largeTitle)
+            .fontWeight(.bold)
+            .lineLimit(nil)
+            .multilineTextAlignment(.center)
     }
     
     private var ingredients: some View {
         VStack(alignment: .leading) {
-            Text(RecipeText.ingredientsTitle)
+            Text(ViewConstants.ingredientsTitle)
                 .font(.headline)
-            Spacer().frame(height: RecipeGuide.headerGap)
-            ForEach(recipe.ingredients, id: \.self) { ingredient in
+            Spacer().frame(height: ViewConstants.headerGap)
+            // Fix ! here
+            ForEach(recipe.ingredients!, id: \.self) { ingredient in
                 HStack {
-                    Spacer().frame(width: RecipeGuide.indent)
-                    Text(RecipeText.bullet + ingredient)
+                    Spacer().frame(width: ViewConstants.indent)
+                    Text(ViewConstants.bullet + ingredient)
                         .font(.body)
                         .lineLimit(nil)
                 }
             }
         }
         .padding()
-        .background(RecipeGuide.ingredientsColor)
-        .cornerRadius(25)
+        .background(ViewConstants.ingredientsColor)
+        .cornerRadius(ViewConstants.boxRadius)
     }
     
     private var instructions: some View {
         VStack(alignment: .leading) {
-            Text("Instructions: ")
+            Text(ViewConstants.instructionsTitle)
                 .font(.headline)
                 
-            Spacer().frame(height: RecipeGuide.headerGap)
+            Spacer().frame(height: ViewConstants.headerGap)
             
-            ForEach(recipe.instructions, id: \.self) { instruction in
+            // Fix ! here
+            ForEach(recipe.instructions!, id: \.self) { instruction in
                 HStack {
-                    Spacer().frame(width: RecipeGuide.indent)
+                    Spacer().frame(width: ViewConstants.indent)
                     Text(instruction)
                         .font(.body)
                         .lineLimit(nil)
@@ -93,19 +115,21 @@ struct RecipeDetailView: View {
         }
     }
     
-    private struct RecipeGuide {
+    private struct ViewConstants {
+        // Recipe Title
+        static let unnamed = "Unnamed Recipe"
+        
+        // Ingredients & Instructions
         static let ingredientsTitle = "Ingredients:"
+        static let ingredientsColor: Color = .green
+        static let boxRadius: CGFloat = 25
+        static let instructionsTitle = "Instructions:"
         static let indent: CGFloat = 12
         static let headerGap: CGFloat = 5
-        static let ingredientsColor: Color = .green
-    }
-    
-    private struct RecipeText {
-        static let ingredientsTitle = "Ingredients:"
+        
         static let bullet: String = "• "
-    }
-    
-    private struct Photo {
+        
+        // Photo Constants
         static let diameter: CGFloat = 200
         static let borderColor: Color = .green
         static let borderWidth: CGFloat = 5
@@ -115,6 +139,6 @@ struct RecipeDetailView: View {
 
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailView()
+        RecipeDetailView(recipe: PreviewData.recipes()[0])
     }
 }

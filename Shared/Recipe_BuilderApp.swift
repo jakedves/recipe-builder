@@ -15,20 +15,18 @@ struct Recipe_BuilderApp: App {
         WindowGroup {
             #if !os(macOS)
             LaunchScreen()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             #else
             LaunchScreen()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .frame(minWidth: macSettings.minWindowWidth,
+                .frame(minWidth: macOS.minWindowWidth,
                                  maxWidth: .infinity,
-                                 minHeight: macSettings.minWindowHeight,
+                                 minHeight: macOS.minWindowHeight,
                                  maxHeight: .infinity,
                                  alignment: .center)
             #endif
         }
     }
     
-    private struct macSettings {
+    private struct macOS {
         static let minWindowWidth = CGFloat(700)
         static let minWindowHeight = CGFloat(300)
     }

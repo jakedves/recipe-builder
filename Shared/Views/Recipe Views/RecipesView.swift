@@ -22,7 +22,7 @@ struct RecipesView: View {
             if self.recipes.count > 0 {
                 List {
                     ForEach (recipes) { recipe in
-                        NavigationLink(destination: RecipeGuide(recipe: recipe)) {
+                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                             RecipeRow(recipe)
                         }
                     }
