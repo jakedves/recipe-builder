@@ -57,13 +57,16 @@ class RecipeBook: ObservableObject {
             try container.viewContext.save()
         } catch {
             // handle core data error
-            print("Saving failed in RecipesBook()")
+            print("Deleting failed in RecipesBook()")
         }
+        
+        fetchRecipes()
     }
     
     func addNewRecipe(_ name: String, _ image: UIImage?, _ ingredients: [String], _ instructions: [String]) throws {
         let recipe = Recipe(context: container.viewContext)
         
+        recipe.id = UUID()
         recipe.name = name
         recipe.image = uiImageToData(image)
         recipe.ingredients = ingredients
@@ -71,6 +74,7 @@ class RecipeBook: ObservableObject {
         
         container.viewContext.insert(recipe)
         try container.viewContext.save()
+        fetchRecipes()
     }
     
     // MARK: - Data Handling

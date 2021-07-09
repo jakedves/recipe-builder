@@ -109,7 +109,7 @@
 				501E60B3268BC34D0090D052 /* LaunchScreen.swift */,
 				5066DC7C2666E81000CE6176 /* Preview Data */,
 				50F43F9B265C15AE009ADA9C /* Core Data */,
-				50F43F9A265C15A8009ADA9C /* Builder MVVM */,
+				50F43F9A265C15A8009ADA9C /* Recipe Builder MVVM */,
 				5051E51C2656F7DF0081E77F /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -149,7 +149,7 @@
 			path = "Preview Data";
 			sourceTree = "<group>";
 		};
-		50F43F9A265C15A8009ADA9C /* Builder MVVM */ = {
+		50F43F9A265C15A8009ADA9C /* Recipe Builder MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
@@ -157,7 +157,7 @@
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,
 				509FDBBC26988C8300988C69 /* RecipeData.swift */,
 			);
-			path = "Builder MVVM";
+			path = "Recipe Builder MVVM";
 			sourceTree = "<group>";
 		};
 		50F43F9B265C15AE009ADA9C /* Core Data */ = {
@@ -473,6 +473,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3FD587963T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,6 +497,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3FD587963T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

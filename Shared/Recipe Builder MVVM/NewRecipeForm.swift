@@ -65,6 +65,7 @@ struct NewRecipeForm: View {
                 try self.saveEntry()
             } catch {
                 badSave = true
+                print(error)
             }
         }
     }
