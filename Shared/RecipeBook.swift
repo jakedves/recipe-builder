@@ -54,5 +54,21 @@ class RecipeBook: ObservableObject {
         }
     }
     
-    
+    // MARK: - Intents
+    func delete(at offsets: IndexSet) {
+        
+        // Delete recipe from managed object context
+        for index in offsets {
+            let recipe = recipes[index]
+            //moc.delete(recipe)
+        }
+        
+        // save changes
+        do {
+            //try moc.save()
+        } catch {
+            // handle core data error
+            print("Saving failed in RecipesView()")
+        }
+    }
 }

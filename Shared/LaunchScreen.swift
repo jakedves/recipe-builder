@@ -11,7 +11,7 @@ struct LaunchScreen: View {
     
     var body: some View {
         if ($buttonPressed.wrappedValue) {
-            RecipesView()
+            RecipeBookView()
         } else {
             GeometryReader { geometry in
                 VStack {
