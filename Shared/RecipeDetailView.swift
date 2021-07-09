@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct RecipeDetailView: View {
-    // @ObservedObject private var recipe =
-    @Environment(\.managedObjectContext) private var moc
-    @FetchRequest(entity: Recipe.entity(), sortDescriptors: []) var recipes: FetchedResults<Recipe>
-    
-    var recipe: Recipe
+    @EnvironmentObject var recipe: Recipe
     
     var body: some View {
         ScrollView {
+            // Full View
             VStack {
+                
                 // The photo and recipe name
+                
                 VStack {
                     //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
                     photo
@@ -25,18 +24,19 @@ struct RecipeDetailView: View {
                 }
                 
                 // The ingredients and instructions
-                HStack {
-                    VStack {
+                VStack {
+                    HStack {
                         ingredients
                         Spacer()
                     }
-                    Spacer()
-                    VStack {
+                    .padding([.horizontal])
+                    HStack {
                         instructions
                         Spacer()
                     }
+                    .padding(.horizontal)
                 }
-                .padding()
+                .padding(.vertical)
             }
         }
         .navigationBarHidden(true)
@@ -53,7 +53,7 @@ struct RecipeDetailView: View {
                 .clipped()
                 .clipShape(Circle())
                 .overlay(Circle()
-                .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
+                            .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
                 .shadow(color: .green, radius: ViewConstants.shadowRadius)
         } else {
             Image("Logo")
@@ -63,7 +63,7 @@ struct RecipeDetailView: View {
                 .clipped()
                 .clipShape(Circle())
                 .overlay(Circle()
-                .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
+                            .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
                 .shadow(color: .green, radius: ViewConstants.shadowRadius)
         }
     }
@@ -78,11 +78,14 @@ struct RecipeDetailView: View {
     
     private var ingredients: some View {
         VStack(alignment: .leading) {
+            
             Text(ViewConstants.ingredientsTitle)
                 .font(.headline)
+            
             Spacer().frame(height: ViewConstants.headerGap)
-            // Fix ! here
-            ForEach(recipe.ingredients!, id: \.self) { ingredient in
+            
+            ForEach(recipe.ingredients ?? [], id: \.self) { ingredient in
+                
                 HStack {
                     Spacer().frame(width: ViewConstants.indent)
                     Text(ViewConstants.bullet + ingredient)
@@ -98,13 +101,14 @@ struct RecipeDetailView: View {
     
     private var instructions: some View {
         VStack(alignment: .leading) {
+            
             Text(ViewConstants.instructionsTitle)
                 .font(.headline)
                 
             Spacer().frame(height: ViewConstants.headerGap)
             
-            // Fix ! here
-            ForEach(recipe.instructions!, id: \.self) { instruction in
+            ForEach(recipe.instructions ?? [], id: \.self) { instruction in
+                
                 HStack {
                     Spacer().frame(width: ViewConstants.indent)
                     Text(instruction)
@@ -113,6 +117,7 @@ struct RecipeDetailView: View {
                 }
             }
         }
+        .padding()
     }
     
     private struct ViewConstants {
@@ -139,6 +144,6 @@ struct RecipeDetailView: View {
 
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailView(recipe: PreviewData.recipes()[0])
+        RecipeDetailView().environmentObject(PreviewData.recipes()[0])
     }
 }

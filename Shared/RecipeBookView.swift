@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeBookView: View {
-    @ObservedObject private var recipeBook = RecipeBook()
+    @EnvironmentObject private var recipeBook: RecipeBook
     @State var showSheet = false
     
     var body: some View {
@@ -18,8 +18,8 @@ struct RecipeBookView: View {
             if self.recipeBook.recipes.count > 0 {
                 List {
                     ForEach (recipeBook.recipes) { recipe in
-                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                            RecipeRow(recipe)
+                        NavigationLink(destination: RecipeDetailView().environmentObject(recipe)) {
+                            RecipeRowView(recipe)
                         }
                     }
                     .onDelete(perform: recipeBook.delete)
@@ -53,12 +53,8 @@ struct RecipeBookView: View {
         }
     }
     
-    var row: some View {
-        EmptyView()
-    }
-    
     private struct RV {
-        static let title = "Recipes"
+        static let title = "Recipe Book"
         static let naviLeading: some View = EditButton()
         static let buildIcon: some View = Image(systemName: "hammer")
         static let newRecipeView: some View = NewRecipeForm()
@@ -71,6 +67,6 @@ struct RecipeBookView: View {
 
 struct RecipeBookView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeBookView()
+        RecipeBookView().environmentObject(RecipeBook())
     }
 }

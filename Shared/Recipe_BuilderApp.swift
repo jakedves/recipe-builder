@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct Recipe_BuilderApp: App {
-    let persistenceController = PersistenceController.shared
+    private var recipeBook = RecipeBook()
     
     var body: some Scene {
         WindowGroup {
             #if !os(macOS)
-            LaunchScreen()
+            LaunchScreen().environmentObject(recipeBook)
             #else
             LaunchScreen()
                 .frame(minWidth: macOS.minWindowWidth,
@@ -22,6 +22,7 @@ struct Recipe_BuilderApp: App {
                                  minHeight: macOS.minWindowHeight,
                                  maxHeight: .infinity,
                                  alignment: .center)
+                .environmentObject(recipeBook)
             #endif
         }
     }
