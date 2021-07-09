@@ -80,6 +80,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		500DFB6F2698E498008BFF1B /* Recipe Book MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				509FDBAD2697E9F100988C69 /* RecipeBook.swift */,
+				50CA2E8026976DB200276A5A /* RecipeBookView.swift */,
+				50E0A51D26598EB8009E34ED /* RecipeRowView.swift */,
+				50CA2E8326976DDF00276A5A /* RecipeDetailView.swift */,
+			);
+			path = "Recipe Book MVVM";
+			sourceTree = "<group>";
+		};
 		5051E5142656F7DE0081E77F = {
 			isa = PBXGroup;
 			children = (
@@ -93,17 +104,13 @@
 		5051E5192656F7DE0081E77F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				500DFB6F2698E498008BFF1B /* Recipe Book MVVM */,
 				5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */,
 				501E60B3268BC34D0090D052 /* LaunchScreen.swift */,
-				509FDBAD2697E9F100988C69 /* RecipeBook.swift */,
-				50E0A51D26598EB8009E34ED /* RecipeRowView.swift */,
-				50CA2E8026976DB200276A5A /* RecipeBookView.swift */,
-				50CA2E8326976DDF00276A5A /* RecipeDetailView.swift */,
 				5066DC7C2666E81000CE6176 /* Preview Data */,
 				50F43F9B265C15AE009ADA9C /* Core Data */,
-				50F43F9A265C15A8009ADA9C /* Views */,
+				50F43F9A265C15A8009ADA9C /* Builder MVVM */,
 				5051E51C2656F7DF0081E77F /* Assets.xcassets */,
-				50F43F9C265C15BE009ADA9C /* Resources */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -142,7 +149,7 @@
 			path = "Preview Data";
 			sourceTree = "<group>";
 		};
-		50F43F9A265C15A8009ADA9C /* Views */ = {
+		50F43F9A265C15A8009ADA9C /* Builder MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
@@ -150,7 +157,7 @@
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,
 				509FDBBC26988C8300988C69 /* RecipeData.swift */,
 			);
-			path = Views;
+			path = "Builder MVVM";
 			sourceTree = "<group>";
 		};
 		50F43F9B265C15AE009ADA9C /* Core Data */ = {
@@ -161,13 +168,6 @@
 				500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */,
 			);
 			path = "Core Data";
-			sourceTree = "<group>";
-		};
-		50F43F9C265C15BE009ADA9C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
