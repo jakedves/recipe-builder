@@ -9,13 +9,13 @@ import SwiftUI
 
 struct NewRecipeForm: View {
     @EnvironmentObject private var recipeBook: RecipeBook
+    @ObservedObject private var builder: RecipeBuilder
     @Environment(\.presentationMode) var presentationMode
-    @State private var showingAlert = false
-    @State private var name: String = ""
-    private var ingredients = VaryingTextFieldSection(title: "Ingredients", placeholder: "New Ingredient")
-    private var instructions = VaryingTextFieldSection(title: "Instructions", placeholder: "New Instruction")
+    @State private var badSave = false
     
-    init() {}
+    init(builder: RecipeBuilder) {
+        self.builder = builder
+    }
     
     var body: some View {
         NavigationView {
@@ -30,21 +30,21 @@ struct NewRecipeForm: View {
             .navigationTitle("Build Recipe")
             .navigationBarItems(leading: cancel,
                                 trailing: save)
-            .alert(isPresented: $showingAlert,
+            .alert(isPresented: $badSave,
                    content: { alert })
         }
     }
     
     var recipeName: some View {
-        TextField("Recipe Name", text: $name)
+        TextField("Recipe Name", text: $builder.name)
     }
     
     var ingredientsFields: some View {
-        ingredients
+        VaryingTextFieldSection(title: "Ingredients:", placeholder: "New Ingredient", list: $builder.ingredients)
     }
     
     var instructionsFields: some View {
-        instructions
+        VaryingTextFieldSection(title: "Instructions:", placeholder: "New Instruction", list: $builder.instructions)
     }
     
     var camera: some View {
@@ -64,7 +64,7 @@ struct NewRecipeForm: View {
             do {
                 try self.saveEntry()
             } catch {
-                showingAlert = true
+                badSave = true
             }
         }
     }
@@ -79,15 +79,9 @@ struct NewRecipeForm: View {
         list.wrappedValue.remove(atOffsets: offsets)
     }
     
-    
     func saveEntry() throws {
-        // Create recipe data
-        let name = name == "" ? nil : name.capitalized
-        let image: UIImage? = nil
-        let ingredients = ingredients.data
-        let instructions = instructions.data
-        
-        try recipeBook.addNewRecipe(name!, image, ingredients, instructions)
+        // Delegate to view model
+        try builder.finalise(book: recipeBook)
         
         // Close form
         presentationMode.wrappedValue.dismiss()
@@ -96,6 +90,6 @@ struct NewRecipeForm: View {
 
 struct NewRecipeForm_Previews: PreviewProvider {
     static var previews: some View {
-        NewRecipeForm()
+        NewRecipeForm(builder: RecipeBuilder())
     }
 }

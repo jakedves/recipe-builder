@@ -145,9 +145,9 @@
 		50F43F9A265C15A8009ADA9C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
 				50093343268400DC00C7D81B /* NewRecipeForm.swift */,
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,
-				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
 				509FDBBC26988C8300988C69 /* RecipeData.swift */,
 			);
 			path = Views;

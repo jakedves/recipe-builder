@@ -5,11 +5,15 @@
 //  Created by Jake Davies on 09/07/2021.
 //
 
-import Foundation
+import SwiftUI
 
 // ViewModel for creating a new recipe
 class RecipeBuilder: ObservableObject {
-    @Published private var recipe = RecipeData() // Instantiate model
+    private(set) var recipe = RecipeData() // Instantiate model
+    @Published var name: String = ""
+    @Published var ingredients: [String] = [""]
+    @Published var instructions: [String] = [""]
+    @Published var image: Data? = nil
     
     init() {}
     
@@ -32,6 +36,14 @@ class RecipeBuilder: ObservableObject {
     
     func removeInstruction(_ instruction: String) {
         recipe.instructions.remove(at: recipe.instructions.firstIndex(of: instruction)!)
+    }
+    
+    func finalise(book: RecipeBook) throws {
+        if (image != nil) {
+            try book.addNewRecipe(name, UIImage(data: image!), ingredients, instructions)
+        } else {
+            try book.addNewRecipe(name, nil, ingredients, instructions)
+        }
     }
 }
 

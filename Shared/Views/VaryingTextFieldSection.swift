@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct VaryingTextFieldSection: View {
-    @State var data = [""]
-    @State var count = 1
-    @State private var alertPresented = false
-    @State private var title: String
-    @State private var placeholder: String
+    @State private var failed: Bool = false
+    var title: String = ""
+    var placeholder: String = ""
+    var list: Binding<[String]>
     
-    init(title: String, placeholder: String) {
+    init(title: String, placeholder: String, list: Binding<[String]>) {
+        self.list = list
         self.title = title
         self.placeholder = placeholder
     }
@@ -22,16 +22,16 @@ struct VaryingTextFieldSection: View {
     var body: some View {
         Section(header: header) {
             List {
-                ForEach(0..<self.count, id: \.self) { number in
-                    TextField(placeholder, text: $data[number])
+                ForEach(0..<list.wrappedValue.count, id: \.self) { number in
+                    TextField(placeholder, text: list[number])
                 }
                 .onDelete(perform: { indexSet in
                     deleteElement(at: indexSet)
                 })
             }
         }
-        .alert(isPresented: $alertPresented,
-               content: { alert })
+        .alert(isPresented: $failed,
+               content: { badEntryAlert })
     }
     
     var header: some View {
@@ -44,30 +44,21 @@ struct VaryingTextFieldSection: View {
     
     var plus: some View {
         Button("+") {
-            if !data.contains("") {
-                data.append("")
-                count += 1
+            if !list.wrappedValue.contains("") {
+                list.wrappedValue.append("")
             } else {
-                alertPresented = true
+                failed = true
             }
         }
     }
     
-    var alert: Alert {
+    var badEntryAlert: Alert {
         Alert(title: Text("Please fill in blank fields first"),
               dismissButton: .default(Text("OK")))
     }
     
     func deleteElement(at offsets: IndexSet) {
-        count -= 1
-        data.remove(at: offsets.first!)
-        print("data removed")
-        print()
+        list.wrappedValue.remove(at: offsets.first!)
     }
-}
-
-struct VaryingTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        VaryingTextFieldSection(title: "My List", placeholder: "New List Item")
-    }
+    
 }
