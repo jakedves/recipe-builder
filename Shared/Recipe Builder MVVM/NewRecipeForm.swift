@@ -24,7 +24,9 @@ struct NewRecipeForm: View {
                     recipeName
                     ingredientsFields
                     instructionsFields
-                    camera
+                    if Camera.available {
+                        image
+                    }
                 }
             }
             .navigationTitle("Build Recipe")
@@ -32,6 +34,15 @@ struct NewRecipeForm: View {
                                 trailing: save)
             .alert(isPresented: $badSave,
                    content: { alert })
+            .sheet(item: $imageLocation) { location in
+                switch location {
+                case .camera: Camera(processImage: { image in
+                    handleImage(image)
+                })
+                case .library:
+                    EmptyView()
+                }
+            }
         }
     }
     
@@ -47,11 +58,58 @@ struct NewRecipeForm: View {
         VaryingTextFieldSection(title: "Instructions:", placeholder: "New Instruction", list: $builder.instructions)
     }
     
-    var camera: some View {
+    var image: some View {
         Section(header: Text("Add a photo")) {
-            
+            if (builder.image == nil) {
+                Button() {
+                    imageLocation = .camera
+                } label: {
+                    HStack {
+                        Spacer()
+                        
+                        Image(systemName: "camera.fill")
+                        
+                        Spacer()
+                    }
+                }
+            } else {
+                OptionalImage(uiimage: UIImage(data: builder.image!))
+            }
         }
     }
+    
+    struct OptionalImage: View {
+        var uiimage: UIImage?
+        
+        var body: some View {
+            if (uiimage != nil) {
+                Image(uiImage: uiimage!)
+                    .builderStyle()
+            } else {
+                Image("Logo")
+                    .builderStyle()
+            }
+        }
+    }
+    
+    
+    
+    // MARK: - Image Handling
+    @State private var imageLocation: Source?
+    enum Source: Identifiable {
+        case camera
+        case library
+        var id: Source { self }
+    }
+    
+    private func handleImage(_ image: UIImage?) {
+        if let imageData = image?.jpegData(compressionQuality: 1.0) {
+            builder.image = imageData
+        }
+        imageLocation = nil
+    }
+    
+    // MARK: - User Action
     
     var cancel: some View {
         Button("Cancel") {
@@ -70,6 +128,7 @@ struct NewRecipeForm: View {
         }
     }
     
+    // MARK: - Other
     var alert: Alert {
         Alert(title: Text("Cannot save recipe"),
               dismissButton: .default(Text("OK")))
@@ -86,6 +145,16 @@ struct NewRecipeForm: View {
         
         // Close form
         presentationMode.wrappedValue.dismiss()
+    }
+}
+
+extension Image {
+    func builderStyle() -> some View {
+        self.resizable()
+            .clipped()
+            .clipShape(RoundedRectangle(cornerRadius: CGFloat(25.0)))
+            .aspectRatio(contentMode: .fit)
+            .padding()
     }
 }
 

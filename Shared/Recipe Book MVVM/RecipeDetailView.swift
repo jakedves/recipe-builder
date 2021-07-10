@@ -16,9 +16,7 @@ struct RecipeDetailView: View {
             VStack {
                 
                 // The photo and recipe name
-                
                 VStack {
-                    //RecipePhoto(Image(recipe.image) ?? Image("Logo"))
                     photo
                     title
                 }
@@ -68,7 +66,7 @@ struct RecipeDetailView: View {
     }
     
     private var title: some View {
-        Text(recipe.name == "" ? recipe.name! : ViewConstants.unnamed)
+        Text(recipe.name ?? ViewConstants.unnamed)
             .font(.largeTitle)
             .fontWeight(.bold)
             .lineLimit(nil)
