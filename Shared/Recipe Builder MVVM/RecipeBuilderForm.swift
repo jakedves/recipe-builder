@@ -60,7 +60,10 @@ struct RecipeBuilderForm: View {
     
     var image: some View {
         Section(header: Text("Add a photo")) {
-            if (builder.image == nil) {
+            VStack {
+                if builder.image != nil {
+                    OptionalImage(uiimage: UIImage(data: builder.image!))
+                }
                 Button() {
                     imageLocation = .camera
                 } label: {
@@ -72,8 +75,6 @@ struct RecipeBuilderForm: View {
                         Spacer()
                     }
                 }
-            } else {
-                OptionalImage(uiimage: UIImage(data: builder.image!))
             }
         }
     }
