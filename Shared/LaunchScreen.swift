@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LaunchScreen: View {
+    @State private var buttonPressed = false
     
     var body: some View {
         if ($buttonPressed.wrappedValue) {
@@ -16,9 +17,9 @@ struct LaunchScreen: View {
             GeometryReader { geometry in
                 VStack {
                     Spacer(minLength: (geometry.size.height / 2) - Launch.offset)
-                    self.logo
+                    logo
                     Spacer()
-                    self.button
+                    button
                     Spacer(minLength: Launch.minButtonHeight)
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -55,7 +56,7 @@ struct LaunchScreen: View {
         }
     }
     
-    @State private var buttonPressed = false
+    
     private var button: some View {
         Button() {
             $buttonPressed.wrappedValue.toggle()
@@ -67,8 +68,6 @@ struct LaunchScreen: View {
                 .cornerRadius(Launch.buttonCurvature)
         }
     }
-    
-    
     
     private struct Launch {
         static let logo = Image("Logo")
