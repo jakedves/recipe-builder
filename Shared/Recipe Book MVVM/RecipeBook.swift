@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 
+// ViewModel for deleting a recipe, and fetching recipes
 class RecipeBook: ObservableObject {
     let container: NSPersistentContainer
     @Published var recipes: [Recipe] = []
@@ -61,25 +62,6 @@ class RecipeBook: ObservableObject {
         }
         
         fetchRecipes()
-    }
-    
-    func addNewRecipe(_ name: String, _ image: UIImage?, _ ingredients: [String], _ instructions: [String]) throws {
-        let recipe = Recipe(context: container.viewContext)
-        
-        recipe.id = UUID()
-        recipe.name = name
-        recipe.image = uiImageToData(image)
-        recipe.ingredients = ingredients
-        recipe.instructions = instructions
-        
-        container.viewContext.insert(recipe)
-        try container.viewContext.save()
-        fetchRecipes()
-    }
-    
-    // MARK: - Data Handling
-    private func uiImageToData(_ image: UIImage?) -> Data? {
-        image?.jpegData(compressionQuality: 1.0)
     }
     
     // MARK: - Constants

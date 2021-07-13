@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NewRecipeForm: View {
-    @EnvironmentObject private var recipeBook: RecipeBook
     @ObservedObject private var builder: RecipeBuilder
     @Environment(\.presentationMode) var presentationMode
     @State private var badSave = false
@@ -92,8 +91,6 @@ struct NewRecipeForm: View {
         }
     }
     
-    
-    
     // MARK: - Image Handling
     @State private var imageLocation: Source?
     enum Source: Identifiable {
@@ -140,8 +137,8 @@ struct NewRecipeForm: View {
     }
     
     func saveEntry() throws {
-        // Delegate to view model
-        try builder.finalise(book: recipeBook)
+        // Confirm to view model
+        try builder.saveNewRecipe()
         
         // Close form
         presentationMode.wrappedValue.dismiss()
