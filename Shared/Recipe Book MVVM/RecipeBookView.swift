@@ -57,7 +57,7 @@ struct RecipeBookView: View {
         static let title = "Recipe Book"
         static let naviLeading: some View = EditButton()
         static let buildIcon: some View = Image(systemName: "hammer")
-        static let newRecipeView: some View = NewRecipeForm(builder: RecipeBuilder())
+        static let newRecipeView: some View = RecipeBuilderForm(builder: RecipeBuilder())
         
         static let emptyView: some View = Text("No recipes. Create a recipe using the hammer button above.")
             .multilineTextAlignment(.center).frame(width: 300)

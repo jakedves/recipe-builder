@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
 		500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
-		50093344268400DC00C7D81B /* NewRecipeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50093343268400DC00C7D81B /* NewRecipeForm.swift */; };
+		50093344268400DC00C7D81B /* RecipeBuilderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50093343268400DC00C7D81B /* RecipeBuilderForm.swift */; };
 		5009334C268409AE00C7D81B /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5009334A268409AE00C7D81B /* Recipe+CoreDataClass.swift */; };
 		5009334D268409AE00C7D81B /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5009334A268409AE00C7D81B /* Recipe+CoreDataClass.swift */; };
 		5009334E268409AE00C7D81B /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5009334B268409AE00C7D81B /* Recipe+CoreDataProperties.swift */; };
@@ -38,12 +38,12 @@
 		50CA2E8526976DE000276A5A /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CA2E8326976DDF00276A5A /* RecipeDetailView.swift */; };
 		50E0A51E26598EB8009E34ED /* RecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0A51D26598EB8009E34ED /* RecipeRowView.swift */; };
 		50E0A51F26598EB8009E34ED /* RecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0A51D26598EB8009E34ED /* RecipeRowView.swift */; };
-		50FC8CE02692157A00FA5566 /* NewRecipeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50093343268400DC00C7D81B /* NewRecipeForm.swift */; };
+		50FC8CE02692157A00FA5566 /* RecipeBuilderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50093343268400DC00C7D81B /* RecipeBuilderForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		500933372683E40400C7D81B /* RecipeBuilderModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecipeBuilderModel.xcdatamodel; sourceTree = "<group>"; };
-		50093343268400DC00C7D81B /* NewRecipeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecipeForm.swift; sourceTree = "<group>"; };
+		50093343268400DC00C7D81B /* RecipeBuilderForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBuilderForm.swift; sourceTree = "<group>"; };
 		5009334A268409AE00C7D81B /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5009334B268409AE00C7D81B /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		501E60B3268BC34D0090D052 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 			children = (
 				5074108E26993192004BB834 /* Camera.swift */,
 				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
-				50093343268400DC00C7D81B /* NewRecipeForm.swift */,
+				50093343268400DC00C7D81B /* RecipeBuilderForm.swift */,
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,
 				506F3CDB269E307E009B4720 /* EditRecipe.swift */,
 			);
@@ -277,7 +277,7 @@
 				50E0A51E26598EB8009E34ED /* RecipeRowView.swift in Sources */,
 				50CA2E8126976DB200276A5A /* RecipeBookView.swift in Sources */,
 				500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
-				50093344268400DC00C7D81B /* NewRecipeForm.swift in Sources */,
+				50093344268400DC00C7D81B /* RecipeBuilderForm.swift in Sources */,
 				5051E52D2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				5009334E268409AE00C7D81B /* Recipe+CoreDataProperties.swift in Sources */,
 				506F3CDC269E307E009B4720 /* EditRecipe.swift in Sources */,
@@ -305,7 +305,7 @@
 				506F3CDD269E307E009B4720 /* EditRecipe.swift in Sources */,
 				509FDBB82698639000988C69 /* VaryingTextFieldSection.swift in Sources */,
 				5074109026993192004BB834 /* Camera.swift in Sources */,
-				50FC8CE02692157A00FA5566 /* NewRecipeForm.swift in Sources */,
+				50FC8CE02692157A00FA5566 /* RecipeBuilderForm.swift in Sources */,
 				5009334F268409AE00C7D81B /* Recipe+CoreDataProperties.swift in Sources */,
 				5066DC7F2666E82B00CE6176 /* PreviewData.swift in Sources */,
 			);

@@ -7,13 +7,19 @@
 
 import SwiftUI
 
-struct NewRecipeForm: View {
+struct RecipeBuilderForm: View {
     @ObservedObject private var builder: RecipeBuilder
     @Environment(\.presentationMode) var presentationMode
     @State private var badSave = false
+    @State private var editing: Recipe? = nil
     
-    init(builder: RecipeBuilder) {
+    init(builder: RecipeBuilder, _ toLoad: Recipe? = nil) {
         self.builder = builder
+        self.editing = toLoad
+        
+        if (toLoad != nil) {
+            builder.setRecipe(toLoad!.id)
+        }
     }
     
     var body: some View {
@@ -23,6 +29,7 @@ struct NewRecipeForm: View {
                     recipeName
                     ingredientsFields
                     instructionsFields
+                    
                     if Camera.available {
                         image
                     }
@@ -138,7 +145,11 @@ struct NewRecipeForm: View {
     
     func saveEntry() throws {
         // Confirm to view model
-        try builder.saveNewRecipe()
+        if (editing != nil) {
+            try builder.saveChangedRecipe(editing!.id)
+        } else {
+            try builder.saveNewRecipe()
+        }
         
         // Close form
         presentationMode.wrappedValue.dismiss()
@@ -155,8 +166,8 @@ extension Image {
     }
 }
 
-struct NewRecipeForm_Previews: PreviewProvider {
+struct RecipeBuilderForm_Previews: PreviewProvider {
     static var previews: some View {
-        NewRecipeForm(builder: RecipeBuilder())
+        RecipeBuilderForm(builder: RecipeBuilder())
     }
 }

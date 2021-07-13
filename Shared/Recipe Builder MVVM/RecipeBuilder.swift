@@ -11,7 +11,6 @@ import CoreData
 // ViewModel for creating a new recipe, and editing a recipe
 class RecipeBuilder: ObservableObject {
     let container: NSPersistentContainer
-    var loadedRecipe: Recipe? = nil
     @Published var name: String = ""
     @Published var ingredients: [String] = [""]
     @Published var instructions: [String] = [""]
@@ -42,17 +41,26 @@ class RecipeBuilder: ObservableObject {
         try addNewRecipe(name, image, ingredients, instructions)
     }
     
+    func setRecipe(_ id: UUID) {
+        let recipe = try? loadRecipe(id)
+        
+        self.name = recipe?.name! ?? ""
+        self.image = recipe?.image
+        self.ingredients = recipe?.ingredients! ?? [""]
+        self.instructions = recipe?.instructions! ?? [""]
+    }
+    
     /// attempts to update a found recipe based on recipe's id, if loading fails, it creates a new recipe with the updated details
     func saveChangedRecipe(_ id: UUID) throws {
         do {
             // should only ever return one recipe
-            let recipes = try loadRecipe(id)
+            let recipe = try loadRecipe(id)
             
-            if recipes.count == 1 {
-                recipes.first!.image = image
-                recipes.first!.instructions = instructions
-                recipes.first!.ingredients = ingredients
-                recipes.first!.name = name
+            if (recipe != nil) {
+                recipe!.image = image
+                recipe!.instructions = instructions
+                recipe!.ingredients = ingredients
+                recipe!.name = name
                 try container.viewContext.save()
                 // in the event a recipe isn't found, or more than one recipe share a UUID
             } else {
@@ -77,11 +85,17 @@ class RecipeBuilder: ObservableObject {
     }
     
     // MARK: -Data Handling
-    private func loadRecipe(_ id : UUID) throws -> [Recipe] {
+    private func loadRecipe(_ id : UUID) throws -> Recipe? {
         let predicate = NSPredicate(format: "id == %@", id as NSUUID)
         let fetchRequest = NSFetchRequest<Recipe>(entityName: DataModel.entity)
         fetchRequest.predicate = predicate
-        return try container.viewContext.fetch(fetchRequest)
+        
+        let recipes = try container.viewContext.fetch(fetchRequest)
+        if recipes.count == 1 {
+            return recipes.first!
+        } else {
+            return nil
+        }
     }
     
     // MARK: - Constants
