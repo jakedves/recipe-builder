@@ -107,10 +107,9 @@
 		5051E5192656F7DE0081E77F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				5074108E26993192004BB834 /* Camera.swift */,
-				500DFB6F2698E498008BFF1B /* Recipe Book MVVM */,
 				5051E51A2656F7DE0081E77F /* Recipe_BuilderApp.swift */,
 				501E60B3268BC34D0090D052 /* LaunchScreen.swift */,
+				500DFB6F2698E498008BFF1B /* Recipe Book MVVM */,
 				5066DC7C2666E81000CE6176 /* Preview Data */,
 				50F43F9B265C15AE009ADA9C /* Core Data */,
 				50F43F9A265C15A8009ADA9C /* Recipe Builder MVVM */,
@@ -156,6 +155,7 @@
 		50F43F9A265C15A8009ADA9C /* Recipe Builder MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				5074108E26993192004BB834 /* Camera.swift */,
 				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
 				50093343268400DC00C7D81B /* NewRecipeForm.swift */,
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,

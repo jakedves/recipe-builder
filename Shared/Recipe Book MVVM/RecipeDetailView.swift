@@ -11,33 +11,34 @@ struct RecipeDetailView: View {
     @EnvironmentObject var recipe: Recipe
     
     var body: some View {
-        ScrollView {
-            // Full View
-            VStack {
-                
-                // The photo and recipe name
-                VStack {
-                    photo
-                    title
-                }
-                
-                // The ingredients and instructions
-                VStack {
-                    HStack {
-                        ingredients
-                        Spacer()
+        ZStack {
+            ScrollView {
+                VStack(spacing: 0) {
+                    VStack {
+                        Spacer(minLength: ViewConstants.imageOffset)
+                        photo
+                        title
+                        HStack {
+                            ingredients
+                            Spacer()
+                        }
                     }
-                    .padding([.horizontal])
-                    HStack {
-                        instructions
-                        Spacer()
-                    }
-                    .padding(.horizontal)
+                    .padding()
+                    .ignoresSafeArea()
+                    .background(Color.white.ignoresSafeArea())
+                    
+                    instructions
                 }
-                .padding(.vertical)
+                .background(Color.white.ignoresSafeArea())
+                .ignoresSafeArea()
+                
             }
+            
+            .background(ViewConstants.bgColor)
+            .ignoresSafeArea()
         }
     }
+        
     
     @ViewBuilder
     private var photo: some View {
@@ -51,17 +52,20 @@ struct RecipeDetailView: View {
                 .clipShape(Circle())
                 .overlay(Circle()
                             .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
-                .shadow(color: .green, radius: ViewConstants.shadowRadius)
+                .shadow(radius: ViewConstants.shadowRadius)
+                .shadow(radius: ViewConstants.shadowRadius)
         } else {
             Image("Logo")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: ViewConstants.diameter, height: ViewConstants.diameter)
+                .background(Color.white.opacity(0.85))
                 .clipped()
                 .clipShape(Circle())
                 .overlay(Circle()
                             .stroke(ViewConstants.borderColor, lineWidth: ViewConstants.borderWidth))
-                .shadow(color: .green, radius: ViewConstants.shadowRadius)
+                .shadow(radius: ViewConstants.shadowRadius)
+                .shadow(radius: ViewConstants.shadowRadius)
         }
     }
     
@@ -79,8 +83,6 @@ struct RecipeDetailView: View {
             Text(ViewConstants.ingredientsTitle)
                 .font(.headline)
             
-            Spacer().frame(height: ViewConstants.headerGap)
-            
             ForEach(recipe.ingredients ?? [], id: \.self) { ingredient in
                 
                 HStack {
@@ -92,8 +94,9 @@ struct RecipeDetailView: View {
             }
         }
         .padding()
-        .background(ViewConstants.ingredientsColor)
-        .cornerRadius(ViewConstants.boxRadius)
+        .background(RoundedRectangle(cornerRadius: ViewConstants.boxRadius)
+                        .stroke(lineWidth: ViewConstants.stroke))
+        .background(ViewConstants.color.cornerRadius(ViewConstants.boxRadius))
     }
     
     private var instructions: some View {
@@ -101,33 +104,40 @@ struct RecipeDetailView: View {
             
             Text(ViewConstants.instructionsTitle)
                 .font(.headline)
+                .frame(maxWidth: .infinity)
+                .padding([.vertical])
+                .background(ViewConstants.color)
                 
-            Spacer().frame(height: ViewConstants.headerGap)
             
             ForEach(recipe.instructions ?? [], id: \.self) { instruction in
-                
-                HStack {
-                    Spacer().frame(width: ViewConstants.indent)
-                    Text(instruction)
-                        .font(.body)
-                        .lineLimit(nil)
-                }
+                Text(instruction)
+                    .font(.body)
+                    .lineLimit(nil)
+                    .padding([.horizontal])
+                Spacer().frame(height: ViewConstants.gap)
             }
         }
-        .padding()
+        .frame(height: .infinity)
+        .background(ViewConstants.bgColor)
+        .background(Color.white)
+        .padding([.top], ViewConstants.stroke)
+        .background(Color.black)
     }
     
     private struct ViewConstants {
         // Recipe Title
         static let unnamed = "Unnamed Recipe"
+        static let imageOffset: CGFloat = 50
         
         // Ingredients & Instructions
         static let ingredientsTitle = "Ingredients:"
-        static let ingredientsColor: Color = .green
+        static let color: Color = .green
+        static let bgColor: Color = .green.opacity(0.6)
+        static let stroke: CGFloat = 2
         static let boxRadius: CGFloat = 25
         static let instructionsTitle = "Instructions:"
         static let indent: CGFloat = 12
-        static let headerGap: CGFloat = 5
+        static let gap: CGFloat = 4
         
         static let bullet: String = "• "
         
@@ -135,7 +145,7 @@ struct RecipeDetailView: View {
         static let diameter: CGFloat = 200
         static let borderColor: Color = .green
         static let borderWidth: CGFloat = 5
-        static let shadowRadius: CGFloat = 4
+        static let shadowRadius: CGFloat = 6
     }
 }
 

@@ -18,7 +18,6 @@ struct Camera: UIViewControllerRepresentable {
         Coordinator(processImage)
     }
     
-    
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let controller = UIImagePickerController()
         controller.sourceType = .camera
