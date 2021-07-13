@@ -15,8 +15,9 @@ class RecipeBuilder: ObservableObject {
     @Published var ingredients: [String] = [""]
     @Published var instructions: [String] = [""]
     @Published var image: Data? = nil
+    private var recipe: Recipe? = nil
     
-    init() {
+    init(recipe: Recipe? = nil) {
         container = NSPersistentContainer(name: DataModel.name)
         container.loadPersistentStores { (description, error) in
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -33,42 +34,44 @@ class RecipeBuilder: ObservableObject {
                 print(DataModel.loadError + "\(error)")
             }
         }
+        
+        if recipe != nil {
+            self.recipe = recipe
+            setRecipe(recipe!)
+        }
     }
     
     // MARK: - Intents
     
-    func saveNewRecipe() throws {
-        try addNewRecipe(name, image, ingredients, instructions)
-    }
-    
-    func setRecipe(_ id: UUID) {
-        let recipe = try? loadRecipe(id)
-        
-        self.name = recipe?.name! ?? ""
-        self.image = recipe?.image
-        self.ingredients = recipe?.ingredients! ?? [""]
-        self.instructions = recipe?.instructions! ?? [""]
-    }
-    
-    /// attempts to update a found recipe based on recipe's id, if loading fails, it creates a new recipe with the updated details
-    func saveChangedRecipe(_ id: UUID) throws {
-        do {
-            // should only ever return one recipe
-            let recipe = try loadRecipe(id)
-            
-            if (recipe != nil) {
-                recipe!.image = image
-                recipe!.instructions = instructions
-                recipe!.ingredients = ingredients
-                recipe!.name = name
-                try container.viewContext.save()
-                // in the event a recipe isn't found, or more than one recipe share a UUID
-            } else {
+    func saveRecipe() throws {
+        if recipe != nil {
+            do {
+                let editingRecipe = try loadRecipe(recipe!.id)
+                if (editingRecipe != nil) {
+                    editingRecipe!.image = image
+                    editingRecipe!.instructions = instructions
+                    editingRecipe!.ingredients = ingredients
+                    editingRecipe!.name = name
+                    try container.viewContext.save()
+                    
+                    // in the event a recipe isn't found, or more than one recipe share a UUID
+                } else {
+                    try addNewRecipe(name, image, ingredients, instructions)
+                }
+            } catch {
                 try addNewRecipe(name, image, ingredients, instructions)
             }
-        } catch {
+        } else {
             try addNewRecipe(name, image, ingredients, instructions)
         }
+        
+    }
+    
+    private func setRecipe(_ recipe: Recipe) {
+        self.name = recipe.name!
+        self.image = recipe.image
+        self.ingredients = recipe.ingredients!
+        self.instructions = recipe.instructions!
     }
     
     func addNewRecipe(_ name: String, _ image: Data?, _ ingredients: [String], _ instructions: [String]) throws {
@@ -84,7 +87,7 @@ class RecipeBuilder: ObservableObject {
         try container.viewContext.save()
     }
     
-    // MARK: -Data Handling
+    // MARK: - Data Handling
     private func loadRecipe(_ id : UUID) throws -> Recipe? {
         let predicate = NSPredicate(format: "id == %@", id as NSUUID)
         let fetchRequest = NSFetchRequest<Recipe>(entityName: DataModel.entity)

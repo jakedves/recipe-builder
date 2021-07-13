@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     @EnvironmentObject var recipe: Recipe
+    @State var editing = false
     
     var body: some View {
         ZStack {
@@ -16,6 +17,10 @@ struct RecipeDetailView: View {
                 VStack(spacing: 0) {
                     VStack {
                         Spacer(minLength: ViewConstants.imageOffset)
+                        HStack {
+                            Spacer()
+                            edit
+                        }
                         photo
                         title
                         HStack {
@@ -33,9 +38,18 @@ struct RecipeDetailView: View {
                 .ignoresSafeArea()
                 
             }
+            .sheet(isPresented: $editing, content: {
+                RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe))
+            })
             
             .background(ViewConstants.bgColor)
             .ignoresSafeArea()
+        }
+    }
+    
+    private var edit: some View {
+        Button("Edit") {
+            editing.toggle()
         }
     }
         
@@ -127,7 +141,7 @@ struct RecipeDetailView: View {
     private struct ViewConstants {
         // Recipe Title
         static let unnamed = "Unnamed Recipe"
-        static let imageOffset: CGFloat = 50
+        static let imageOffset: CGFloat = 25
         
         // Ingredients & Instructions
         static let ingredientsTitle = "Ingredients:"

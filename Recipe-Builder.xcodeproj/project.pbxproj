@@ -21,8 +21,6 @@
 		5051E5322656F7E00081E77F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5051E51C2656F7DF0081E77F /* Assets.xcassets */; };
 		5066DC7E2666E82B00CE6176 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DC7D2666E82A00CE6176 /* PreviewData.swift */; };
 		5066DC7F2666E82B00CE6176 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DC7D2666E82A00CE6176 /* PreviewData.swift */; };
-		506F3CDC269E307E009B4720 /* EditRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506F3CDB269E307E009B4720 /* EditRecipe.swift */; };
-		506F3CDD269E307E009B4720 /* EditRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506F3CDB269E307E009B4720 /* EditRecipe.swift */; };
 		5074108F26993192004BB834 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5074108E26993192004BB834 /* Camera.swift */; };
 		5074109026993192004BB834 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5074108E26993192004BB834 /* Camera.swift */; };
 		508E6F2A268E8C54000DFB44 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E60B3268BC34D0090D052 /* LaunchScreen.swift */; };
@@ -55,7 +53,6 @@
 		5051E52B2656F7E00081E77F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5051E52C2656F7E00081E77F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		5066DC7D2666E82A00CE6176 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
-		506F3CDB269E307E009B4720 /* EditRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipe.swift; sourceTree = "<group>"; };
 		5074108E26993192004BB834 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		509FDBAD2697E9F100988C69 /* RecipeBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBook.swift; sourceTree = "<group>"; };
 		509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaryingTextFieldSection.swift; sourceTree = "<group>"; };
@@ -159,7 +156,6 @@
 				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
 				50093343268400DC00C7D81B /* RecipeBuilderForm.swift */,
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,
-				506F3CDB269E307E009B4720 /* EditRecipe.swift */,
 			);
 			path = "Recipe Builder MVVM";
 			sourceTree = "<group>";
@@ -280,7 +276,6 @@
 				50093344268400DC00C7D81B /* RecipeBuilderForm.swift in Sources */,
 				5051E52D2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				5009334E268409AE00C7D81B /* Recipe+CoreDataProperties.swift in Sources */,
-				506F3CDC269E307E009B4720 /* EditRecipe.swift in Sources */,
 				509FDBB72698639000988C69 /* VaryingTextFieldSection.swift in Sources */,
 				5074108F26993192004BB834 /* Camera.swift in Sources */,
 				50CA2E8426976DE000276A5A /* RecipeDetailView.swift in Sources */,
@@ -302,7 +297,6 @@
 				50CA2E8226976DB200276A5A /* RecipeBookView.swift in Sources */,
 				500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
 				5051E52E2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
-				506F3CDD269E307E009B4720 /* EditRecipe.swift in Sources */,
 				509FDBB82698639000988C69 /* VaryingTextFieldSection.swift in Sources */,
 				5074109026993192004BB834 /* Camera.swift in Sources */,
 				50FC8CE02692157A00FA5566 /* RecipeBuilderForm.swift in Sources */,

@@ -11,15 +11,9 @@ struct RecipeBuilderForm: View {
     @ObservedObject private var builder: RecipeBuilder
     @Environment(\.presentationMode) var presentationMode
     @State private var badSave = false
-    @State private var editing: Recipe? = nil
     
-    init(builder: RecipeBuilder, _ toLoad: Recipe? = nil) {
+    init(builder: RecipeBuilder) {
         self.builder = builder
-        self.editing = toLoad
-        
-        if (toLoad != nil) {
-            builder.setRecipe(toLoad!.id)
-        }
     }
     
     var body: some View {
@@ -145,11 +139,7 @@ struct RecipeBuilderForm: View {
     
     func saveEntry() throws {
         // Confirm to view model
-        if (editing != nil) {
-            try builder.saveChangedRecipe(editing!.id)
-        } else {
-            try builder.saveNewRecipe()
-        }
+        try builder.saveRecipe()
         
         // Close form
         presentationMode.wrappedValue.dismiss()
