@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDisplayName</key>
+	<string>Reciper Builder</string>
 	<key>NSCameraUsageDescription</key>
 	<string>&quot;This app wants to use the camera to allow you to set pictures for your food&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
