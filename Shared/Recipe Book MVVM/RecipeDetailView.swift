@@ -24,13 +24,10 @@ struct RecipeDetailView: View {
                         }
                     }
                     .padding()
-                    .ignoresSafeArea()
-                    .background(Color.white.ignoresSafeArea())
+                    .background(Color.white)
                     
                     instructions
                 }
-                .background(Color.white.ignoresSafeArea())
-                .ignoresSafeArea()
                 
             }
             
