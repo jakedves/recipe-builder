@@ -159,6 +159,6 @@ extension Image {
 
 struct RecipeBuilderForm_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeBuilderForm(builder: RecipeBuilder())
+        RecipeBuilderForm(builder: RecipeBuilder(book: RecipeBook()))
     }
 }

@@ -10,33 +10,18 @@ import CoreData
 
 // ViewModel for creating a new recipe, and editing a recipe
 class RecipeBuilder: ObservableObject {
-    let container: NSPersistentContainer
+    @Published var recipeBook: RecipeBook // access needed for Core Data interface
     @Published var name: String = ""
     @Published var ingredients: [String] = [""]
     @Published var instructions: [String] = [""]
     @Published var image: Data? = nil
-    private var recipe: Recipe? = nil
+    @Published var recipe: Recipe? = nil
     
-    init(recipe: Recipe? = nil) {
-        container = NSPersistentContainer(name: DataModel.name)
-        container.loadPersistentStores { (description, error) in
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-            /*
-            Typical reasons for an error here include:
-            * The parent directory does not exist, cannot be created, or disallows writing.
-            * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-            * The device is out of space.
-            * The store could not be migrated to the current model version.
-            Check the error message to determine what the actual problem was.
-            */
-            if let error = error {
-                print(DataModel.loadError + "\(error)")
-            }
-        }
+    init(recipe: Recipe? = nil, book: RecipeBook) {
+        self.recipe = recipe
+        self.recipeBook = book
         
         if recipe != nil {
-            self.recipe = recipe
             setRecipe(recipe!)
         }
     }
@@ -52,7 +37,8 @@ class RecipeBuilder: ObservableObject {
                     editingRecipe!.instructions = instructions
                     editingRecipe!.ingredients = ingredients
                     editingRecipe!.name = name
-                    try container.viewContext.save()
+                    try recipeBook.container.viewContext.save()
+                    recipeBook.fetchRecipes()
                     
                     // in the event a recipe isn't found, or more than one recipe share a UUID
                 } else {
@@ -64,7 +50,6 @@ class RecipeBuilder: ObservableObject {
         } else {
             try addNewRecipe(name, image, ingredients, instructions)
         }
-        
     }
     
     private func setRecipe(_ recipe: Recipe) {
@@ -75,7 +60,7 @@ class RecipeBuilder: ObservableObject {
     }
     
     func addNewRecipe(_ name: String, _ image: Data?, _ ingredients: [String], _ instructions: [String]) throws {
-        let recipe = Recipe(context: container.viewContext)
+        let recipe = Recipe(context: recipeBook.container.viewContext)
         
         recipe.id = UUID()
         recipe.name = name
@@ -83,17 +68,18 @@ class RecipeBuilder: ObservableObject {
         recipe.ingredients = ingredients
         recipe.instructions = instructions
         
-        container.viewContext.insert(recipe)
-        try container.viewContext.save()
+        recipeBook.container.viewContext.insert(recipe)
+        try recipeBook.container.viewContext.save()
+        recipeBook.fetchRecipes()
     }
     
     // MARK: - Data Handling
     private func loadRecipe(_ id : UUID) throws -> Recipe? {
-        let predicate = NSPredicate(format: "id == %@", id as NSUUID)
+        let predicate = NSPredicate(format: DataModel.query, id as NSUUID)
         let fetchRequest = NSFetchRequest<Recipe>(entityName: DataModel.entity)
         fetchRequest.predicate = predicate
         
-        let recipes = try container.viewContext.fetch(fetchRequest)
+        let recipes = try recipeBook.container.viewContext.fetch(fetchRequest)
         if recipes.count == 1 {
             return recipes.first!
         } else {
@@ -103,12 +89,7 @@ class RecipeBuilder: ObservableObject {
     
     // MARK: - Constants
     private struct DataModel {
-        //.xcdatamodel file name
-        static let name = "RecipeBuilderModel"
+        static let query = "id == %@"
         static let entity = "Recipe"
-        // error messages
-        static let loadError = "Error loading data from Core Data: RecipeBuilder"
     }
 }
-
-

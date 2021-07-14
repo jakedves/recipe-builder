@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     @EnvironmentObject var recipe: Recipe
-    @State var editing = false
     
     var body: some View {
         ZStack {
@@ -17,10 +16,6 @@ struct RecipeDetailView: View {
                 VStack(spacing: 0) {
                     VStack {
                         Spacer(minLength: ViewConstants.imageOffset)
-                        HStack {
-                            Spacer()
-                            edit
-                        }
                         photo
                         title
                         HStack {
@@ -38,18 +33,9 @@ struct RecipeDetailView: View {
                 .ignoresSafeArea()
                 
             }
-            .sheet(isPresented: $editing, content: {
-                RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe))
-            })
             
             .background(ViewConstants.bgColor)
             .ignoresSafeArea()
-        }
-    }
-    
-    private var edit: some View {
-        Button("Edit") {
-            editing.toggle()
         }
     }
         
@@ -124,14 +110,16 @@ struct RecipeDetailView: View {
                 
             
             ForEach(recipe.instructions ?? [], id: \.self) { instruction in
-                Text(instruction)
-                    .font(.body)
-                    .lineLimit(nil)
-                    .padding([.horizontal])
+                HStack(alignment: .top) {
+                    Text("  \((recipe.instructions?.firstIndex(of: instruction))! + 1 ).  ")
+                    Text(instruction)
+                        .lineLimit(nil)
+                }
+                .font(.body)
+                .padding([.horizontal])
                 Spacer().frame(height: ViewConstants.gap)
             }
         }
-        .frame(height: .infinity)
         .background(ViewConstants.bgColor)
         .background(Color.white)
         .padding([.top], ViewConstants.stroke)
@@ -141,7 +129,7 @@ struct RecipeDetailView: View {
     private struct ViewConstants {
         // Recipe Title
         static let unnamed = "Unnamed Recipe"
-        static let imageOffset: CGFloat = 25
+        static let imageOffset: CGFloat = 35
         
         // Ingredients & Instructions
         static let ingredientsTitle = "Ingredients:"
@@ -151,7 +139,7 @@ struct RecipeDetailView: View {
         static let boxRadius: CGFloat = 25
         static let instructionsTitle = "Instructions:"
         static let indent: CGFloat = 12
-        static let gap: CGFloat = 4
+        static let gap: CGFloat = 12
         
         static let bullet: String = "• "
         

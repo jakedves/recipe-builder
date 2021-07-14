@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeRowView: View {
-    let recipe: Recipe
+    @ObservedObject private var recipe: Recipe
     
     init(_ recipe: Recipe) {
         self.recipe = recipe
