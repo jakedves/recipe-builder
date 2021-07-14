@@ -1,17 +1,17 @@
 //
-//  Camera.swift
+//  ImageSelector.swift
 //  Recipe-Builder
 //
-//  Created by Jake Davies on 10/07/2021.
+//  Created by Jake Davies on 15/07/2021.
 //
 
 import SwiftUI
 
-struct Camera: UIViewControllerRepresentable {
+struct ImageSelector: UIViewControllerRepresentable {
     var processImage: (UIImage?) -> Void
     
     static var available: Bool {
-        UIImagePickerController.isSourceTypeAvailable(.camera)
+        UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
     }
     
     func makeCoordinator() -> Coordinator {
@@ -21,28 +21,23 @@ struct Camera: UIViewControllerRepresentable {
     // This method called on instantiation
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let controller = UIImagePickerController()
-        controller.sourceType = .camera
+        controller.sourceType = .photoLibrary
         controller.allowsEditing = true
         controller.delegate = context.coordinator
         return controller
     }
     
-    // Camera UI never changes
+    // PhotoLibrary UI never changes
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
     
     internal class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         var processImage: (UIImage?) -> Void
-        
+
         init(_ processImage: @escaping (UIImage?) -> Void) {
             self.processImage = processImage
         }
         
-        // When the user closes the camera, without taking a picture
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            processImage(nil)
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             // use original image if there is no edited image
             processImage((info[.editedImage] ?? info[.originalImage]) as? UIImage)
         }

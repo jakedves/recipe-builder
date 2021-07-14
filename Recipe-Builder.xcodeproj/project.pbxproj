@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5006EE66269FA60000715E0C /* ImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006EE65269FA60000715E0C /* ImageSelector.swift */; };
+		5006EE67269FA60000715E0C /* ImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006EE65269FA60000715E0C /* ImageSelector.swift */; };
 		500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
 		500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
 		50093344268400DC00C7D81B /* RecipeBuilderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50093343268400DC00C7D81B /* RecipeBuilderForm.swift */; };
@@ -40,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5006EE65269FA60000715E0C /* ImageSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelector.swift; sourceTree = "<group>"; };
 		500933372683E40400C7D81B /* RecipeBuilderModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecipeBuilderModel.xcdatamodel; sourceTree = "<group>"; };
 		50093343268400DC00C7D81B /* RecipeBuilderForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBuilderForm.swift; sourceTree = "<group>"; };
 		5009334A268409AE00C7D81B /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				5074108E26993192004BB834 /* Camera.swift */,
+				5006EE65269FA60000715E0C /* ImageSelector.swift */,
 				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
 				50093343268400DC00C7D81B /* RecipeBuilderForm.swift */,
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,
@@ -274,6 +278,7 @@
 				50CA2E8126976DB200276A5A /* RecipeBookView.swift in Sources */,
 				500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
 				50093344268400DC00C7D81B /* RecipeBuilderForm.swift in Sources */,
+				5006EE66269FA60000715E0C /* ImageSelector.swift in Sources */,
 				5051E52D2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				5009334E268409AE00C7D81B /* Recipe+CoreDataProperties.swift in Sources */,
 				509FDBB72698639000988C69 /* VaryingTextFieldSection.swift in Sources */,
@@ -295,6 +300,7 @@
 				5009334D268409AE00C7D81B /* Recipe+CoreDataClass.swift in Sources */,
 				50E0A51F26598EB8009E34ED /* RecipeRowView.swift in Sources */,
 				50CA2E8226976DB200276A5A /* RecipeBookView.swift in Sources */,
+				5006EE67269FA60000715E0C /* ImageSelector.swift in Sources */,
 				500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
 				5051E52E2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				509FDBB82698639000988C69 /* VaryingTextFieldSection.swift in Sources */,
