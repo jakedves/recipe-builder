@@ -30,31 +30,35 @@ struct RecipeBookView: View {
                     }
                     .onDelete(perform: recipeBook.delete)
                 }
-                .navigationBarTitle(RV.title)
+                .navigationTitle(RV.title)
                 .navigationBarItems(leading: RV.naviLeading,
                                     trailing: Button(action: {
                                         building.toggle()
                                     }, label: {
                                         RV.buildIcon
-                                    })
-                                    .sheet(isPresented: $building) {
-                                        RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
-                                    })
+                                    }))
+                .popover(isPresented: $building) {
+                    RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
+                        .macPopoverPadding()
+                        .iOSNavigationView()
+                }
                 .listStyle(InsetListStyle())
                 
             } else {
-                RV.emptyView
-                    .navigationBarTitle(RV.title)
+                emptyView
+                    .navigationTitle(RV.title)
                     .navigationBarItems(leading: RV.naviLeading,
                                         trailing: Button(action: {
                                             building.toggle()
                                         },
                                         label: {
                                             RV.buildIcon
-                                        })
-                                        .sheet(isPresented: $building) {
-                                            RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
-                                        })
+                                        }))
+                    .popover(isPresented: $building) {
+                        RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
+                            .macPopoverPadding()
+                            .iOSNavigationView()
+                    }
             }
         }
     }
@@ -66,13 +70,44 @@ struct RecipeBookView: View {
         .padding()
     }
     
+    private var emptyView: some View {
+        #if os(iOS)
+        Text("No recipes. Create a recipe using the hammer button above.").multilineTextAlignment(.center).frame(width: 300)
+        
+        #elseif os(macOS)
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    building.toggle()
+                },
+                label: {
+                    RV.buildIcon
+                })
+            }
+            Spacer()
+            Text("No recipes. Create a recipe using the hammer button above.").multilineTextAlignment(.center).frame(width: 300)
+            Spacer()
+        }
+        .padding()
+        #endif
+    }
+    
     private struct RV {
         static let title = "Recipe Book"
-        static let naviLeading: some View = EditButton()
         static let buildIcon: some View = Image(systemName: "hammer")
+        #if os(iOS)
+        static let naviLeading: some View = EditButton()
         
-        static let emptyView: some View = Text("No recipes. Create a recipe using the hammer button above.")
-            .multilineTextAlignment(.center).frame(width: 300)
+        #elseif os(macOS)
+        static let naviLeading: some View = EmptyView()
+        #endif
+        
+        
+        
+        
+        
+        
         
     }
 }

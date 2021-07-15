@@ -18,59 +18,72 @@ struct RecipeBuilderForm: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    recipeName
-                    ingredientsFields
-                    instructionsFields
-                    image
-                }
-            }
-            .navigationTitle("Build Recipe")
-            .navigationBarItems(leading: cancel,
-                                trailing: save)
-            .alert(isPresented: $badSave,
-                   content: { alert })
-            .sheet(item: $imageLocation) { location in
-                switch location {
-                case .camera: Camera(processImage: {
-                    handleImage($0)
-                })
-                case .library: ImageSelector(processImage: {
-                    handleImage($0)
-                })
-                }
+        Form {
+            recipeTitleSection
+            ingredientsSection
+            instructionSection
+            
+            if Camera.available || ImageSelector.available {
+                imageSection
             }
             
-            .actionSheet(isPresented: $showingImageSelector) {
-                ActionSheet(title: Text("Add a photo"),
-                            buttons: [
-                                .default(Text("Camera")) {
-                                    imageLocation = .camera
-                                },
-                                .default(Text("Photo Library")) {
-                                    imageLocation = .library
-                                },
-                                .cancel()
-                            ])
+        }
+        .navigationTitle("Build Recipe")
+        .navigationBarItems(leading: cancel,
+                            trailing: save)
+        .alert(isPresented: $badSave,
+               content: { badSaveAlert })
+        
+        .sheet(item: $imageLocation) { location in
+            switch location {
+            case .camera: Camera(processImage: {
+                handleImage($0)
+            })
+            case .library: ImageSelector(processImage: {
+                handleImage($0)
+            })
             }
+        }
+        .frame(minWidth: 300, minHeight: 500)
+        
+        .actionSheet(isPresented: $showingImageSelector) {
+            #if os(iOS)
+            ActionSheet(title: Text("Add a photo"),
+                        buttons: [
+                            .default(Text("Camera")) {
+                                imageLocation = .camera
+                            },
+                            .default(Text("Photo Library")) {
+                                imageLocation = .library
+                            },
+                            .cancel()
+                        ])
+            #elseif os(macOS)
+            ActionSheet()
+            #endif
+        }
+        
+    }
+    
+    var recipeTitleSection: some View {
+        Section(header: Text("Recipe Name:")) {
+            TextField("Recipe Name", text: $builder.name)
         }
     }
     
-    var recipeName: some View {
-        TextField("Recipe Name", text: $builder.name)
+    var ingredientsSection: some View {
+        VaryingTextFieldSection(title: "Ingredients:",
+                                placeholder: "New Ingredient",
+                                list: $builder.ingredients)
     }
     
-    var ingredientsFields: some View {
-        VaryingTextFieldSection(title: "Ingredients:", placeholder: "New Ingredient", list: $builder.ingredients)
+    var instructionSection: some View {
+        VaryingTextFieldSection(title: "Instructions:",
+                                placeholder: "New Instruction",
+                                list: $builder.instructions)
     }
     
-    var instructionsFields: some View {
-        VaryingTextFieldSection(title: "Instructions:", placeholder: "New Instruction", list: $builder.instructions)
-    }
-    
-    var image: some View {
+    var imageSection: some View {
         Section(header: Text("Add a photo")) {
             VStack {
                 if builder.image != nil {
@@ -120,7 +133,7 @@ struct RecipeBuilderForm: View {
     }
     
     private func handleImage(_ image: UIImage?) {
-        if let imageData = image?.jpegData(compressionQuality: 1.0) {
+        if let imageData = image?.imageData {
             builder.image = imageData
         }
         imageLocation = nil
@@ -146,7 +159,7 @@ struct RecipeBuilderForm: View {
     }
     
     // MARK: - Other
-    var alert: Alert {
+    var badSaveAlert: Alert {
         Alert(title: Text("Cannot save recipe"),
               dismissButton: .default(Text("OK")))
     }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5006EE66269FA60000715E0C /* ImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006EE65269FA60000715E0C /* ImageSelector.swift */; };
-		5006EE67269FA60000715E0C /* ImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006EE65269FA60000715E0C /* ImageSelector.swift */; };
 		500933382683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
 		500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 500933362683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld */; };
 		50093344268400DC00C7D81B /* RecipeBuilderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50093343268400DC00C7D81B /* RecipeBuilderForm.swift */; };
@@ -24,7 +23,8 @@
 		5066DC7E2666E82B00CE6176 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DC7D2666E82A00CE6176 /* PreviewData.swift */; };
 		5066DC7F2666E82B00CE6176 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DC7D2666E82A00CE6176 /* PreviewData.swift */; };
 		5074108F26993192004BB834 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5074108E26993192004BB834 /* Camera.swift */; };
-		5074109026993192004BB834 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5074108E26993192004BB834 /* Camera.swift */; };
+		507984B3269FD73400A7C786 /* macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507984B2269FD73400A7C786 /* macOS.swift */; };
+		507984B6269FDF0D00A7C786 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507984B4269FDEC700A7C786 /* iOS.swift */; };
 		508E6F2A268E8C54000DFB44 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E60B3268BC34D0090D052 /* LaunchScreen.swift */; };
 		509FDBAE2697E9F100988C69 /* RecipeBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FDBAD2697E9F100988C69 /* RecipeBook.swift */; };
 		509FDBAF2697E9F100988C69 /* RecipeBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FDBAD2697E9F100988C69 /* RecipeBook.swift */; };
@@ -57,6 +57,8 @@
 		5051E52C2656F7E00081E77F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		5066DC7D2666E82A00CE6176 /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		5074108E26993192004BB834 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		507984B2269FD73400A7C786 /* macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS.swift; sourceTree = "<group>"; };
+		507984B4269FDEC700A7C786 /* iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
 		509FDBAD2697E9F100988C69 /* RecipeBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBook.swift; sourceTree = "<group>"; };
 		509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaryingTextFieldSection.swift; sourceTree = "<group>"; };
 		509FDBB926988BF500988C69 /* RecipeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBuilder.swift; sourceTree = "<group>"; };
@@ -130,7 +132,10 @@
 		5051E5232656F7DF0081E77F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				5074108E26993192004BB834 /* Camera.swift */,
+				5006EE65269FA60000715E0C /* ImageSelector.swift */,
 				5051E5242656F7DF0081E77F /* Info.plist */,
+				507984B4269FDEC700A7C786 /* iOS.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			children = (
 				5051E52B2656F7E00081E77F /* Info.plist */,
 				5051E52C2656F7E00081E77F /* macOS.entitlements */,
+				507984B2269FD73400A7C786 /* macOS.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -155,8 +161,6 @@
 		50F43F9A265C15A8009ADA9C /* Recipe Builder MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				5074108E26993192004BB834 /* Camera.swift */,
-				5006EE65269FA60000715E0C /* ImageSelector.swift */,
 				509FDBB62698639000988C69 /* VaryingTextFieldSection.swift */,
 				50093343268400DC00C7D81B /* RecipeBuilderForm.swift */,
 				509FDBB926988BF500988C69 /* RecipeBuilder.swift */,
@@ -286,6 +290,7 @@
 				50CA2E8426976DE000276A5A /* RecipeDetailView.swift in Sources */,
 				509FDBAE2697E9F100988C69 /* RecipeBook.swift in Sources */,
 				5066DC7E2666E82B00CE6176 /* PreviewData.swift in Sources */,
+				507984B6269FDF0D00A7C786 /* iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,11 +305,10 @@
 				5009334D268409AE00C7D81B /* Recipe+CoreDataClass.swift in Sources */,
 				50E0A51F26598EB8009E34ED /* RecipeRowView.swift in Sources */,
 				50CA2E8226976DB200276A5A /* RecipeBookView.swift in Sources */,
-				5006EE67269FA60000715E0C /* ImageSelector.swift in Sources */,
 				500933392683E40400C7D81B /* RecipeBuilderModel.xcdatamodeld in Sources */,
+				507984B3269FD73400A7C786 /* macOS.swift in Sources */,
 				5051E52E2656F7E00081E77F /* Recipe_BuilderApp.swift in Sources */,
 				509FDBB82698639000988C69 /* VaryingTextFieldSection.swift in Sources */,
-				5074109026993192004BB834 /* Camera.swift in Sources */,
 				50FC8CE02692157A00FA5566 /* RecipeBuilderForm.swift in Sources */,
 				5009334F268409AE00C7D81B /* Recipe+CoreDataProperties.swift in Sources */,
 				5066DC7F2666E82B00CE6176 /* PreviewData.swift in Sources */,
