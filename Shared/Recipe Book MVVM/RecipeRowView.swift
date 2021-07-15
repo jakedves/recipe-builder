@@ -23,7 +23,6 @@ struct RecipeRowView: View {
                 Row.defaultImage
                     .rowImage()
             }
-                
             Text(recipe.name ?? Row.defaultName)
                 .font(.title2)
                 .multilineTextAlignment(.leading)
@@ -46,6 +45,7 @@ extension Image {
             .overlay(RoundedRectangle(cornerSize: CGSize(width: 10,
                                                          height: 10))
                         .stroke(Color.black, lineWidth: 1.5))
+            .padding(3)
         
     }
 }

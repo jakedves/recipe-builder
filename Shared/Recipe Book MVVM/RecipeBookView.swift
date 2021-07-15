@@ -22,8 +22,10 @@ struct RecipeBookView: View {
                         NavigationLink(destination: RecipeDetailView()
                                         .environmentObject(recipe)
                                         .navigationBarItems(trailing: edit)
-                                        .sheet(isPresented: $editing, content: {
+                                        .popover(isPresented: $editing, content: {
                                             RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
+                                                .macOSPadding()
+                                                .iOSNavigationView()
                                         })) {
                             RecipeRowView(recipe)
                         }
@@ -32,31 +34,43 @@ struct RecipeBookView: View {
                 }
                 .navigationTitle(RV.title)
                 .navigationBarItems(leading: RV.naviLeading,
-                                    trailing: Button(action: {
+                                    trailing: Button() {
                                         building.toggle()
-                                    }, label: {
+                                    } label: {
                                         RV.buildIcon
-                                    }))
+                                            
+                                    }
+                                    .plainButtonStyleMacOS()
+                                    .macOSPadding(5)
+                                    .foregroundColor(.blue)
+                )
                 .popover(isPresented: $building) {
                     RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
-                        .macPopoverPadding()
+                        .macOSPadding()
                         .iOSNavigationView()
                 }
                 .listStyle(InsetListStyle())
+                .frame(minWidth: 210)
                 
             } else {
                 emptyView
+                    .frame(minWidth: 210)
                     .navigationTitle(RV.title)
                     .navigationBarItems(leading: RV.naviLeading,
-                                        trailing: Button(action: {
+                                        trailing: Button() {
                                             building.toggle()
-                                        },
-                                        label: {
+                                        } label: {
                                             RV.buildIcon
-                                        }))
+                                        }
+                                        .plainButtonStyleMacOS()
+                                        .macOSPadding(5)
+                                        .foregroundColor(.blue)
+                                        
+                    )
+                                        
                     .popover(isPresented: $building) {
                         RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
-                            .macPopoverPadding()
+                            .macOSPadding()
                             .iOSNavigationView()
                     }
             }
@@ -71,26 +85,7 @@ struct RecipeBookView: View {
     }
     
     private var emptyView: some View {
-        #if os(iOS)
         Text("No recipes. Create a recipe using the hammer button above.").multilineTextAlignment(.center).frame(width: 300)
-        
-        #elseif os(macOS)
-        VStack {
-            HStack {
-                Spacer()
-                Button(action: {
-                    building.toggle()
-                },
-                label: {
-                    RV.buildIcon
-                })
-            }
-            Spacer()
-            Text("No recipes. Create a recipe using the hammer button above.").multilineTextAlignment(.center).frame(width: 300)
-            Spacer()
-        }
-        .padding()
-        #endif
     }
     
     private struct RV {

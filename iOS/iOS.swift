@@ -15,7 +15,7 @@ extension UIImage {
 
 extension View {
     // Not needed on iOS
-    func macPopoverPadding() -> some View {
+    func macOSPadding(_ amount: CGFloat? = nil) -> some View {
         self
     }
     
@@ -27,3 +27,8 @@ extension View {
     }
 }
 
+extension Button {
+    func plainButtonStyleMacOS() -> some View {
+        self
+    }
+}

@@ -19,16 +19,36 @@ extension Image {
 // NavigationBar not supported on macOS
 extension View {
     func navigationBarItems<L, T>(leading: L, trailing: T) -> some View where L : View, T : View {
-        self
+        VStack {
+            HStack {
+                leading
+                Spacer()
+                trailing
+            }
+            self
+            Spacer()
+        }
     }
     
     func navigationBarItems<T>(trailing: T) -> some View where T: View {
-        self
+        VStack {
+            HStack {
+                Spacer()
+                trailing
+            }
+            self
+            Spacer()
+        }
     }
     
     // Popovers look better on macOS with padding
-    func macPopoverPadding() -> some View {
-        self.padding()
+    @ViewBuilder
+    func macOSPadding(_ amount: CGFloat? = nil) -> some View {
+        if amount != nil {
+            self.padding(amount!)
+        } else {
+            self.padding()
+        }
     }
     
     // The navigation view modifier only works on iOS for these views
@@ -42,6 +62,13 @@ extension View {
     }
 }
 struct ActionSheet {}
+
+extension Button {
+    func plainButtonStyleMacOS() -> some View {
+        self.buttonStyle(PlainButtonStyle())
+    }
+}
+
 
 // Camera and ImageSelector not supported on macOS
 struct Camera: View {
