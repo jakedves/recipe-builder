@@ -8,13 +8,9 @@ ReciperBuilder is an iOS/iPadOS/MacOS application that allows users to create re
 - Swift 5
 - SwiftUI 2
 - Core Data
-- UIKit for implementing Camera
+- UIKit View Controllers for implementing Camera and Photo Library support
 
 ## Future Features
 
 - Sync across iCloud (Requires Apple Developer)
 - Sharing recipes
-
-### TODO:
-
-- Add photo library support
