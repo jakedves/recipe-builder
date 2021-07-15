@@ -11,6 +11,7 @@ struct RecipeBuilderForm: View {
     @ObservedObject private var builder: RecipeBuilder
     @Environment(\.presentationMode) var presentationMode
     @State private var badSave = false
+    @State private var showingImageSelector = false
     
     init(builder: RecipeBuilder) {
         self.builder = builder
@@ -23,10 +24,7 @@ struct RecipeBuilderForm: View {
                     recipeName
                     ingredientsFields
                     instructionsFields
-                    
-                    if Camera.available {
-                        image
-                    }
+                    image
                 }
             }
             .navigationTitle("Build Recipe")
@@ -36,12 +34,26 @@ struct RecipeBuilderForm: View {
                    content: { alert })
             .sheet(item: $imageLocation) { location in
                 switch location {
-                case .camera: Camera(processImage: { image in
-                    handleImage(image)
+                case .camera: Camera(processImage: {
+                    handleImage($0)
                 })
-                case .library:
-                    EmptyView()
+                case .library: ImageSelector(processImage: {
+                    handleImage($0)
+                })
                 }
+            }
+            
+            .actionSheet(isPresented: $showingImageSelector) {
+                ActionSheet(title: Text("Add a photo"),
+                            buttons: [
+                                .default(Text("Camera")) {
+                                    imageLocation = .camera
+                                },
+                                .default(Text("Photo Library")) {
+                                    imageLocation = .library
+                                },
+                                .cancel()
+                            ])
             }
         }
     }
@@ -64,17 +76,23 @@ struct RecipeBuilderForm: View {
                 if builder.image != nil {
                     OptionalImage(uiimage: UIImage(data: builder.image!))
                 }
-                Button() {
-                    imageLocation = .camera
-                } label: {
-                    HStack {
-                        Spacer()
-                        
-                        Image(systemName: "camera.fill")
-                        
-                        Spacer()
-                    }
+                if Camera.available || ImageSelector.available {
+                    imageInputChooser
                 }
+            }
+        }
+    }
+    
+    var imageInputChooser: some View {
+        Button() {
+            showingImageSelector = true
+        } label: {
+            HStack {
+                Spacer()
+                
+                Image(systemName: "photo.on.rectangle")
+                
+                Spacer()
             }
         }
     }
