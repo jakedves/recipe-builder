@@ -11,14 +11,13 @@ import CoreData
 // ViewModel for deleting a recipe, and fetching recipes
 class RecipeBook: ObservableObject {
     let container: NSPersistentContainer
-    @Published var recipes: [Recipe] = []
-    @Published var saveFailed = false
+    var loadFailed = false
+    @Published var recipes: [Recipe]? = [] // make optional and check in UI
+    
     
     init() {
         container = NSPersistentContainer(name: DataModel.name)
-        container.loadPersistentStores { (description, error) in
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
+        container.loadPersistentStores { (description, loadError) in
             /*
             Typical reasons for an error here include:
             * The parent directory does not exist, cannot be created, or disallows writing.
@@ -27,11 +26,15 @@ class RecipeBook: ObservableObject {
             * The store could not be migrated to the current model version.
             Check the error message to determine what the actual problem was.
             */
-            if let error = error {
-                print(DataModel.loadError + "\(error)")
+            if let loadError = loadError {
+                print(DataModel.loadError + "\(loadError)")
+                self.loadFailed = true
+                self.recipes = nil
             }
         }
-        fetchRecipes()
+        if !loadFailed {
+            fetchRecipes()
+        }
     }
     
     func fetchRecipes() {
@@ -49,7 +52,7 @@ class RecipeBook: ObservableObject {
         
         // Delete recipe from managed object context
         for index in offsets {
-            let recipe = recipes[index]
+            let recipe = recipes![index]
             container.viewContext.delete(recipe)
         }
         

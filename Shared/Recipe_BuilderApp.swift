@@ -14,7 +14,8 @@ struct Recipe_BuilderApp: App {
     var body: some Scene {
         WindowGroup {
             #if !os(macOS)
-            LaunchScreen().environmentObject(recipeBook)
+            LaunchScreen()
+                .environmentObject(recipeBook)
             #else
             LaunchScreen()
                 .frame(minWidth: macOS.minWindowWidth,
@@ -25,10 +26,11 @@ struct Recipe_BuilderApp: App {
                 .environmentObject(recipeBook)
             #endif
         }
+        
     }
     
     private struct macOS {
         static let minWindowWidth = CGFloat(700)
-        static let minWindowHeight = CGFloat(300)
+        static let minWindowHeight = CGFloat(400)
     }
 }

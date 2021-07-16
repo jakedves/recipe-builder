@@ -14,69 +14,61 @@ struct RecipeBookView: View {
     
     var body: some View {
         NavigationView {
-            
-            // change to -1 to debug/edit
-            if self.recipeBook.recipes.count > 0 {
-                List {
-                    ForEach (recipeBook.recipes) { recipe in
-                        NavigationLink(destination: RecipeDetailView()
-                                        .environmentObject(recipe)
-                                        .navigationBarItems(trailing: edit)
-                                        .nativePullout(isPresented: $editing, content: {
-                                            
-                                            RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
-                                                .macOSPadding()
-                                                .iOSNavigationView()
-                                            
-                                        })
-                        ) {
-                            RecipeRowView(recipe)
-                        }
-                    }
-                    .onDelete(perform: recipeBook.delete)
-                }
-                .navigationTitle(RV.title)
-                .navigationBarItems(leading: RV.naviLeading,
-                                    trailing: Button() {
-                                        building.toggle()
-                                    } label: {
-                                        RV.buildIcon
-                                            
-                                    }
-                                    .plainButtonStyleMacOS()
-                                    .macOSPadding(5)
-                                    .foregroundColor(.blue)
-                )
-                .nativePullout(isPresented: $building) {
-                    RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
-                        .macOSPadding()
-                        .iOSNavigationView()
-                }
-                .listStyle(InsetListStyle())
-                .frame(minWidth: 300)
-                
+            if (self.recipeBook.recipes == nil) {
+                errorMessage
+            } else if self.recipeBook.recipes!.count > 0 {
+                list
             } else {
                 emptyView
-                    .frame(minWidth: 300)
-                    .navigationTitle(RV.title)
-                    .navigationBarItems(leading: RV.naviLeading,
-                                        trailing: Button() {
-                                            building.toggle()
-                                        } label: {
-                                            RV.buildIcon
-                                        }
-                                        .plainButtonStyleMacOS()
-                                        .macOSPadding(5)
-                                        .foregroundColor(.blue)
-                                        
-                    )
-                    .nativePullout(isPresented: $building) {
-                        RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
-                            .macOSPadding()
-                            .iOSNavigationView()
-                    }
             }
         }
+        .nativePullout(isPresented: $building) {
+            RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
+                .macOSPadding()
+                .iOSNavigationView()
+        }
+    }
+    
+    private var errorMessage: some View {
+        Text("The database could not be loaded. This may be due to the device being out of storage, or may require an app reinstall if the problem persists.")
+            .multilineTextAlignment(.center).frame(width: 300)
+            .frame(minWidth: 300)
+            .navigationTitle(RV.title)
+    }
+    
+    private var list: some View {
+        List {
+            ForEach (recipeBook.recipes!) { recipe in
+                NavigationLink(destination: RecipeDetailView()
+                                .environmentObject(recipe)
+                                .navigationBarItems(trailing: edit)
+                                .nativePullout(isPresented: $editing, content: {
+                                    
+                                    RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
+                                        .macOSPadding()
+                                        .iOSNavigationView()
+                                    
+                                })
+                ) {
+                    RecipeRowView(recipe)
+                }
+            }
+            .onDelete(perform: recipeBook.delete)
+        }
+        .navigationTitle(RV.title)
+        .navigationBarItems(leading: RV.naviLeading,
+                            trailing: Button() {
+                                building.toggle()
+                            } label: {
+                                RV.buildIcon
+                                    
+                            }
+                            .plainButtonStyleMacOS()
+                            .macOSPadding(5)
+                            .foregroundColor(.blue)
+        )
+        .listStyle(InsetListStyle())
+        .frame(minWidth: 300)
     }
     
     private var edit: some View {
@@ -87,7 +79,22 @@ struct RecipeBookView: View {
     }
     
     private var emptyView: some View {
-        Text("No recipes. Create a recipe using the hammer button above.").multilineTextAlignment(.center).frame(width: 300)
+        Text("No recipes. Create a recipe using the hammer button above.")
+            .multilineTextAlignment(.center).frame(width: 300)
+            .frame(minWidth: 300)
+            .navigationTitle(RV.title)
+            .navigationBarItems(leading: RV.naviLeading,
+                                trailing: Button() {
+                                    building.toggle()
+                                } label: {
+                                    RV.buildIcon
+                                }
+                                .plainButtonStyleMacOS()
+                                .macOSPadding(5)
+                                .foregroundColor(.blue)
+                                
+            )
+            
     }
     
     private struct RV {
