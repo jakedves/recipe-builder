@@ -22,11 +22,14 @@ struct RecipeBookView: View {
                         NavigationLink(destination: RecipeDetailView()
                                         .environmentObject(recipe)
                                         .navigationBarItems(trailing: edit)
-                                        .popover(isPresented: $editing, content: {
+                                        .nativePullout(isPresented: $editing, content: {
+                                            
                                             RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
                                                 .macOSPadding()
                                                 .iOSNavigationView()
-                                        })) {
+                                            
+                                        })
+                        ) {
                             RecipeRowView(recipe)
                         }
                     }
@@ -44,17 +47,17 @@ struct RecipeBookView: View {
                                     .macOSPadding(5)
                                     .foregroundColor(.blue)
                 )
-                .popover(isPresented: $building) {
+                .nativePullout(isPresented: $building) {
                     RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
                         .macOSPadding()
                         .iOSNavigationView()
                 }
                 .listStyle(InsetListStyle())
-                .frame(minWidth: 210)
+                .frame(minWidth: 300)
                 
             } else {
                 emptyView
-                    .frame(minWidth: 210)
+                    .frame(minWidth: 300)
                     .navigationTitle(RV.title)
                     .navigationBarItems(leading: RV.naviLeading,
                                         trailing: Button() {
@@ -67,8 +70,7 @@ struct RecipeBookView: View {
                                         .foregroundColor(.blue)
                                         
                     )
-                                        
-                    .popover(isPresented: $building) {
+                    .nativePullout(isPresented: $building) {
                         RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
                             .macOSPadding()
                             .iOSNavigationView()
@@ -91,19 +93,13 @@ struct RecipeBookView: View {
     private struct RV {
         static let title = "Recipe Book"
         static let buildIcon: some View = Image(systemName: "hammer")
+        
         #if os(iOS)
         static let naviLeading: some View = EditButton()
         
         #elseif os(macOS)
         static let naviLeading: some View = EmptyView()
         #endif
-        
-        
-        
-        
-        
-        
-        
     }
 }
 

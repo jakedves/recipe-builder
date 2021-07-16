@@ -41,6 +41,13 @@ extension View {
         }
     }
     
+    // Returns a sheet on iOS, but a popover on macOS
+    func nativePullout<Content>(isPresented: Binding<Bool>, content: @escaping () -> Content) -> some View where Content: View {
+        self.popover(isPresented: isPresented) {
+            content()
+        }
+    }
+    
     // Popovers look better on macOS with padding
     @ViewBuilder
     func macOSPadding(_ amount: CGFloat? = nil) -> some View {

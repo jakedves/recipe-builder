@@ -49,21 +49,30 @@ struct RecipeBuilderForm: View {
         .actionSheet(isPresented: $showingImageSelector) {
             #if os(iOS)
             ActionSheet(title: Text("Add a photo"),
-                        buttons: [
-                            .default(Text("Camera")) {
-                                imageLocation = .camera
-                            },
-                            .default(Text("Photo Library")) {
-                                imageLocation = .library
-                            },
-                            .cancel()
-                        ])
+                        buttons: buttonSet)
             #elseif os(macOS)
             ActionSheet()
             #endif
         }
-        
     }
+    
+    #if os(iOS)
+    var buttonSet: [ActionSheet.Button] {
+        var set: [ActionSheet.Button] = []
+        if Camera.available {
+            set.append(.default(Text("Camera")) {
+                imageLocation = .camera
+            })
+        }
+        if ImageSelector.available {
+            set.append(.default(Text("Photo Library")) {
+                imageLocation = .library
+            })
+        }
+        set.append(.cancel())
+        return set
+    }
+    #endif
     
     var recipeTitleSection: some View {
         Section(header: Text("Recipe Name:")) {
@@ -175,16 +184,6 @@ struct RecipeBuilderForm: View {
         
         // Close form
         presentationMode.wrappedValue.dismiss()
-    }
-}
-
-extension Image {
-    func builderStyle() -> some View {
-        self.resizable()
-            .clipped()
-            .clipShape(RoundedRectangle(cornerRadius: CGFloat(25.0)))
-            .aspectRatio(contentMode: .fit)
-            .padding()
     }
 }
 

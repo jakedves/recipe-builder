@@ -35,7 +35,6 @@ struct RecipeDetailView: View {
             .ignoresSafeArea()
         }
     }
-        
     
     @ViewBuilder
     private var photo: some View {
@@ -126,7 +125,7 @@ struct RecipeDetailView: View {
     private struct ViewConstants {
         // Recipe Title
         static let unnamed = "Unnamed Recipe"
-        static let imageOffset: CGFloat = 35
+        static let imageOffset: CGFloat = 50
         
         // Ingredients & Instructions
         static let ingredientsTitle = "Ingredients:"

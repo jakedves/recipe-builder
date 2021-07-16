@@ -36,19 +36,7 @@ struct RecipeRowView: View {
     }
 }
 
-extension Image {
-    func rowImage() -> some View {
-        return self
-            .resizable()
-            .frame(width: 50, height: 50)
-            .cornerRadius(10)
-            .overlay(RoundedRectangle(cornerSize: CGSize(width: 10,
-                                                         height: 10))
-                        .stroke(Color.black, lineWidth: 1.5))
-            .padding(3)
-        
-    }
-}
+
 
 struct RecipeRowViewPreview_Previews: PreviewProvider {
     static var previews: some View {

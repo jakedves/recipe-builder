@@ -14,7 +14,7 @@ extension UIImage {
 }
 
 extension View {
-    // Not needed on iOS
+    // Not needed on iOS, but is on macOS
     func macOSPadding(_ amount: CGFloat? = nil) -> some View {
         self
     }
@@ -23,6 +23,13 @@ extension View {
     func iOSNavigationView() -> some View {
         NavigationView {
             self
+        }
+    }
+    
+    // Returns a sheet on iOS, but a popover on macOS
+    func nativePullout<Content>(isPresented: Binding<Bool>, content: @escaping () -> Content) -> some View where Content: View {
+        self.sheet(isPresented: isPresented) {
+            content()
         }
     }
 }
