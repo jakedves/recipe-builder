@@ -112,6 +112,6 @@ struct RecipeBookView: View {
 
 struct RecipeBookView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeBookView().environmentObject(RecipeBook())
+        RecipeBookView().preferredColorScheme(.dark).environmentObject(RecipeBook())
     }
 }

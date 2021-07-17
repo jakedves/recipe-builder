@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     @EnvironmentObject var recipe: Recipe
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ZStack {
@@ -24,7 +25,7 @@ struct RecipeDetailView: View {
                         }
                     }
                     .padding()
-                    .background(Color.white)
+                    .background(colorScheme == .light ? Color.white : Color.black.opacity(0.75))
                     
                     instructions
                 }
@@ -91,8 +92,8 @@ struct RecipeDetailView: View {
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: ViewConstants.boxRadius)
-                        .stroke(lineWidth: ViewConstants.stroke))
-        .background(ViewConstants.color.cornerRadius(ViewConstants.boxRadius))
+                        .stroke(Color.black, lineWidth: ViewConstants.stroke))
+        .background(ViewConstants.color.opacity(colorScheme == .light ? 1 : 0.4).cornerRadius(ViewConstants.boxRadius))
     }
     
     private var instructions: some View {
@@ -102,14 +103,22 @@ struct RecipeDetailView: View {
                 .font(.headline)
                 .frame(maxWidth: .infinity)
                 .padding([.vertical])
-                .background(ViewConstants.color)
+                .foregroundColor(.white)
+                .background(
+                    ZStack {
+                        Color.black
+                        Color.green.opacity(colorScheme == .light ? 1 : 0.5)
+                    }
+                )
                 
             
             ForEach(recipe.instructions ?? [], id: \.self) { instruction in
                 HStack(alignment: .top) {
                     Text("  \((recipe.instructions?.firstIndex(of: instruction))! + 1 ).  ")
+
                     Text(instruction)
                         .lineLimit(nil)
+                        
                 }
                 .font(.body)
                 .padding([.horizontal])
@@ -117,7 +126,7 @@ struct RecipeDetailView: View {
             }
         }
         .background(ViewConstants.bgColor)
-        .background(Color.white)
+        .background(colorScheme == .light ? Color.white : Color.black)
         .padding([.top], ViewConstants.stroke)
         .background(Color.black)
     }
@@ -130,7 +139,7 @@ struct RecipeDetailView: View {
         // Ingredients & Instructions
         static let ingredientsTitle = "Ingredients:"
         static let color: Color = .green
-        static let bgColor: Color = .green.opacity(0.6)
+        static let bgColor: Color = .green.opacity(0.7)
         static let stroke: CGFloat = 2
         static let boxRadius: CGFloat = 25
         static let instructionsTitle = "Instructions:"
@@ -149,6 +158,9 @@ struct RecipeDetailView: View {
 
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailView().environmentObject(PreviewData.recipes()[0])
+        Group {
+            RecipeDetailView().environmentObject(PreviewData.recipes()[0])
+            RecipeDetailView().preferredColorScheme(.dark).environmentObject(PreviewData.recipes()[0])
+        }
     }
 }

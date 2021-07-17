@@ -190,5 +190,6 @@ struct RecipeBuilderForm: View {
 struct RecipeBuilderForm_Previews: PreviewProvider {
     static var previews: some View {
         RecipeBuilderForm(builder: RecipeBuilder(book: RecipeBook()))
+            
     }
 }
