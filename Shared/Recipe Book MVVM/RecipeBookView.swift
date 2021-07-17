@@ -9,18 +9,26 @@ import SwiftUI
 
 struct RecipeBookView: View {
     @EnvironmentObject private var recipeBook: RecipeBook
+    @Environment(\.colorScheme) var colorScheme
     @State private var building = false
     @State private var editing = false
     
     var body: some View {
         NavigationView {
-            if (self.recipeBook.recipes == nil) {
-                errorMessage
-            } else if self.recipeBook.recipes!.count > 0 {
-                list
-            } else {
-                emptyView
+            ZStack {
+                if colorScheme == .dark {
+                    Color.green.opacity(0.175).ignoresSafeArea()
+                }
+                
+                if (self.recipeBook.recipes == nil) {
+                    errorMessage
+                } else if self.recipeBook.recipes!.count > 0 {
+                    list
+                } else {
+                    emptyView
+                }
             }
+            
         }
         .nativePullout(isPresented: $building) {
             RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
@@ -112,6 +120,6 @@ struct RecipeBookView: View {
 
 struct RecipeBookView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeBookView().preferredColorScheme(.dark).environmentObject(RecipeBook())
+        RecipeBookView().preferredColorScheme(.light).environmentObject(RecipeBook())
     }
 }

@@ -159,7 +159,7 @@ struct RecipeDetailView: View {
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RecipeDetailView().environmentObject(PreviewData.recipes()[0])
+            RecipeDetailView().preferredColorScheme(.dark).environmentObject(PreviewData.recipes()[0])
             RecipeDetailView().preferredColorScheme(.dark).environmentObject(PreviewData.recipes()[0])
         }
     }

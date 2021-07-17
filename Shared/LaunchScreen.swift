@@ -9,20 +9,34 @@ import SwiftUI
 
 struct LaunchScreen: View {
     @State private var buttonPressed = false
+    @State private var hidden = true
     
     var body: some View {
-        if ($buttonPressed.wrappedValue) {
-            RecipeBookView()
-        } else {
-            GeometryReader { geometry in
-                VStack {
-                    Spacer(minLength: (geometry.size.height / 2) - Launch.offset)
-                    logo
-                    Spacer()
-                    button
-                    Spacer(minLength: Launch.minButtonHeight)
+        ZStack {
+            if ($buttonPressed.wrappedValue) {
+                RecipeBookView().transition(.asymmetric(insertion: .slide, removal: .identity))
+            } else {
+                GeometryReader { geometry in
+                    VStack {
+                        Spacer(minLength: (geometry.size.height / 2) - Launch.offset)
+                        logo
+                        Spacer()
+                        button
+                        Spacer(minLength: Launch.minButtonHeight)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .opacity(hidden ? 0 : 1)
+                    .onAppear {
+                        withAnimation(.linear(duration: 1.5)) {
+                            hidden.toggle()
+                        }
+                    }
+                    .onDisappear(perform: {
+                        withAnimation(.linear(duration: 0.5)) {
+                            hidden.toggle()
+                        }
+                    })
                 }
-                .buttonStyle(PlainButtonStyle())
             }
         }
     }
