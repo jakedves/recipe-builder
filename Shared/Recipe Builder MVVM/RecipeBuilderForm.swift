@@ -34,7 +34,7 @@ struct RecipeBuilderForm: View {
         .alert(isPresented: $badSave,
                content: { badSaveAlert })
         
-        .sheet(item: $imageLocation) { location in
+        .fullScreenCover(item: $imageLocation) { location in
             switch location {
             case .camera: Camera(processImage: {
                 handleImage($0)

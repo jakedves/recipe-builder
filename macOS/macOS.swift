@@ -58,6 +58,12 @@ extension View {
         }
     }
     
+    // macOS doesn't support .fullScreenCover()
+    func fullScreenCover<Item, Content>(item: Binding<Item?>, onDismiss: (() -> Void)? = nil, content: @escaping (Item) -> Content) -> some View where Item : Identifiable, Content : View {
+        
+        self.sheet(item: item, content: content)
+    }
+    
     // The navigation view modifier only works on iOS for these views
     func iOSNavigationView() -> some View {
         self
