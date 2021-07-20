@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LaunchScreen: View {
     @State private var buttonPressed = false
-    @State private var hidden = true
     
     var body: some View {
         ZStack {
@@ -25,17 +24,7 @@ struct LaunchScreen: View {
                         Spacer(minLength: Launch.minButtonHeight)
                     }
                     .buttonStyle(PlainButtonStyle())
-                    .opacity(hidden ? 0 : 1)
-                    .onAppear {
-                        withAnimation(.linear(duration: 1.5)) {
-                            hidden.toggle()
-                        }
-                    }
-                    .onDisappear(perform: {
-                        withAnimation(.linear(duration: 0.5)) {
-                            hidden.toggle()
-                        }
-                    })
+                    .transition(.opacity.animation(.linear(duration: 1.5)))
                 }
             }
         }

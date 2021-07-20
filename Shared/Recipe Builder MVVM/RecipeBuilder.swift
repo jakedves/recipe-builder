@@ -62,11 +62,19 @@ class RecipeBuilder: ObservableObject {
     func addNewRecipe(_ name: String, _ image: Data?, _ ingredients: [String], _ instructions: [String]) throws {
         let recipe = Recipe(context: recipeBook.container.viewContext)
         
+        
         recipe.id = UUID()
         recipe.name = name
         recipe.image = image
-        recipe.ingredients = ingredients
-        recipe.instructions = instructions
+        
+        // Empty strings will not be saved to help with UI
+        var finalIngredients = ingredients
+        var finalInstructions = instructions
+        finalIngredients.removeAll(where: { stringIsEmpty($0) })
+        finalInstructions.removeAll(where: { stringIsEmpty($0) })
+        
+        recipe.ingredients = finalIngredients
+        recipe.instructions = finalInstructions
         
         recipeBook.container.viewContext.insert(recipe)
         try recipeBook.container.viewContext.save()
@@ -85,6 +93,10 @@ class RecipeBuilder: ObservableObject {
         } else {
             return nil
         }
+    }
+    
+    private func stringIsEmpty(_ string: String) -> Bool {
+        string.replacingOccurrences(of: " ", with: "") == ""
     }
     
     // MARK: - Constants

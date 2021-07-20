@@ -97,7 +97,7 @@ struct RecipeDetailView: View {
     }
     
     private var instructions: some View {
-        VStack(alignment: .leading) {
+        return VStack(alignment: .leading) {
             
             Text(ViewConstants.instructionsTitle)
                 .font(.headline)
@@ -113,16 +113,18 @@ struct RecipeDetailView: View {
                 
             
             ForEach(recipe.instructions ?? [], id: \.self) { instruction in
-                HStack(alignment: .top) {
-                    Text("  \((recipe.instructions?.firstIndex(of: instruction))! + 1 ).  ")
+                if instruction != "" {
+                    HStack(alignment: .top) {
+                        Text("  \((recipe.instructions?.firstIndex(of: instruction))! + 1 ).  ")
 
-                    Text(instruction)
-                        .lineLimit(nil)
-                        
+                        Text(instruction)
+                            .lineLimit(nil)
+                            
+                    }
+                    .font(.body)
+                    .padding([.horizontal])
+                    Spacer().frame(height: ViewConstants.gap)
                 }
-                .font(.body)
-                .padding([.horizontal])
-                Spacer().frame(height: ViewConstants.gap)
             }
         }
         .background(ViewConstants.bgColor)
@@ -159,7 +161,8 @@ struct RecipeDetailView: View {
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RecipeDetailView().preferredColorScheme(.dark).environmentObject(PreviewData.recipes()[0])
+            RecipeDetailView()
+                .environmentObject(PreviewData.recipes()[0])
             RecipeDetailView().preferredColorScheme(.dark).environmentObject(PreviewData.recipes()[0])
         }
     }

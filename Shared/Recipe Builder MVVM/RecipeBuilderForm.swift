@@ -75,9 +75,7 @@ struct RecipeBuilderForm: View {
     #endif
     
     var recipeTitleSection: some View {
-        Section(header: Text("Recipe Name:")) {
-            TextField("Recipe Name", text: $builder.name)
-        }
+        TextField("Recipe Name", text: $builder.name)
     }
     
     var ingredientsSection: some View {

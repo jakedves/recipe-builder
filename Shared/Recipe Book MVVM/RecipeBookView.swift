@@ -10,27 +10,21 @@ import SwiftUI
 struct RecipeBookView: View {
     @EnvironmentObject private var recipeBook: RecipeBook
     @Environment(\.colorScheme) var colorScheme
-    @State private var building = false
-    @State private var editing = false
+    @Environment(\.editMode) var editMode
+    @State private var buildingRecipe = false
+    @State private var editingRecipe = false
     
     var body: some View {
         NavigationView {
-            ZStack {
-                if colorScheme == .dark {
-                    Color.green.opacity(0.175).ignoresSafeArea()
-                }
-                
-                if (self.recipeBook.recipes == nil) {
-                    errorMessage
-                } else if self.recipeBook.recipes!.count > 0 {
-                    list
-                } else {
-                    emptyView
-                }
+            if (self.recipeBook.recipes == nil) {
+                errorMessage
+            } else if self.recipeBook.recipes!.count > 0 {
+                list
+            } else {
+                emptyView
             }
-            
         }
-        .nativePullout(isPresented: $building) {
+        .nativePullout(isPresented: $buildingRecipe) {
             RecipeBuilderForm(builder: RecipeBuilder(book: recipeBook))
                 .macOSPadding()
                 .iOSNavigationView()
@@ -50,14 +44,14 @@ struct RecipeBookView: View {
                 NavigationLink(destination: RecipeDetailView()
                                 .environmentObject(recipe)
                                 .navigationBarItems(trailing: edit)
-                                .nativePullout(isPresented: $editing, content: {
+                                .nativePullout(isPresented: $editingRecipe, content: {
                                     
                                     RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
                                         .macOSPadding()
                                         .iOSNavigationView()
                                     
                                 })
-                ) {
+                ) { // What is wrapped in navigation link
                     RecipeRowView(recipe)
                 }
             }
@@ -66,7 +60,7 @@ struct RecipeBookView: View {
         .navigationTitle(RV.title)
         .navigationBarItems(leading: RV.naviLeading,
                             trailing: Button() {
-                                building.toggle()
+                                buildingRecipe.toggle()
                             } label: {
                                 RV.buildIcon
                                     
@@ -81,7 +75,7 @@ struct RecipeBookView: View {
     
     private var edit: some View {
         Button("Edit") {
-            editing.toggle()
+            editingRecipe.toggle()
         }
         .padding()
     }
@@ -93,7 +87,7 @@ struct RecipeBookView: View {
             .navigationTitle(RV.title)
             .navigationBarItems(leading: RV.naviLeading,
                                 trailing: Button() {
-                                    building.toggle()
+                                    buildingRecipe.toggle()
                                 } label: {
                                     RV.buildIcon
                                 }
@@ -119,7 +113,9 @@ struct RecipeBookView: View {
 }
 
 struct RecipeBookView_Previews: PreviewProvider {
+    static let recipebook = RecipeBook()
+    
     static var previews: some View {
-        RecipeBookView().preferredColorScheme(.light).environmentObject(RecipeBook())
+        RecipeBookView().preferredColorScheme(.dark).environmentObject(recipebook)
     }
 }
