@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LaunchScreen: View {
     @State private var buttonPressed = false
+    @State private var showing = false
     
     var body: some View {
         ZStack {
@@ -24,7 +25,12 @@ struct LaunchScreen: View {
                         Spacer(minLength: Launch.minButtonHeight)
                     }
                     .buttonStyle(PlainButtonStyle())
-                    .transition(.opacity.animation(.linear(duration: 1.5)))
+                    .opacity(showing ? 1 : 0)
+                    .onAppear {
+                        withAnimation(.linear(duration: 1)) {
+                            self.showing.toggle()
+                        }
+                    }
                 }
             }
         }
