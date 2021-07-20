@@ -23,7 +23,14 @@ struct VaryingTextFieldSection: View {
         Section(header: header) {
             List {
                 ForEach(0..<list.wrappedValue.count, id: \.self) { number in
-                    TextField(placeholder, text: list[number])
+                    if number == list.wrappedValue.count - 1 { // if last item
+                        HStack(spacing: 5) {
+                            TextField(placeholder, text: list[number])
+                            plus
+                        }
+                    } else {
+                        TextField(placeholder, text: list[number])
+                    }
                 }
                 .onDelete(perform: { indexSet in
                     deleteElement(at: indexSet)
@@ -35,11 +42,7 @@ struct VaryingTextFieldSection: View {
     }
     
     var header: some View {
-        HStack {
-            Text(title)
-            Spacer()
-            plus
-        }
+        Text(title)
     }
     
     var plus: some View {
