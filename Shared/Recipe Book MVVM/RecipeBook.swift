@@ -12,7 +12,7 @@ import CoreData
 class RecipeBook: ObservableObject {
     let container: NSPersistentContainer
     var loadFailed = false
-    @Published var recipes: [Recipe]? = [] // make optional and check in UI
+    @Published var recipes: [Recipe]? = [] // checked in UI for error
     
     
     init() {
@@ -39,6 +39,7 @@ class RecipeBook: ObservableObject {
     
     func fetchRecipes() {
         let request = NSFetchRequest<Recipe>(entityName: DataModel.entity)
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Recipe.name, ascending: true)] // sorts alphabetically
         
         do {
             recipes = try container.viewContext.fetch(request)
