@@ -103,7 +103,6 @@ struct RecipeDetailView: View {
                 .font(.headline)
                 .frame(maxWidth: .infinity)
                 .padding([.vertical])
-                .foregroundColor(.white)
                 .background(
                     ZStack {
                         Color.black
