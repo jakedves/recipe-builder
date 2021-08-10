@@ -15,6 +15,9 @@ struct VaryingTextFieldSection: View {
     
     init(title: String, placeholder: String, list: Binding<[String]>) {
         self.list = list
+        if self.list.wrappedValue.isEmpty {
+            self.list.wrappedValue.append("")
+        }
         self.title = title
         self.placeholder = placeholder
     }
