@@ -16,7 +16,7 @@ class RecipeBook: ObservableObject {
     
     
     init() {
-        container = NSPersistentContainer(name: DataModel.name)
+        container = NSPersistentCloudKitContainer(name: DataModel.name)
         container.loadPersistentStores { (description, loadError) in
             /*
             Typical reasons for an error here include:
@@ -33,6 +33,8 @@ class RecipeBook: ObservableObject {
             }
         }
         if !loadFailed {
+            container.viewContext.automaticallyMergesChangesFromParent = true
+            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             fetchRecipes()
         }
     }

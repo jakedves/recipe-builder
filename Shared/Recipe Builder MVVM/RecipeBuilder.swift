@@ -31,7 +31,7 @@ class RecipeBuilder: ObservableObject {
     func saveRecipe() throws {
         if recipe != nil {
             do {
-                let editingRecipe = try loadRecipe(recipe!.id)
+                let editingRecipe = try loadRecipe(recipe!.id!)
                 if (editingRecipe != nil) {
                     editingRecipe!.image = image
                     editingRecipe!.instructions = instructions
