@@ -10,27 +10,49 @@ import SwiftUI
 struct LaunchScreen: View {
     @State private var buttonPressed = false
     @State private var showing = false
+    @State private var logoInPostion = false
+    @State private var animationBegun = false
     
     init() {}
     
     var body: some View {
         ZStack {
-            if ($buttonPressed.wrappedValue) {
+            if (buttonPressed) {
                 RecipeBookView().transition(.asymmetric(insertion: .slide, removal: .identity))
             } else {
-                GeometryReader { geometry in
-                    VStack {
-                        Spacer(minLength: (geometry.size.height / 2) - Launch.offset)
-                        logo
-                        Spacer()
-                        button
-                        Spacer(minLength: Launch.minButtonHeight)
+                VStack {
+                    ZStack {
+                        ZStack {
+                            Launch.logo
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: Launch.length)
+                                .offset(x: animationBegun ? -130 : 0, y: 0)
+                            title
+                                .offset(x: 40, y: -10)
+                                .opacity(logoInPostion ? 1 : 0)
+                            message
+                                .offset(x: 45, y: 20)
+                                .opacity(logoInPostion ? 1 : 0)
+                        }
+                        GeometryReader { geo in
+                            button
+                                .position(x: geo.size.width / 2,
+                                            y: geo.size.height - 100)
+                                .opacity(logoInPostion ? 1 : 0)
+                        }
+                        
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .opacity(showing ? 1 : 0)
-                    .onAppear {
-                        withAnimation(.linear(duration: 1)) {
-                            self.showing.toggle()
+                    
+                }
+                .onAppear {
+                    let seconds = 0.8
+                    withAnimation(.easeIn(duration: seconds)) {
+                        animationBegun.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                            withAnimation(.easeIn(duration: seconds)) {
+                                logoInPostion.toggle()
+                            }
                         }
                     }
                 }
@@ -51,20 +73,6 @@ struct LaunchScreen: View {
             .font(.system(size: Launch.messageSize))
             .foregroundColor(Launch.color)
             .fontWeight(.bold)
-    }
-    
-    private var logo: some View {
-        HStack {
-            Spacer()
-            Launch.logo
-                .resizable()
-                .frame(width: Launch.length, height: Launch.length)
-            VStack {
-                self.title
-                self.message
-            }
-            Spacer()
-        }
     }
     
     
@@ -93,7 +101,7 @@ struct LaunchScreen: View {
         static let minButtonHeight: CGFloat = 80
         static let buttonCurvature: CGFloat = 40
         
-        static let length: CGFloat = 65
+        static let length: CGFloat = 75
         
         static let offset: CGFloat = 85
     }
