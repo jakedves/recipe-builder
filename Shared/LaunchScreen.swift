@@ -11,6 +11,8 @@ struct LaunchScreen: View {
     @State private var buttonPressed = false
     @State private var showing = false
     
+    init() {}
+    
     var body: some View {
         ZStack {
             if ($buttonPressed.wrappedValue) {

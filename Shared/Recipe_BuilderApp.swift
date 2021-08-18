@@ -9,13 +9,11 @@ import SwiftUI
 
 @main
 struct Recipe_BuilderApp: App {
-    private var recipeBook = RecipeBook()
     
     var body: some Scene {
         WindowGroup {
             #if !os(macOS)
-            LaunchScreen()
-                .environmentObject(recipeBook)
+            LaunchScreen().environmentObject(RecipeBook())
             #else
             LaunchScreen()
                 .frame(minWidth: macOS.minWindowWidth,
@@ -23,7 +21,7 @@ struct Recipe_BuilderApp: App {
                                  minHeight: macOS.minWindowHeight,
                                  maxHeight: .infinity,
                                  alignment: .center)
-                .environmentObject(recipeBook)
+                .environmentObject(RecipeBook())
             #endif
         }
         
