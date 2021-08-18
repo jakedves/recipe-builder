@@ -178,7 +178,7 @@ struct RecipeBuilderForm: View {
     
     func saveEntry() throws {
         // Confirm to view model
-        try builder.saveRecipe()
+        builder.save()
         
         // Close form
         presentationMode.wrappedValue.dismiss()

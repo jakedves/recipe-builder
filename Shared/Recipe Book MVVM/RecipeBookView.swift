@@ -41,8 +41,7 @@ struct RecipeBookView: View {
     private var list: some View {
         List {
             ForEach (recipeBook.recipes!) { recipe in
-                NavigationLink(destination: RecipeDetailView()
-                                .environmentObject(recipe)
+                NavigationLink(destination: RecipeDetailView(recipe: recipe)
                                 .navigationBarItems(trailing: edit)
                                 .nativePullout(isPresented: $editingRecipe, content: {
                                     
