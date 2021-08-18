@@ -32,14 +32,24 @@ struct LaunchScreen: View {
                                 .offset(x: 40, y: -10)
                                 .opacity(logoInPostion ? 1 : 0)
                             message
-                                .offset(x: 45, y: 20)
+                                .offset(x: 45, y: 23)
                                 .opacity(logoInPostion ? 1 : 0)
                         }
                         GeometryReader { geo in
-                            button
-                                .position(x: geo.size.width / 2,
-                                            y: geo.size.height - 100)
-                                .opacity(logoInPostion ? 1 : 0)
+                            Button() {
+                                buttonPressed.toggle()
+                            } label: {
+                                Text(Launch.buttonText)
+                                    .frame(width: geo.size.width - 100)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(Color.green)
+                                    .cornerRadius(Launch.buttonCurvature)
+                                    .position(x: geo.size.width / 2,
+                                                y: geo.size.height - 100)
+                                    .blur(radius: logoInPostion ? 0 : 100)
+                            }
+                                
                         }
                         
                     }
@@ -75,19 +85,6 @@ struct LaunchScreen: View {
             .fontWeight(.bold)
     }
     
-    
-    private var button: some View {
-        Button() {
-            $buttonPressed.wrappedValue.toggle()
-        } label: {
-            Text(Launch.buttonText)
-                .padding()
-                .foregroundColor(Launch.buttonTextColor)
-                .background(Launch.color)
-                .cornerRadius(Launch.buttonCurvature)
-        }
-    }
-    
     private struct Launch {
         static let logo = Image("Logo")
         static let title = "Welcome"
@@ -99,7 +96,7 @@ struct LaunchScreen: View {
         static let buttonText = "My Recipes"
         static let buttonTextColor: Color = .white
         static let minButtonHeight: CGFloat = 80
-        static let buttonCurvature: CGFloat = 40
+        static let buttonCurvature: CGFloat = 15
         
         static let length: CGFloat = 75
         
