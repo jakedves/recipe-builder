@@ -14,6 +14,11 @@ struct RecipeBookView: View {
     @State private var buildingRecipe = false
     @State private var editingRecipe = false
     
+    var items: [GridItem] {
+        [GridItem(.adaptive(minimum: 120), spacing: 10),
+         GridItem(.adaptive(minimum: 120), spacing: 10)]
+    }
+    
     var body: some View {
         NavigationView {
             if (self.recipeBook.recipes == nil) {
@@ -39,22 +44,30 @@ struct RecipeBookView: View {
     }
     
     private var list: some View {
-        List {
-            ForEach (recipeBook.recipes!) { recipe in
-                NavigationLink(destination: RecipeDetailView(recipe: recipe)
-                                .navigationBarItems(trailing: edit)
-                                .nativePullout(isPresented: $editingRecipe, content: {
-                                    
-                                    RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
-                                        .macOSPadding()
-                                        .iOSNavigationView()
-                                    
-                                })
-                ) { // What is wrapped in navigation link
-                    RecipeRowView(recipe)
+        GeometryReader { geo in
+            ScrollView {
+                LazyVGrid(columns: items, spacing: 10) {
+                    ForEach (recipeBook.recipes!) { recipe in
+                        NavigationLink(destination: RecipeDetailView(recipe: recipe)
+                                        .navigationBarItems(trailing: edit)
+                                        .nativePullout(isPresented: $editingRecipe, content: {
+                                            
+                                            RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
+                                                .macOSPadding()
+                                                .iOSNavigationView()
+                                            
+                                        })
+                        ) { // What is wrapped in navigation link
+                            RecipeCompactView(recipe)
+                                .aspectRatio(16/9, contentMode: .fill)
+                                .clipped()
+                        }
+                          }
+                    //.onDelete(perform: recipeBook.delete)
                 }
+                .padding()
+                
             }
-            .onDelete(perform: recipeBook.delete)
         }
         .navigationTitle(RV.title)
         .navigationBarItems(leading: RV.naviLeading,

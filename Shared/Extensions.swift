@@ -18,7 +18,7 @@ extension Image {
             .resizable()
             .frame(width: RRIC.squareLength, height: RRIC.squareLength)
             .cornerRadius(RRIC.corner)
-            .overlay(RoundedRectangle(cornerSize: RRIC.cornerSize)
+            .overlay(RoundedRectangle(cornerRadius: RRIC.corner)
                         .stroke(Color.black, lineWidth: RRIC.strokeSize)
             )
             .padding(RRIC.paddingAmount)
@@ -27,19 +27,31 @@ extension Image {
     
     // Recipe Row Image Constants
     private struct RRIC {
-        static let squareLength: CGFloat = 50
-        static let corner: CGFloat = 10
-        static let cornerSize = CGSize(width: 10, height: 10)
+        static let squareLength: CGFloat = 100
+        static let corner: CGFloat = 20
         static let strokeSize: CGFloat = 1.5
         static let paddingAmount: CGFloat = 3
     }
     
     // For use in the RecipeBuilderForm, the preview image shown when a user selects an image to represent their photo
     func builderStyle() -> some View {
-        self.resizable()
+        self
+            .resizable()
             .clipped()
             .clipShape(RoundedRectangle(cornerRadius: CGFloat(25.0)))
             .aspectRatio(contentMode: .fit)
             .padding()
     }
+    
+    
+    func centerCropped() -> some View {
+        GeometryReader { geo in
+            self
+                .resizable()
+                .scaledToFill()
+                .frame(width: geo.size.width, height: geo.size.height)
+                .clipped()
+        }
+    }
+    
 }
