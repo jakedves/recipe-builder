@@ -18,17 +18,22 @@ struct RecipeGridPreview: View {
         ZStack {
             Image(optionalData: recipe.image)
                 .centerCropped()
-                .opacity(0.4)
+                .aspectRatio(16/11, contentMode: .fill)
+                .clipped()
             
             VStack {
                 Spacer()
                 Text(recipe.name ?? Row.defaultName)
                     .font(.body)
                     .fontWeight(.semibold)
+                    .lineLimit(3)
                     .multilineTextAlignment(.center)
-                    .lineLimit(nil)
                     .foregroundColor(.black)
-                    .padding()
+                    .padding([.top], 5)
+                    .padding([.bottom])
+                    .background(Color.white.opacity(Row.textTransparency)
+                                    .frame(width: 500)
+                                    )
             }
         }
         .cornerRadius(20)
@@ -36,6 +41,7 @@ struct RecipeGridPreview: View {
     
     private struct Row {
         static let defaultName: String = "Unnamed Recipe"
+        static let textTransparency = 0.85
     }
 }
 

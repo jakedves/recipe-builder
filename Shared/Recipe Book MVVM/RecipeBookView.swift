@@ -92,8 +92,7 @@ struct RecipeBookView: View {
                                             })
                             ) { // What is wrapped in navigation link
                                 RecipeGridPreview(recipe)
-                                    .aspectRatio(16/9, contentMode: .fill)
-                                    .clipped()
+                                    
                             }
                         }
                     }

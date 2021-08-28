@@ -167,16 +167,6 @@ struct RecipeDetailView: View {
     }
 }
 
-extension Image {
-    init(optionalData: Data?) {
-        if optionalData == nil {
-            self = Image("Logo")
-        } else {
-            self = Image(uiImage: UIImage(data: optionalData!)!)
-        }
-    }
-}
-
 struct RecipeDetailView_Previews: PreviewProvider {
     static let recipe = Recipe(context: RecipeStoreController.instance.container.viewContext)
     

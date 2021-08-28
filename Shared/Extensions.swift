@@ -54,4 +54,11 @@ extension Image {
         }
     }
     
+    init(optionalData: Data?) {
+        if optionalData == nil {
+            self = Image("Logo")
+        } else {
+            self = Image(uiImage: UIImage(data: optionalData!)!)
+        }
+    }
 }

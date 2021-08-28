@@ -20,7 +20,9 @@ struct RecipeListPreview: View {
                 .resizable()
                 .frame(width: Row.length, height: Row.length)
                 .cornerRadius(Row.corner)
-                .border(Color.black)
+                .overlay(RoundedRectangle(cornerRadius: Row.corner)
+                            .stroke(Color.black, lineWidth: 1.5))
+                
             
             Text(recipe.name ?? Row.defaultName)
                 .font(.body)
@@ -33,6 +35,6 @@ struct RecipeListPreview: View {
     private struct Row {
         static let defaultName: String = "Unnamed Recipe"
         static let corner: CGFloat = 15
-        static let length: CGFloat = 65
+        static let length: CGFloat = 55
     }
 }
