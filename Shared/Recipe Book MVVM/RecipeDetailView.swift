@@ -145,7 +145,7 @@ struct RecipeDetailView: View {
     private struct ViewConstants {
         // Recipe Title
         static let unnamed = "Unnamed Recipe"
-        static let imageOffset: CGFloat = 50
+        static let imageOffset: CGFloat = 85
         
         // Ingredients & Instructions
         static let ingredientsTitle = "Ingredients"
