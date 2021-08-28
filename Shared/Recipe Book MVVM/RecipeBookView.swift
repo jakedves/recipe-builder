@@ -13,10 +13,15 @@ struct RecipeBookView: View {
     @Environment(\.editMode) var editMode
     @State private var buildingRecipe = false
     @State private var editingRecipe = false
+    @State private var viewMode: ViewMode = .grid
     
     var items: [GridItem] {
         [GridItem(.adaptive(minimum: 120), spacing: 10),
          GridItem(.adaptive(minimum: 120), spacing: 10)]
+    }
+    
+    private enum ViewMode {
+        case grid, list;
     }
     
     var body: some View {
@@ -36,6 +41,32 @@ struct RecipeBookView: View {
         }
     }
     
+    private var switchViewMode: some View {
+        Button() {
+            withAnimation {
+                switch viewMode {
+                case .grid:
+                    viewMode = .list
+                case .list:
+                    viewMode = .grid
+                }
+            }
+        } label: {
+            Image(systemName: viewMode == .grid ?
+                    "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
+        }
+        .plainButtonStyleMacOS()
+    }
+    
+    private var openBuildRecipe: some View {
+        Button() {
+            buildingRecipe.toggle()
+        } label: {
+            RV.buildIcon
+        }
+        .plainButtonStyleMacOS()
+    }
+    
     private var errorMessage: some View {
         Text("The database could not be loaded. This may be due to the device being out of storage, or may require an app reinstall if the problem persists.")
             .multilineTextAlignment(.center).frame(width: 300)
@@ -44,45 +75,72 @@ struct RecipeBookView: View {
     }
     
     private var list: some View {
-        GeometryReader { geo in
-            ScrollView {
-                LazyVGrid(columns: items, spacing: 10) {
-                    ForEach (recipeBook.recipes!) { recipe in
-                        NavigationLink(destination: RecipeDetailView(recipe: recipe)
-                                        .navigationBarItems(trailing: edit)
-                                        .nativePullout(isPresented: $editingRecipe, content: {
-                                            
-                                            RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
-                                                .macOSPadding()
-                                                .iOSNavigationView()
-                                            
-                                        })
-                        ) { // What is wrapped in navigation link
-                            RecipeCompactView(recipe)
-                                .aspectRatio(16/9, contentMode: .fill)
-                                .clipped()
-                        }
-                          }
-                    //.onDelete(perform: recipeBook.delete)
-                }
-                .padding()
-                
-            }
-        }
-        .navigationTitle(RV.title)
-        .navigationBarItems(leading: RV.naviLeading,
-                            trailing: Button() {
-                                buildingRecipe.toggle()
-                            } label: {
-                                RV.buildIcon
-                                    
+        switch viewMode {
+        case .grid:
+            return AnyView(GeometryReader { geo in
+                ScrollView {
+                    LazyVGrid(columns: items, spacing: 10) {
+                        ForEach (recipeBook.recipes!) { recipe in
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe)
+                                            .navigationBarItems(trailing: edit)
+                                            .nativePullout(isPresented: $editingRecipe, content: {
+                                                
+                                                RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
+                                                    .macOSPadding()
+                                                    .iOSNavigationView()
+                                                
+                                            })
+                            ) { // What is wrapped in navigation link
+                                RecipeGridPreview(recipe)
+                                    .aspectRatio(16/9, contentMode: .fill)
+                                    .clipped()
                             }
-                            .plainButtonStyleMacOS()
-                            .macOSPadding(5)
-                            .foregroundColor(.blue)
-        )
-        .listStyle(InsetListStyle())
-        .frame(minWidth: 300)
+                        }
+                    }
+                    .padding()
+                    
+                }
+            }
+            .navigationTitle(RV.title)
+            .navigationBarItems(leading: RV.naviLeading,
+                                trailing: trailingButtons
+                                .macOSPadding(5)
+                                .foregroundColor(.blue))
+            )
+        case .list:
+            return AnyView(List {
+                ForEach (recipeBook.recipes!) { recipe in
+                    NavigationLink(destination: RecipeDetailView(recipe: recipe)
+                                    .navigationBarItems(trailing: edit)
+                                    .nativePullout(isPresented: $editingRecipe, content: {
+                                        
+                                        RecipeBuilderForm(builder: RecipeBuilder(recipe: recipe, book: recipeBook))
+                                            .macOSPadding()
+                                            .iOSNavigationView()
+                                        
+                                    })
+                    ) { // What is wrapped in navigation link
+                        RecipeListPreview(recipe)
+                    }
+                }
+                .onDelete(perform: recipeBook.delete)
+            }
+            .listStyle(InsetListStyle())
+            .navigationTitle(RV.title)
+            .navigationBarItems(leading: RV.naviLeading,
+                                trailing: trailingButtons
+                                .macOSPadding(5)
+                                .foregroundColor(.blue))
+            )
+        }
+    }
+    
+    private var trailingButtons: some View {
+        HStack {
+            switchViewMode
+            
+            openBuildRecipe
+        }
     }
     
     private var edit: some View {

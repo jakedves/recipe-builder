@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeCompactView: View {
+struct RecipeGridPreview: View {
     @ObservedObject private var recipe: Recipe
     
     init(_ recipe: Recipe) {
@@ -35,7 +35,6 @@ struct RecipeCompactView: View {
     }
     
     private struct Row {
-        static let defaultImage: Image = Image("Logo")
         static let defaultName: String = "Unnamed Recipe"
     }
 }
@@ -48,6 +47,6 @@ struct RecipeCompactViewPreview_Previews: PreviewProvider {
     static var previews: some View {
         recipe.name = "A really yummy Recipe"
         
-        return RecipeCompactView(recipe)
+        return RecipeGridPreview(recipe)
     }
 }
