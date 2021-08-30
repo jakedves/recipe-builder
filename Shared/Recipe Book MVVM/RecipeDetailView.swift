@@ -99,14 +99,15 @@ struct RecipeDetailView: View {
                 
             
             ForEach(recipe.ingredients ?? [], id: \.self) { ingredient in
-                
-                HStack {
-                    Spacer().frame(width: ViewConstants.indent)
-                    Text(ViewConstants.bullet + ingredient)
-                        .font(.body)
-                        .lineLimit(nil)
-                        .foregroundColor(colorScheme == .light ? .black : .white)
-                        .opacity(0.85)
+                if ingredient.replacingOccurrences(of: " ", with: "") != "" {
+                    HStack {
+                        Spacer().frame(width: ViewConstants.indent)
+                        Text(ViewConstants.bullet + ingredient)
+                            .font(.body)
+                            .lineLimit(nil)
+                            .foregroundColor(colorScheme == .light ? .black : .white)
+                            .opacity(0.85)
+                    }
                 }
             }
         }
@@ -122,7 +123,7 @@ struct RecipeDetailView: View {
                 .padding([.bottom], 0.4)
             
             ForEach(recipe.instructions ?? [], id: \.self) { instruction in
-                if instruction != "" {
+                if instruction.replacingOccurrences(of: " ", with: "") != "" {
                     HStack(alignment: .top) {
                         Text(" \((recipe.instructions?.firstIndex(of: instruction))! + 1 ).")
 
@@ -170,8 +171,8 @@ struct RecipeDetailView_Previews: PreviewProvider {
     static let recipe = Recipe(context: RecipeStoreController.instance.container.viewContext)
     
     static var previews: some View {
-        recipe.ingredients = ["Flour", "Chocolate", "Milk", "Eggs"]
-        recipe.instructions = ["Bake for 15 mins", "Add chocolate"]
+        recipe.ingredients = [""]
+        recipe.instructions = [""]
         
         return Group {
             RecipeDetailView(recipe: recipe)
