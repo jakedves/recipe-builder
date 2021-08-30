@@ -51,11 +51,10 @@ struct RecipeDetailView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 45)
                 .frame(width: ViewConstants.diameter, height: ViewConstants.diameter)
-                .foregroundColor(.green)
-                .scaleEffect(1.08)
-                .opacity(0.5)
-                .shadow(radius: ViewConstants.shadowRadius)
-                .shadow(radius: ViewConstants.shadowRadius)
+                .foregroundColor(.black)
+                .scaleEffect(1.04)
+                
+                
             Image(optionalData: recipe.image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
